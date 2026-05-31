@@ -648,6 +648,41 @@
       </div>
     </div>
 
+    <!-- /card -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /card</div>
+          <div class="route-name">Single Slot Card</div>
+          <div class="route-desc">Full detail card for a single party slot — sprite, name, level, types, ability, passive, tera, status, stat stages, HP bar, and all 4 moves. Uses the same shared rendering code as the party strip. Great as a focused OBS browser source for one Pokémon.</div>
+          <div class="route-tags">
+            <span class="tag obs">OBS Source</span>
+            <span class="tag page">Widget</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/card?slot=0')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Preview — slot 0</div>
+        <div class="iframe-shell" style="min-height:180px;">
+          <iframe src="/card?slot=0" width="320" height="175" scrolling="no"></iframe>
+        </div>
+        <div class="params">
+          <div class="params-head">
+            <span>Parameter</span><span>Type</span><span>Description</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">slot</span>
+            <span class="param-type">0–5</span>
+            <span class="param-desc">Party slot to display. Default: 0.</span>
+          </div>
+        </div>
+        <div class="obs-tip">
+          <strong>OBS tip:</strong> Recommended size ~320×175px. Use one browser source per slot you want to feature. Rendering logic is shared with /party — any style update applies to both automatically.
+        </div>
+      </div>
+    </div>
+
     <!-- /sprite -->
     <div class="route-card">
       <div class="route-header">
