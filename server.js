@@ -196,6 +196,8 @@ app.get("/party", (req, res) => res.sendFile(path.join(__dirname, "party.html"))
 app.get("/stats", (req, res) => res.sendFile(path.join(__dirname, "stats.html")));
 
 // ── Sprite ────────────────────────────────────────────────────────────────────
+// GET /sprite?slot=0        → HTML page with <img> (OBS browser source)
+// GET /sprite?slot=0&raw=1  → raw image bytes (for use inside <img src=>)
 app.get("/sprite", async (req, res) => {
   const slot = parseInt(req.query.slot);
   if (isNaN(slot) || slot < 0 || slot > 5)
@@ -207,16 +209,43 @@ app.get("/sprite", async (req, res) => {
 
   const realName   = cleanPokemonName(pokemon.name);
   const candidates = spriteCandidates(realName, pokemon.form);
+  const raw        = req.query.raw !== undefined;
 
   try {
     const { buf, type, url } = await fetchFirstWorking(candidates);
-    console.log(`/sprite slot=${slot} → ${pokemon.name} → ${url}`);
-    res.set("Content-Type", type);
-    res.set("Cache-Control", "no-cache");
-    res.send(buf);
+    console.log(`/sprite slot=${slot}${raw ? " (raw)" : ""} → ${pokemon.name} → ${url}`);
+
+    if (raw) {
+      // Return raw image bytes — safe to use in <img src="/sprite?slot=0&raw">
+      res.set("Content-Type", type);
+      res.set("Cache-Control", "no-cache");
+      return res.send(buf);
+    }
+
+    // Return a minimal HTML page — use as an OBS browser source
+    const b64   = buf.toString("base64");
+    const mime  = type;
+    const name  = pokemon.nickname || pokemon.name;
+    res.set("Content-Type", "text/html");
+    res.send(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; background:transparent; display:flex; align-items:center; justify-content:center; }
+  img { image-rendering:pixelated; max-width:100%; max-height:100%; object-fit:contain; }
+</style>
+</head>
+<body>
+<img src="data:${mime};base64,${b64}" alt="${name}">
+</body>
+</html>`);
   } catch (err) {
     console.error(`/sprite slot=${slot}: no working sprite for ${pokemon.name}`);
-    res.status(404).json({ error: "No working sprite found" });
+    if (raw) return res.status(404).json({ error: "No working sprite found" });
+    res.set("Content-Type", "text/html");
+    res.send(`<!DOCTYPE html><html><body style="background:transparent;margin:0"></body></html>`);
   }
 });
 

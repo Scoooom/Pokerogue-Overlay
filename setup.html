@@ -634,7 +634,7 @@
         <div class="route-meta">
           <div class="route-path"><span class="method-tag">GET</span> /sprite</div>
           <div class="route-name">Sprite by Slot</div>
-          <div class="route-desc">Redirects to the official PokéRogue sprite for whichever Pokémon is currently in the given party slot. Automatically uses the shiny sprite if that Pokémon is shiny — no parameters needed beyond the slot number.</div>
+          <div class="route-desc">Serves the sprite for whichever Pokémon is currently in the given party slot. Without <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> returns a transparent HTML page (use as OBS browser source). With <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> returns raw image bytes (use inside <code>&lt;img src&gt;</code>).</div>
           <div class="route-tags">
             <span class="tag api">API / Redirect</span>
           </div>
@@ -657,9 +657,15 @@
             <span class="param-type">integer</span>
             <span class="param-desc">Party slot index, 0–5. Required.</span>
           </div>
+          <div class="param-row">
+            <span class="param-name">raw</span>
+            <span class="param-type">flag</span>
+            <span class="param-desc">Return raw image bytes instead of an HTML page. Use when embedding in an &lt;img src&gt; tag.</span>
+          </div>
         </div>
         <div class="obs-tip">
-          <strong>Usage:</strong> Use as an image source anywhere — OBS image, custom HTML widget, Streamlabs label, etc. Example: <code>&lt;img src="http://localhost:3000/sprite?slot=0"&gt;</code>
+          <strong>OBS browser source:</strong> <code>http://localhost:3000/sprite?slot=0</code><br>
+          <strong>Inside an &lt;img&gt; tag:</strong> <code>&lt;img src="http://localhost:3000/sprite?slot=0&amp;raw"&gt;</code>
         </div>
       </div>
     </div>
@@ -758,7 +764,7 @@
           <img src="" alt="" style="opacity:0.15;" onerror="this.style.display='none'">
           <span>slot ${i}</span>
         </div>`;
-      const url = `/sprite?slot=${i}&_cb=${Date.now()}`;
+      const url = `/sprite?slot=${i}&raw&_cb=${Date.now()}`;
       return `
         <div class="sprite-slot">
           <img src="${url}" alt="${p.name}" title="${p.name}${p.shiny ? ' ✨' : ''}">
