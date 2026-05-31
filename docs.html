@@ -570,6 +570,15 @@ node server.js</code></pre>
     <div class="var-row"><span class="var-name">--fainted-filter</span><span class="var-default">grayscale(0.75)</span><span class="var-desc">CSS filter on fainted card</span></div>
   </div>
 
+  <h3>Type Colours</h3>
+  <p>Every Pokémon type has its own CSS class (<code>.type-FIRE</code>, <code>.type-WATER</code>, etc.) with RGB component variables (<code>--tr</code>, <code>--tg</code>, <code>--tb</code>). Override any type colour in custom.css:</p>
+  <pre><code>/* Change Fire type to a brighter orange */
+.type-FIRE { --tr: 255; --tg: 90; --tb: 0; }
+
+/* Make Psychic type hot pink */
+.type-PSYCHIC { --tr: 255; --tg: 0; --tb: 128; }</code></pre>
+  <p>This affects type badges, move dots, tera badges — anywhere that type's colour appears.</p>
+
   <h2 id="custom-examples" class="anchor">Example Configurations</h2>
   <p>Copy any of these into the OBS Custom CSS field. Mix and match variables freely.</p>
 

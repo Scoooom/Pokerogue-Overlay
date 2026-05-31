@@ -215,3 +215,64 @@
     /* ── Empty slot ──────────────────────────────────────────────────────── */
     .card.empty { opacity: 0.15; border-style: dashed; --card-rgb: 139,92,246; }
     .empty-sprite { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-empty); }
+
+    /* ── Type colour classes ─────────────────────────────────────────────────── */
+    /* Each type defines --type-r, --type-g, --type-b for use in rgba()          */
+    /* Override any of these in custom.css to recolour a type globally            */
+
+    .type-NORMAL   { --tr:168; --tg:168; --tb:120; }
+    .type-FIRE     { --tr:240; --tg:128; --tb:48;  }
+    .type-WATER    { --tr:104; --tg:144; --tb:240; }
+    .type-ELECTRIC { --tr:248; --tg:208; --tb:48;  }
+    .type-GRASS    { --tr:120; --tg:200; --tb:80;  }
+    .type-ICE      { --tr:152; --tg:216; --tb:216; }
+    .type-FIGHTING { --tr:192; --tg:48;  --tb:40;  }
+    .type-POISON   { --tr:160; --tg:64;  --tb:160; }
+    .type-GROUND   { --tr:224; --tg:192; --tb:104; }
+    .type-FLYING   { --tr:168; --tg:144; --tb:240; }
+    .type-PSYCHIC  { --tr:248; --tg:88;  --tb:136; }
+    .type-BUG      { --tr:168; --tg:184; --tb:32;  }
+    .type-ROCK     { --tr:184; --tg:160; --tb:56;  }
+    .type-GHOST    { --tr:112; --tg:88;  --tb:152; }
+    .type-DRAGON   { --tr:112; --tg:56;  --tb:248; }
+    .type-DARK     { --tr:112; --tg:88;  --tb:72;  }
+    .type-STEEL    { --tr:184; --tg:184; --tb:208; }
+    .type-FAIRY    { --tr:238; --tg:153; --tb:172; }
+
+    /* Type badge uses the type class */
+    .type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+
+    /* Move row uses the type class for border and dot */
+    .move.type-NORMAL, .move.type-FIRE, .move.type-WATER, .move.type-ELECTRIC,
+    .move.type-GRASS, .move.type-ICE, .move.type-FIGHTING, .move.type-POISON,
+    .move.type-GROUND, .move.type-FLYING, .move.type-PSYCHIC, .move.type-BUG,
+    .move.type-ROCK, .move.type-GHOST, .move.type-DRAGON, .move.type-DARK,
+    .move.type-STEEL, .move.type-FAIRY {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+
+    .move.type-NORMAL .move-dot, .move.type-FIRE .move-dot, .move.type-WATER .move-dot,
+    .move.type-ELECTRIC .move-dot, .move.type-GRASS .move-dot, .move.type-ICE .move-dot,
+    .move.type-FIGHTING .move-dot, .move.type-POISON .move-dot, .move.type-GROUND .move-dot,
+    .move.type-FLYING .move-dot, .move.type-PSYCHIC .move-dot, .move.type-BUG .move-dot,
+    .move.type-ROCK .move-dot, .move.type-GHOST .move-dot, .move.type-DRAGON .move-dot,
+    .move.type-DARK .move-dot, .move.type-STEEL .move-dot, .move.type-FAIRY .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+
+    /* Tera badge uses type class */
+    .tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+
+    .tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }

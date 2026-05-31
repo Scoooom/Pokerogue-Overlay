@@ -1,6 +1,8 @@
 // ── Shared card rendering logic ───────────────────────────────────────────────
 // Used by /party and /card
 
+// Type colours are defined in card-shared.css via .type-{TYPE} classes
+// typeRgb() kept for backwards compat but not used for rendering
 const TYPE_RGB = {
   NORMAL:'168,168,120', FIRE:'240,128,48',   WATER:'104,144,240',
   ELECTRIC:'248,208,48', GRASS:'120,200,80', ICE:'152,216,216',
@@ -35,16 +37,16 @@ function hpPct(p) {
 function hpColor(pct) { return pct <= 25 ? 'var(--bad)' : pct <= 50 ? 'var(--warn)' : 'var(--good)'; }
 
 function typeBadge(t) {
-  const rgb = typeRgb(t);
-  return `<span class="type-badge" style="background:rgba(${rgb},var(--type-badge-bg-opacity,0.28));border:1px solid rgba(${rgb},var(--type-badge-border-opacity,0.55));">${t}</span>`;
+  const cls = (t || 'normal').toUpperCase();
+  return `<span class="type-badge type-${cls}">${t}</span>`;
 }
 
 function moveRow(move) {
   if (!move || !move.name) return `<div class="move empty"><div class="move-dot"></div><span class="move-name">—</span></div>`;
-  const rgb  = typeRgb(move.type || '');
+  const cls  = (move.type || 'normal').toUpperCase();
   const name = move.name.replace(/ \(P\)$/, '');
-  return `<div class="move" style="border-color:rgba(${rgb},var(--move-border-opacity,0.22));">
-    <div class="move-dot" style="background:rgba(${rgb},var(--move-dot-opacity,0.9));box-shadow:0 0 4px rgba(${rgb},var(--move-dot-glow-opacity,0.5));"></div>
+  return `<div class="move type-${cls}">
+    <div class="move-dot"></div>
     <span class="move-name" title="${move.name}">${name}</span>
   </div>`;
 }
@@ -64,8 +66,9 @@ function statStagesHtml(stages) {
 }
 
 function renderCard(p, slot) {
-  const pct        = hpPct(p);
-  const primaryRgb = typeRgb((p.types || [])[0] || 'Normal');
+  const pct         = hpPct(p);
+  const primaryType = ((p.types || [])[0] || 'normal').toUpperCase();
+  const primaryRgb  = typeRgb((p.types || [])[0] || 'Normal');
   const isFainted  = pct === 0;
   const shinyHtml  = p.shiny ? `<div class="shiny-badge">✨</div>` : '';
   const typesHtml  = (p.types || []).map(typeBadge).join('');
@@ -80,9 +83,9 @@ function renderCard(p, slot) {
 
   const teraHtml = (() => {
     if (!p.teraType) return '';
-    const rgb = typeRgb(p.teraType);
+    const cls    = (p.teraType || 'normal').toUpperCase();
     const active = p.isTerastallized;
-    return `<div class="tera-badge${active ? ' tera-active' : ''}" style="background:rgba(${rgb},${active ? 'var(--tera-active-bg-opacity,0.3)' : 'var(--tera-inactive-bg-opacity,0.12)'});border-color:rgba(${rgb},${active ? 'var(--tera-active-border-opacity,0.7)' : 'var(--tera-inactive-border-opacity,0.35)'});color:rgba(${rgb},${active ? '1' : '0.7'});">
+    return `<div class="tera-badge type-${cls}${active ? ' tera-active' : ''}">
       ${active ? '◆' : '◇'} ${p.teraType}
     </div>`;
   })();
@@ -98,7 +101,7 @@ function renderCard(p, slot) {
   while (moves.length < 4) moves.push(null);
 
   return `
-    <div class="card ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
+    <div class="card type-primary-${primaryType} ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
       <div class="col-left">
         <div class="sprite-wrap">
           <img class="sprite" src="/sprite?name=${encodeURIComponent(cleanName(p.name))}&form=${encodeURIComponent(p.form||'')}&raw" alt="${p.name}">

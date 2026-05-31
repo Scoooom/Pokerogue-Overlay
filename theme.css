@@ -265,3 +265,8 @@
 --overlay-editor-bg:      #101010;
 --overlay-white:          #fff;
 --overlay-purple-light:   #c4b5fd;
+
+/* ── Type colour RGB components ──────────────────────────────────────────────── */
+/* Override individual type colours in custom.css e.g.:                          */
+/*   .type-FIRE { --tr: 255; --tg: 80; --tb: 0; }                               */
+/* These are set on individual elements via .type-{TYPE} classes in card-shared.css */
