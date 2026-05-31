@@ -298,6 +298,8 @@
       const mode    = data.gameMode || '';
       const params  = new URLSearchParams(location.search);
       const cycle   = params.has('cycle') ? Number(params.get('cycle')) : null;
+      const showButtons = params.has('buttons');
+      document.getElementById('cycleRow').style.display = showButtons ? '' : 'none';
 
       document.getElementById('wave').textContent = wave;
       document.getElementById('biome').textContent = biome;
