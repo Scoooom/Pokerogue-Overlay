@@ -157,16 +157,18 @@
 
     /* ── Stat stages ─────────────────────────────────────────────────────── */
     .stat-stages {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
       display: flex;
+      flex-direction: column;
       gap: 2px;
-      flex-wrap: wrap;
-      justify-content: center;
+      align-items: flex-start;
+      pointer-events: none;
     }
 
-    .strip.vertical .stat-stages { justify-content: flex-start; }
-
     .stat-chip {
-      font-size: 8px;
+      font-size: 7.5px;
       font-weight: 700;
       letter-spacing: 0.04em;
       padding: 1px 4px;
@@ -288,6 +290,7 @@
 
       return `
         <div class="card ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
+          ${stagesHtml}
           <div class="col-left">
             <div class="sprite-wrap">
               <img class="sprite" src="/sprite?name=${encodeURIComponent(cleanName(p.name))}&form=${encodeURIComponent(p.form||"")}&raw" alt="${p.name}">
@@ -302,7 +305,6 @@
             <div class="types">${typesHtml}</div>
             ${statusHtml}
             ${teraHtml}
-            ${stagesHtml}
             <div class="hp-bar-wrap">
               <div class="hp-bar-bg">
                 <div class="hp-bar-fill" style="width:${pct}%;background:${hpColor(pct)};"></div>
