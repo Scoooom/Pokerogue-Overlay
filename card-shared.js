@@ -66,9 +66,8 @@ function statStagesHtml(stages) {
 }
 
 function renderCard(p, slot, minimal = false) {
-  const pct         = hpPct(p);
-  const primaryType = ((p.types || [])[0] || 'normal').toUpperCase();
-  const primaryRgb  = typeRgb((p.types || [])[0] || 'Normal');
+  const pct        = hpPct(p);
+  const primaryRgb = typeRgb((p.types || [])[0] || 'Normal');
   const isFainted   = pct === 0;
   const shinyHtml   = p.shiny ? `<div class="shiny-badge">✨</div>` : '';
   const typesHtml   = (p.types || []).map(typeBadge).join('');
@@ -82,7 +81,7 @@ function renderCard(p, slot, minimal = false) {
 
   if (minimal) {
     return `
-      <div class="card card-minimal type-primary-${primaryType} ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
+      <div class="card card-minimal ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
         <div class="col-left">
           <div class="sprite-wrap">
             <img class="sprite" src="/sprite?name=${encodeURIComponent(cleanName(p.name))}&form=${encodeURIComponent(p.form||'')}&raw" alt="${p.name}">
@@ -119,7 +118,7 @@ function renderCard(p, slot, minimal = false) {
   while (moves.length < 4) moves.push(null);
 
   return `
-    <div class="card type-primary-${primaryType} ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
+    <div class="card ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
       <div class="col-left">
         <div class="sprite-wrap">
           <img class="sprite" src="/sprite?name=${encodeURIComponent(cleanName(p.name))}&form=${encodeURIComponent(p.form||'')}&raw" alt="${p.name}">

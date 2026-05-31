@@ -239,39 +239,399 @@
     .type-STEEL    { --tr:184; --tg:184; --tb:208; }
     .type-FAIRY    { --tr:238; --tg:153; --tb:172; }
 
-    /* Type badge uses the type class */
-    .type-badge {
+    /* Type-scoped colour rules — each class sets bg/border/dot using its own --tr/--tg/--tb */
+
+    .type-NORMAL.type-badge {
       background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
       border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
     }
-
-    /* Move row uses the type class for border and dot */
-    .move.type-NORMAL, .move.type-FIRE, .move.type-WATER, .move.type-ELECTRIC,
-    .move.type-GRASS, .move.type-ICE, .move.type-FIGHTING, .move.type-POISON,
-    .move.type-GROUND, .move.type-FLYING, .move.type-PSYCHIC, .move.type-BUG,
-    .move.type-ROCK, .move.type-GHOST, .move.type-DRAGON, .move.type-DARK,
-    .move.type-STEEL, .move.type-FAIRY {
+    .move.type-NORMAL {
       border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
     }
-
-    .move.type-NORMAL .move-dot, .move.type-FIRE .move-dot, .move.type-WATER .move-dot,
-    .move.type-ELECTRIC .move-dot, .move.type-GRASS .move-dot, .move.type-ICE .move-dot,
-    .move.type-FIGHTING .move-dot, .move.type-POISON .move-dot, .move.type-GROUND .move-dot,
-    .move.type-FLYING .move-dot, .move.type-PSYCHIC .move-dot, .move.type-BUG .move-dot,
-    .move.type-ROCK .move-dot, .move.type-GHOST .move-dot, .move.type-DRAGON .move-dot,
-    .move.type-DARK .move-dot, .move.type-STEEL .move-dot, .move.type-FAIRY .move-dot {
+    .move.type-NORMAL .move-dot {
       background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
       box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
     }
-
-    /* Tera badge uses type class */
-    .tera-badge {
+    .type-NORMAL.tera-badge {
       background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
       border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
       color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
     }
+    .type-NORMAL.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
 
-    .tera-badge.tera-active {
+    .type-FIRE.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-FIRE {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-FIRE .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-FIRE.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-FIRE.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-WATER.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-WATER {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-WATER .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-WATER.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-WATER.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-ELECTRIC.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-ELECTRIC {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-ELECTRIC .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-ELECTRIC.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-ELECTRIC.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-GRASS.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-GRASS {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-GRASS .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-GRASS.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-GRASS.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-ICE.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-ICE {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-ICE .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-ICE.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-ICE.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-FIGHTING.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-FIGHTING {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-FIGHTING .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-FIGHTING.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-FIGHTING.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-POISON.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-POISON {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-POISON .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-POISON.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-POISON.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-GROUND.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-GROUND {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-GROUND .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-GROUND.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-GROUND.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-FLYING.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-FLYING {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-FLYING .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-FLYING.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-FLYING.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-PSYCHIC.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-PSYCHIC {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-PSYCHIC .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-PSYCHIC.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-PSYCHIC.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-BUG.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-BUG {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-BUG .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-BUG.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-BUG.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-ROCK.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-ROCK {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-ROCK .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-ROCK.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-ROCK.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-GHOST.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-GHOST {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-GHOST .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-GHOST.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-GHOST.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-DRAGON.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-DRAGON {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-DRAGON .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-DRAGON.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-DRAGON.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-DARK.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-DARK {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-DARK .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-DARK.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-DARK.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-STEEL.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-STEEL {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-STEEL .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-STEEL.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-STEEL.tera-badge.tera-active {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+      color: rgb(var(--tr), var(--tg), var(--tb));
+    }
+
+    .type-FAIRY.type-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+    }
+    .move.type-FAIRY {
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+    }
+    .move.type-FAIRY .move-dot {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+    }
+    .type-FAIRY.tera-badge {
+      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+    }
+    .type-FAIRY.tera-badge.tera-active {
       background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
       border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
       color: rgb(var(--tr), var(--tg), var(--tb));
