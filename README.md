@@ -1,6 +1,6 @@
 # PokéRogue Overlay
 
-A local Node.js server that reads your live [PokéRogue](https://pokerogue.net) game state and serves browser-source-ready overlay pages for OBS and other streaming software.
+A local Node.js server that reads your live [PokéRogue](https://pokerogue.net) game state and serves browser-source-ready overlay pages for OBS and other streaming software. Fully themeable with CSS variables.
 
 **[📖 Full Documentation](https://scoooom.github.io/Pokerogue-Overlay)**
 
@@ -8,12 +8,12 @@ A local Node.js server that reads your live [PokéRogue](https://pokerogue.net) 
 
 ## Features
 
-- **Party strip** — all 6 slots with sprite, name, level, types, ability, passive, tera type, status, stat stages, HP bar, and moves
-- **Single slot card** — focused view of one Pokémon
+- **Party strip** — all 6 slots with sprite, name, level, types, ability, passive ability, tera type indicator, status condition, stat stages (all 7, always visible), HP bar, and 4 moves with type-coloured dots
+- **Single slot card** — focused view of one Pokémon, same renderer as party strip
 - **Wave widget** — current wave, biome, and next encounter countdown with full Classic mode battle map (rival, evil team, gym leaders, Elite Four, Eternatus)
 - **Run stats** — wave, biome, timer, money, shiny count, alive count, run name
-- **Sprite proxy** — server-side Showdown CDN resolution with caching, no flickering
-- **Fully themeable** — 60+ CSS variables, `custom.css` support, OBS Custom CSS compatible
+- **Sprite proxy** — server-side Showdown CDN resolution with in-memory caching, no flickering
+- **Fully themeable** — 100+ CSS variables, `custom.css` file support, per-type colour classes, OBS Custom CSS compatible
 
 ---
 
@@ -34,17 +34,15 @@ npm install
 node server.js
 ```
 
-Then open **http://localhost:3000** for the setup page.
+Then open **http://localhost:3000** for the interactive setup page.
 
 ### Install the Tampermonkey script
 
-In Tampermonkey, create a new script and paste the URL below — it will auto-update from GitHub whenever a new version is pushed:
+In Tampermonkey, create a new script and paste this URL — it auto-updates from GitHub:
 
 ```
 https://raw.githubusercontent.com/Scoooom/Pokerogue-Overlay/refs/heads/v2/tampermonkey.user.js
 ```
-
-Or install it directly from the setup page at `http://localhost:3000`.
 
 ---
 
@@ -54,26 +52,30 @@ Or install it directly from the setup page at `http://localhost:3000`.
 |-----|-------------|-----------------|
 | `http://localhost:3000/party` | 6-slot party strip (horizontal) | 840×175px |
 | `http://localhost:3000/party?layout=vertical` | Party strip (vertical) | 320×510px |
-| `http://localhost:3000/card?slot=0` | Single slot card | 320×175px |
+| `http://localhost:3000/card?slot=0` | Single slot card | 130×220px |
 | `http://localhost:3000/wave` | Wave / biome / encounter widget | 280×140px |
 | `http://localhost:3000/wave?cycle=20` | Wave widget — C-20 gym cycle | 280×140px |
 | `http://localhost:3000/wave?cycle=30` | Wave widget — C-30 gym cycle | 280×140px |
 | `http://localhost:3000/stats` | Run stats panel | 230×260px |
-| `http://localhost:3000/sprite?slot=0` | Single sprite (slot-based) | any |
-| `http://localhost:3000/full` | Full overlay with editor | 860×520px |
+| `http://localhost:3000/sprite?slot=0` | Single sprite (HTML page) | any |
+| `http://localhost:3000/full` | Full overlay with inline editor | 860×520px |
 
 ---
 
 ## Customization
 
-Every visual property is a CSS variable. Override them in OBS Custom CSS or create a `custom.css` file in the project root:
+Every visual property is a CSS variable. Two ways to override:
+
+### 1. `custom.css` file (recommended)
 
 ```bash
 cp custom.css.example custom.css
-# edit custom.css freely — it's gitignored
+# edit custom.css — gitignored, changes apply on next page load
 ```
 
-Example:
+### 2. OBS Custom CSS
+
+Right-click a browser source → Properties → Custom CSS:
 
 ```css
 :root {
@@ -83,7 +85,16 @@ Example:
 }
 ```
 
-See the [full variable reference](https://scoooom.github.io/Pokerogue-Overlay#custom-vars) for all 60+ variables.
+### Type colours
+
+Each Pokémon type has a CSS class with RGB component variables:
+
+```css
+/* Recolour Fire type */
+.type-FIRE { --tr: 255; --tg: 90; --tb: 0; }
+```
+
+See the [full variable reference](https://scoooom.github.io/Pokerogue-Overlay#custom-vars) for all 100+ variables.
 
 ---
 
@@ -93,15 +104,15 @@ See the [full variable reference](https://scoooom.github.io/Pokerogue-Overlay#cu
 PokéRogue tab → Tampermonkey → POST /update → Node.js server → OBS browser sources
 ```
 
-The Tampermonkey script reads `window.gameInfo` — the official extension API exposed by the PokéRogue developers — and POSTs it to the local server once per second. The server normalises the data, resolves sprites from the Pokémon Showdown CDN, and serves the overlay pages.
-
-No data leaves your machine. No private save data is read.
+The Tampermonkey script reads `window.gameInfo` — the official extension API exposed by the PokéRogue developers — and POSTs it to the local server once per second. The server normalises the data, resolves sprites from the Pokémon Showdown CDN, and serves the overlay pages. No data leaves your machine.
 
 ---
 
 ## Credits
 
 Thanks to **[cannonb33](https://github.com/cannonb33/Pokerogue-Overlay)** for the original base code that this project was built upon.
+
+---
 
 ## License
 

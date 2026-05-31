@@ -34,7 +34,6 @@
       display: flex;
     }
 
-    /* ── Sidebar ── */
     .sidebar {
       width: 240px;
       flex-shrink: 0;
@@ -61,218 +60,53 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .sidebar-logo .sub {
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 400;
-      color: var(--muted);
-      margin-top: 4px;
-      display: block;
-    }
-
-    .sidebar-logo a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 8px;
-      opacity: 0.7;
-      transition: opacity 0.15s;
-    }
-
+    .sidebar-logo .sub { font-family: var(--mono); font-size: 10px; font-weight: 400; color: var(--muted); margin-top: 4px; display: block; }
+    .sidebar-logo a { color: var(--accent); text-decoration: none; font-size: 11px; display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; opacity: 0.7; transition: opacity 0.15s; }
     .sidebar-logo a:hover { opacity: 1; }
 
-    .sidebar-section {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 14px 8px 4px;
-    }
+    .sidebar-section { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 14px 8px 4px; }
 
-    .sidebar a {
-      display: block;
-      padding: 5px 8px;
-      font-size: 11px;
-      color: var(--muted);
-      text-decoration: none;
-      border-radius: 6px;
-      transition: all 0.15s;
-    }
-
+    .sidebar a { display: block; padding: 5px 8px; font-size: 11px; color: var(--muted); text-decoration: none; border-radius: 6px; transition: all 0.15s; }
     .sidebar a:hover { background: rgba(255,255,255,0.05); color: var(--text); }
     .sidebar a.active { background: rgba(34,211,238,0.1); color: var(--accent); }
 
-    /* ── Main ── */
-    .main {
-      margin-left: 240px;
-      flex: 1;
-      padding: 56px 56px 100px;
-      max-width: 900px;
-    }
+    .main { margin-left: 240px; flex: 1; padding: 56px 56px 100px; max-width: 900px; }
 
-    /* ── Hero ── */
-    .hero {
-      margin-bottom: 56px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--border);
-    }
+    .hero { margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .hero-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.2); padding: 3px 10px; border-radius: 20px; margin-bottom: 16px; }
+    .hero h1 { font-family: var(--head); font-size: 36px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+    .hero p { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 600px; margin-bottom: 24px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    .hero-badge {
-      display: inline-block;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: rgba(34,211,238,0.1);
-      border: 1px solid rgba(34,211,238,0.2);
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 {
-      font-family: var(--head);
-      font-size: 36px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.8;
-      max-width: 600px;
-      margin-bottom: 24px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      transition: all 0.15s;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-      border: 1px solid var(--accent);
-    }
-
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; transition: all 0.15s; }
+    .btn-primary { background: var(--accent); color: #000; border: 1px solid var(--accent); }
     .btn-primary:hover { opacity: 0.85; }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
-      border: 1px solid var(--border2);
-    }
-
+    .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border2); }
     .btn-secondary:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.2); }
 
-    /* ── Headings ── */
-    h2 {
-      font-family: var(--head);
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      margin: 56px 0 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    h3 {
-      font-family: var(--head);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent2);
-      margin: 32px 0 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
+    h2 { font-family: var(--head); font-size: 20px; font-weight: 700; color: #fff; margin: 56px 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    h3 { font-family: var(--head); font-size: 12px; font-weight: 700; color: var(--accent2); margin: 32px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
 
     p { color: var(--muted); margin-bottom: 12px; line-height: 1.75; }
-
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    ul { color: var(--muted); font-size: 11.5px; line-height: 2; margin: 8px 0 16px; padding-left: 20px; }
 
-    code {
-      font-family: var(--mono);
-      font-size: 11px;
-      background: rgba(34,211,238,0.08);
-      color: var(--accent);
-      padding: 1px 6px;
-      border-radius: 4px;
-      border: 1px solid rgba(34,211,238,0.15);
-    }
+    code { font-family: var(--mono); font-size: 11px; background: rgba(34,211,238,0.08); color: var(--accent); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(34,211,238,0.15); }
 
-    pre {
-      background: #000;
-      border: 1px solid var(--border2);
-      border-radius: 10px;
-      padding: 20px;
-      font-size: 11px;
-      line-height: 1.9;
-      overflow-x: auto;
-      margin: 12px 0 24px;
-    }
-
+    pre { background: #000; border: 1px solid var(--border2); border-radius: 10px; padding: 20px; font-size: 11px; line-height: 1.9; overflow-x: auto; margin: 12px 0 24px; }
     pre code { background: none; border: none; padding: 0; color: #a3e635; }
 
-    .callout {
-      background: rgba(34,211,238,0.06);
-      border: 1px solid rgba(34,211,238,0.2);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 14px 18px;
-      margin: 16px 0 24px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
+    .callout { background: rgba(34,211,238,0.06); border: 1px solid rgba(34,211,238,0.2); border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin: 16px 0 24px; color: var(--muted); line-height: 1.7; }
     .callout strong { color: var(--accent); }
 
-    /* ── Feature grid ── */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 12px;
-      margin: 20px 0 32px;
-    }
-
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      transition: border-color 0.15s;
-    }
-
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin: 20px 0 32px; }
+    .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; transition: border-color 0.15s; }
     .feature-card:hover { border-color: var(--border2); }
-
     .feature-icon { font-size: 20px; margin-bottom: 8px; }
     .feature-title { font-family: var(--head); font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
     .feature-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
 
-    /* ── Route table ── */
     .route-table { width: 100%; border-collapse: collapse; margin: 16px 0 32px; font-size: 11.5px; }
     .route-table th { text-align: left; padding: 8px 12px; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border2); }
     .route-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--muted); }
@@ -280,7 +114,6 @@
     .route-table tr:last-child td { border-bottom: none; }
     .route-table tr:hover td { background: rgba(255,255,255,0.02); }
 
-    /* ── Param table ── */
     .param-table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 11px; }
     .param-table th { text-align: left; padding: 6px 10px; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border2); }
     .param-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
@@ -288,20 +121,17 @@
     .param-table td:nth-child(2) { color: var(--accent2); }
     .param-table tr:last-child td { border-bottom: none; }
 
-    /* ── Tag ── */
     .tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; margin-right: 4px; }
     .tag-obs  { background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.3); color: #a78bfa; }
     .tag-api  { background: rgba(34,211,238,0.1);   border: 1px solid rgba(34,211,238,0.25); color: #22d3ee; }
     .tag-page { background: rgba(52,211,153,0.1);   border: 1px solid rgba(52,211,153,0.25); color: #34d399; }
 
-    /* ── Var grid ── */
     .var-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0 24px; }
     .var-row { display: flex; flex-direction: column; padding: 8px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; gap: 2px; }
     .var-name { color: var(--accent); font-family: var(--mono); font-size: 10px; }
     .var-default { color: var(--accent2); font-size: 9.5px; font-family: var(--mono); }
     .var-desc { color: var(--muted); font-size: 10px; line-height: 1.4; }
 
-    /* ── Theme example ── */
     .theme-example { background: #000; border: 1px solid var(--border2); border-radius: 10px; padding: 18px; margin: 12px 0 20px; }
     .theme-example-title { font-family: var(--head); font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
     .theme-example pre { background: none; border: none; padding: 0; margin: 0; }
@@ -320,7 +150,7 @@
 <nav class="sidebar">
   <div class="sidebar-logo">
     🎮 PokéRogue Overlay
-    <span class="sub">v2 — Stream overlay toolkit</span>
+    <span class="sub">v2.1 — Stream overlay toolkit</span>
     <a href="https://github.com/Scoooom/Pokerogue-Overlay" target="_blank">↗ GitHub</a>
   </div>
 
@@ -342,6 +172,7 @@
   <a href="#custom-how">How it works</a>
   <a href="#custom-css-file">custom.css file</a>
   <a href="#custom-vars">Variable reference</a>
+  <a href="#custom-types">Type colours</a>
   <a href="#custom-examples">Example configs</a>
 
   <div class="sidebar-section">Reference</div>
@@ -352,11 +183,10 @@
 
 <main class="main">
 
-  <!-- ═══ HERO ═══ -->
   <div class="hero">
-    <div class="hero-badge">Open Source · MIT License</div>
+    <div class="hero-badge">Open Source · MIT License · v2.1</div>
     <h1>PokéRogue<br>Overlay</h1>
-    <p>A local Node.js server that reads your live PokéRogue game state and serves browser-source-ready overlay pages for OBS and other streaming software. Fully themeable with CSS variables.</p>
+    <p>A local Node.js server that reads your live PokéRogue game state and serves browser-source-ready overlay pages for OBS. Fully themeable with 100+ CSS variables.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://github.com/Scoooom/Pokerogue-Overlay" target="_blank">↗ GitHub</a>
       <a class="btn btn-secondary" href="#installation">Quick Start</a>
@@ -364,45 +194,43 @@
     </div>
   </div>
 
-  <!-- ═══ FEATURES ═══ -->
   <h2 id="overview" class="anchor">Overview</h2>
   <div class="feature-grid">
     <div class="feature-card">
       <div class="feature-icon">🃏</div>
       <div class="feature-title">Party Strip & Cards</div>
-      <div class="feature-desc">All 6 slots with sprite, name, level, types, ability, passive, tera type, status, stat stages, HP bar, and 4 moves. Single-slot cards available too.</div>
+      <div class="feature-desc">All 6 slots with sprite, name, level, types, ability, passive ability, tera type indicator, status condition, stat stages (all 7 always visible), HP bar, and 4 moves with type-coloured dots.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🌊</div>
       <div class="feature-title">Wave Widget</div>
-      <div class="feature-desc">Current wave, biome, and next encounter countdown. Full Classic mode battle map — rival, evil team, gym leaders, Elite Four, Eternatus.</div>
+      <div class="feature-desc">Current wave, biome, and next encounter chip. Full Classic mode battle map — rival, evil team, gym leaders (C-20 or C-30), Elite Four, Champion, Eternatus.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📊</div>
       <div class="feature-title">Run Stats</div>
-      <div class="feature-desc">Wave, biome, live timer, money, shiny count, alive count, and run name. Timer counts up between server polls.</div>
+      <div class="feature-desc">Wave, biome, live timer, money (₽), shiny count, alive count, and run name (e.g. "Mono Type"). Timer counts up between server polls.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🖼️</div>
       <div class="feature-title">Sprite Proxy</div>
-      <div class="feature-desc">Server-side Showdown CDN resolution with form-aware fallback chain and in-memory caching. No flickering.</div>
+      <div class="feature-desc">Server-side Showdown CDN resolution with form-aware fallback chain (gen5 → gen5ani → gen8) and in-memory caching. No flickering.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🎨</div>
-      <div class="feature-title">Fully Themeable</div>
-      <div class="feature-desc">60+ CSS variables covering every colour, size, and radius. Override in OBS Custom CSS or a local custom.css file.</div>
+      <div class="feature-title">100+ CSS Variables</div>
+      <div class="feature-desc">Every colour, size, radius, shadow, and opacity is a variable. Override in OBS Custom CSS or a local custom.css file. Per-type colour classes too.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔄</div>
       <div class="feature-title">Auto-updating Script</div>
-      <div class="feature-desc">Tampermonkey script auto-updates from GitHub. Uses only window.gameInfo — the official PokéRogue extension API.</div>
+      <div class="feature-desc">Tampermonkey script auto-updates from GitHub. Uses only window.gameInfo — the official PokéRogue extension API. No private data accessed.</div>
     </div>
   </div>
 
-  <!-- ═══ INSTALLATION ═══ -->
   <h2 id="installation" class="anchor">Installation</h2>
   <h3>Requirements</h3>
-  <p>Node.js 18 or later. Git optional (you can also download a ZIP).</p>
+  <p>Node.js 18 or later. Git optional.</p>
 
   <h3>1. Clone and start the server</h3>
   <pre><code>git clone https://github.com/Scoooom/Pokerogue-Overlay.git -b v2
@@ -412,17 +240,12 @@ node server.js</code></pre>
   <p>The server starts at <code>http://localhost:3000</code>. Open that address for the interactive setup page.</p>
 
   <h3>2. Install the Tampermonkey script</h3>
-  <p>Install the <a href="https://www.tampermonkey.net/" target="_blank">Tampermonkey</a> browser extension, then add the script:</p>
+  <p>Install the <a href="https://www.tampermonkey.net/" target="_blank">Tampermonkey</a> browser extension, then add the script by URL — it auto-updates:</p>
   <pre><code>https://raw.githubusercontent.com/Scoooom/Pokerogue-Overlay/refs/heads/v2/tampermonkey.user.js</code></pre>
-  <p>The script auto-updates from GitHub whenever a new version is pushed — no manual reinstall needed.</p>
 
-  <h3>3. Play PokéRogue</h3>
-  <p>Go to <a href="https://pokerogue.net" target="_blank">pokerogue.net</a> with Tampermonkey enabled. The script will start sending data to the local server automatically.</p>
+  <h3>3. Play PokéRogue and add OBS sources</h3>
+  <p>Go to <a href="https://pokerogue.net" target="_blank">pokerogue.net</a> with Tampermonkey enabled. Add browser sources in OBS using the URLs below.</p>
 
-  <h3>4. Add OBS browser sources</h3>
-  <p>In OBS, add a Browser Source for each overlay you want. Point it at the relevant URL below.</p>
-
-  <!-- ═══ ROUTES ═══ -->
   <h2 id="routes" class="anchor">OBS Sources</h2>
 
   <table class="route-table">
@@ -430,7 +253,7 @@ node server.js</code></pre>
     <tbody>
       <tr><td>/party</td><td><span class="tag tag-obs">OBS</span></td><td>840×175px</td><td>6-slot party strip (horizontal)</td></tr>
       <tr><td>/party?layout=vertical</td><td><span class="tag tag-obs">OBS</span></td><td>320×510px</td><td>6-slot party strip (vertical)</td></tr>
-      <tr><td>/card?slot=0</td><td><span class="tag tag-obs">OBS</span></td><td>320×175px</td><td>Single Pokémon card</td></tr>
+      <tr><td>/card?slot=0</td><td><span class="tag tag-obs">OBS</span></td><td>130×220px</td><td>Single Pokémon card</td></tr>
       <tr><td>/wave</td><td><span class="tag tag-obs">OBS</span></td><td>280×140px</td><td>Wave / biome / encounter widget</td></tr>
       <tr><td>/wave?cycle=20</td><td><span class="tag tag-obs">OBS</span></td><td>280×140px</td><td>Wave widget — C-20 gym cycle</td></tr>
       <tr><td>/wave?cycle=30</td><td><span class="tag tag-obs">OBS</span></td><td>280×140px</td><td>Wave widget — C-30 gym cycle</td></tr>
@@ -444,7 +267,7 @@ node server.js</code></pre>
   </table>
 
   <h2 id="route-party" class="anchor">/party</h2>
-  <p>6-slot party strip. Each card shows: sprite, name/nickname, level, types, ability, passive ability, tera type, status condition, stat stages (all 7, always visible), HP bar with HP numbers, and all 4 moves with type-coloured dots. Fainted Pokémon are dimmed.</p>
+  <p>6-slot party strip. Each card shows: sprite, name/nickname, level, types, ability, passive ability, tera type (◇ inactive / ◆ active, pulses), status condition, stat stages for all 7 stats (ATK DEF SPA SPD SPE ACC EVA — always visible, fixed height), HP bar, and 4 moves with type-coloured dots. Fainted Pokémon are dimmed.</p>
   <table class="param-table">
     <thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
     <tbody>
@@ -462,8 +285,8 @@ node server.js</code></pre>
   </table>
 
   <h2 id="route-wave" class="anchor">/wave</h2>
-  <p>Compact wave widget. Shows wave number, biome name, game mode badge, and a colour-coded next-encounter chip. Covers all Classic mode fixed battles:</p>
-  <ul style="color:var(--muted);font-size:11.5px;line-height:2;margin:8px 0 16px;padding-left:20px;">
+  <p>Compact wave widget. Shows wave number, biome, game mode badge, and a colour-coded next-encounter chip covering all Classic mode fixed battles:</p>
+  <ul>
     <li>🤝 <strong>Rival</strong> — waves 8, 25, 55, 95, 145, 195</li>
     <li>😈 <strong>Evil Grunts</strong> — waves 35, 62, 64, 66, 112, 114, 164</li>
     <li>💀 <strong>Evil Leaders</strong> — waves 115, 165</li>
@@ -476,57 +299,51 @@ node server.js</code></pre>
   <table class="param-table">
     <thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
     <tbody>
-      <tr><td>cycle</td><td>20 | 30</td><td>Gym leader cycle. Omit for unknown — possible gym waves shown as <strong>(?)</strong>. Set once per run in the OBS source URL.</td></tr>
-      <tr><td>buttons</td><td>flag</td><td>Show C-20 / C-30 / ? cycle selector buttons. Hidden by default — useful in a browser window, not needed for OBS.</td></tr>
+      <tr><td>cycle</td><td>20 | 30</td><td>Gym leader cycle. Set once per run in the OBS source URL. Omit if unknown — possible gym waves shown as <strong>(?)</strong>.</td></tr>
+      <tr><td>buttons</td><td>flag</td><td>Show C-20 / C-30 / ? cycle selector buttons. Hidden by default.</td></tr>
     </tbody>
   </table>
-
-  <div class="callout">
-    <strong>Gym cycle tip:</strong> At the start of each run, note whether your first gym appears at wave 20 or 30. Right-click your OBS wave source → Properties → update the URL to <code>/wave?cycle=20</code> or <code>/wave?cycle=30</code>.
-  </div>
+  <div class="callout"><strong>Gym cycle tip:</strong> At the start of each run, note whether your first gym appears at wave 20 or 30. Right-click the OBS source → Properties → update the URL to <code>/wave?cycle=20</code> or <code>/wave?cycle=30</code>.</div>
 
   <h2 id="route-stats" class="anchor">/stats</h2>
-  <p>Run stats panel showing: wave, biome, game mode, live timer (counts up between server polls using play time as base), shiny count, alive count, money (₽), and run name (shown only when set, e.g. "Mono Type").</p>
+  <p>Run stats panel: wave, biome, game mode badge, live timer (counts up between server polls), shiny count, alive count, money (₽), and run name (shown only when set, e.g. "Mono Type", "Nuzlocke").</p>
 
   <h2 id="route-full" class="anchor">/full</h2>
-  <p>The original full-featured overlay. Shows all 6 party slots with an inline editor — click <strong>EDIT</strong> on any Pokémon to manually adjust moves, ability, passive, or nature. Useful if the game doesn't expose certain fields via <code>window.gameInfo</code>.</p>
+  <p>The original full-featured overlay with an inline editor. Click <strong>EDIT</strong> on any Pokémon to manually adjust moves, ability, passive, or nature — useful when the game doesn't expose certain fields via <code>window.gameInfo</code>.</p>
 
   <h2 id="route-sprite" class="anchor">/sprite</h2>
-  <p>Sprite endpoint. Server-side resolves sprites from the Pokémon Showdown CDN with a form-aware fallback chain (gen5 → gen5ani → gen8). Results are cached in memory by name+form.</p>
+  <p>Transparent HTML page containing the sprite for the given party slot. Polls <code>/data</code> every second and swaps the image when the Pokémon in that slot changes — no full page reload.</p>
   <table class="param-table">
     <thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
     <tbody>
-      <tr><td>slot</td><td>0–5</td><td>Dynamic slot lookup. Polls <code>/data</code> every second and swaps the image when the Pokémon changes. Use as an OBS browser source.</td></tr>
-      <tr><td>name</td><td>string</td><td>Identity-based lookup. Browser caches indefinitely per Pokémon — no flickering. Use inside <code>&lt;img src&gt;</code> tags.</td></tr>
-      <tr><td>form</td><td>string</td><td>Form suffix (e.g. <code>crowned</code>, <code>mega</code>). Empty for base form. Used with <code>name</code>.</td></tr>
-      <tr><td>raw</td><td>flag</td><td>Return raw image bytes instead of an HTML wrapper page.</td></tr>
+      <tr><td>slot</td><td>0–5</td><td>Party slot. Required.</td></tr>
+      <tr><td>raw</td><td>flag</td><td>Return raw image bytes instead of an HTML page.</td></tr>
     </tbody>
   </table>
 
   <h2 id="route-api" class="anchor">API Routes</h2>
   <h3>/data</h3>
-  <p>Returns normalised game state JSON. Includes wave, biome, gameMode, playTime, money, runName, gymCycle, and the full party array. Each Pokémon has: name, form, level, hp/maxHp, types, moves (with types), ability, passive, passiveEnabled, nature, status, statStages, teraType, isTerastallized, shiny, variant, isFusion.</p>
+  <p>Normalised game state JSON. Includes wave, biome, gameMode, playTime, money, runName, gymCycle, and the full party array. Each Pokémon: name, form, level, hp/maxHp, types, moves (with types), ability, passive, passiveEnabled, nature, status, statStages, teraType, isTerastallized, shiny, variant, isFusion.</p>
 
   <h3>/raw</h3>
-  <p>Returns the exact <code>window.gameInfo</code> payload received from the Tampermonkey script plus a <code>receivedAt</code> timestamp. Useful for debugging normalization or discovering new fields as the game updates.</p>
+  <p>Exact <code>window.gameInfo</code> payload from the Tampermonkey script plus a <code>receivedAt</code> timestamp. Useful for debugging or discovering new fields as the game updates.</p>
 
   <h3>/names[?slot=N]</h3>
-  <p>Returns party slot names. Without <code>slot</code> param returns all 6 as an array. With <code>?slot=N</code> returns <code>{ slot, name }</code>. Empty slots return <code>null</code>.</p>
+  <p>Party slot names. Without <code>slot</code> returns all 6 as an array. With <code>?slot=N</code> returns <code>{ slot, name }</code>. Empty slots return <code>null</code>.</p>
 
-  <!-- ═══ CUSTOMIZATION ═══ -->
   <h2 id="customization" class="anchor">Customization</h2>
-  <p>Every visual property is defined as a CSS custom property (variable) in <code>theme.css</code>, which is loaded by every overlay page. Override any variable to change the look.</p>
+  <p>Every visual property is defined as a CSS custom property in <code>theme.css</code>, loaded by every overlay page. Override any variable to change the look across all pages at once.</p>
 
   <h2 id="custom-how" class="anchor">How it works</h2>
-  <p>CSS variables are defined with defaults in <code>theme.css</code>. Your overrides go in <code>:root { }</code> and win via standard CSS cascade. You can override from two places:</p>
+  <p>CSS variables are defined with defaults in <code>theme.css</code>. Your <code>:root { }</code> overrides win via standard CSS cascade — last file loaded wins. Two places to put overrides:</p>
 
   <h2 id="custom-css-file" class="anchor">Option 1 — custom.css file</h2>
-  <p>Create a <code>custom.css</code> file in the project root. It is served by the server and loaded by every page. It is gitignored so it stays local to your machine.</p>
+  <p>Create a <code>custom.css</code> file in the project root. Served by the server and loaded by every overlay page. Gitignored so it stays local.</p>
   <pre><code>cp custom.css.example custom.css
-# Edit custom.css — changes apply immediately on next page load</code></pre>
+# Edit custom.css — changes apply on next page load (no server restart needed)</code></pre>
 
   <h3>Option 2 — OBS Custom CSS</h3>
-  <p>In OBS: right-click a browser source → <strong>Properties</strong> → scroll to <strong>Custom CSS</strong>. Overrides apply only to that source.</p>
+  <p>Right-click a browser source → <strong>Properties</strong> → <strong>Custom CSS</strong>. Applies only to that source.</p>
   <pre><code>:root {
   --color-accent: #ff6b6b;
   --border-radius-card: 0px;
@@ -551,11 +368,16 @@ node server.js</code></pre>
 
   <h3>Status Conditions</h3>
   <div class="var-grid">
-    <div class="var-row"><span class="var-name">--color-status-brn</span><span class="var-default">#ff643d</span><span class="var-desc">Burn</span></div>
-    <div class="var-row"><span class="var-name">--color-status-par</span><span class="var-default">#ffd447</span><span class="var-desc">Paralysis</span></div>
-    <div class="var-row"><span class="var-name">--color-status-psn</span><span class="var-default">#c080c0</span><span class="var-desc">Poison / Toxic</span></div>
-    <div class="var-row"><span class="var-name">--color-status-slp</span><span class="var-default">#9aa8ff</span><span class="var-desc">Sleep</span></div>
-    <div class="var-row"><span class="var-name">--color-status-frz</span><span class="var-default">#69d7ff</span><span class="var-desc">Freeze</span></div>
+    <div class="var-row"><span class="var-name">--color-status-brn</span><span class="var-default">#ff643d</span><span class="var-desc">Burn text</span></div>
+    <div class="var-row"><span class="var-name">--color-status-par</span><span class="var-default">#ffd447</span><span class="var-desc">Paralysis text</span></div>
+    <div class="var-row"><span class="var-name">--color-status-psn</span><span class="var-default">#c080c0</span><span class="var-desc">Poison / Toxic text</span></div>
+    <div class="var-row"><span class="var-name">--color-status-slp</span><span class="var-default">#9aa8ff</span><span class="var-desc">Sleep text</span></div>
+    <div class="var-row"><span class="var-name">--color-status-frz</span><span class="var-default">#69d7ff</span><span class="var-desc">Freeze text</span></div>
+    <div class="var-row"><span class="var-name">--status-brn-bg / --status-brn-border</span><span class="var-default">rgba values</span><span class="var-desc">Burn badge bg and border</span></div>
+    <div class="var-row"><span class="var-name">--status-par-bg / --status-par-border</span><span class="var-default">rgba values</span><span class="var-desc">Paralysis badge bg and border</span></div>
+    <div class="var-row"><span class="var-name">--status-psn-bg / --status-psn-border</span><span class="var-default">rgba values</span><span class="var-desc">Poison badge bg and border</span></div>
+    <div class="var-row"><span class="var-name">--status-slp-bg / --status-slp-border</span><span class="var-default">rgba values</span><span class="var-desc">Sleep badge bg and border</span></div>
+    <div class="var-row"><span class="var-name">--status-frz-bg / --status-frz-border</span><span class="var-default">rgba values</span><span class="var-desc">Freeze badge bg and border</span></div>
   </div>
 
   <h3>Backgrounds</h3>
@@ -580,44 +402,37 @@ node server.js</code></pre>
     <div class="var-row"><span class="var-name">--border-color-stat-down</span><span class="var-default">rgba(255,79,94,0.3)</span><span class="var-desc">Stat cell border (−)</span></div>
     <div class="var-row"><span class="var-name">--border-radius-card</span><span class="var-default">12px</span><span class="var-desc">Card corners</span></div>
     <div class="var-row"><span class="var-name">--border-radius-strip</span><span class="var-default">16px</span><span class="var-desc">Strip corners</span></div>
-    <div class="var-row"><span class="var-name">--border-radius-badge</span><span class="var-default">10px</span><span class="var-desc">Type / status badge corners</span></div>
+    <div class="var-row"><span class="var-name">--border-radius-badge</span><span class="var-default">10px</span><span class="var-desc">Type / status / tera badge corners</span></div>
     <div class="var-row"><span class="var-name">--border-radius-move</span><span class="var-default">5px</span><span class="var-desc">Move row corners</span></div>
     <div class="var-row"><span class="var-name">--border-radius-stat</span><span class="var-default">4px</span><span class="var-desc">Stat cell corners</span></div>
     <div class="var-row"><span class="var-name">--border-radius-widget</span><span class="var-default">16px</span><span class="var-desc">Wave / stats widget corners</span></div>
   </div>
 
-  <h3>Shadows & Fonts</h3>
+  <h3>Type Badge & Move Opacities</h3>
+  <div class="var-grid">
+    <div class="var-row"><span class="var-name">--type-badge-bg-opacity</span><span class="var-default">0.28</span><span class="var-desc">Type badge background alpha</span></div>
+    <div class="var-row"><span class="var-name">--type-badge-border-opacity</span><span class="var-default">0.55</span><span class="var-desc">Type badge border alpha</span></div>
+    <div class="var-row"><span class="var-name">--move-border-opacity</span><span class="var-default">0.22</span><span class="var-desc">Move row border alpha</span></div>
+    <div class="var-row"><span class="var-name">--move-dot-opacity</span><span class="var-default">0.9</span><span class="var-desc">Move dot fill alpha</span></div>
+    <div class="var-row"><span class="var-name">--move-dot-glow-opacity</span><span class="var-default">0.5</span><span class="var-desc">Move dot glow alpha</span></div>
+    <div class="var-row"><span class="var-name">--tera-active-bg-opacity</span><span class="var-default">0.3</span><span class="var-desc">Tera badge bg (active)</span></div>
+    <div class="var-row"><span class="var-name">--tera-active-border-opacity</span><span class="var-default">0.7</span><span class="var-desc">Tera badge border (active)</span></div>
+    <div class="var-row"><span class="var-name">--tera-inactive-bg-opacity</span><span class="var-default">0.12</span><span class="var-desc">Tera badge bg (inactive)</span></div>
+    <div class="var-row"><span class="var-name">--tera-inactive-border-opacity</span><span class="var-default">0.35</span><span class="var-desc">Tera badge border (inactive)</span></div>
+  </div>
+
+  <h3>Shadows, Fonts & Layout</h3>
   <div class="var-grid">
     <div class="var-row"><span class="var-name">--shadow-strip</span><span class="var-default">0 8px 32px rgba(0,0,0,0.55)</span><span class="var-desc">Party strip shadow</span></div>
     <div class="var-row"><span class="var-name">--shadow-widget</span><span class="var-default">0 4px 24px rgba(0,0,0,0.5)</span><span class="var-desc">Widget shadow</span></div>
     <div class="var-row"><span class="var-name">--font-main</span><span class="var-default">Rajdhani, Inter, sans-serif</span><span class="var-desc">UI font</span></div>
     <div class="var-row"><span class="var-name">--font-display</span><span class="var-default">Inter, Rajdhani, sans-serif</span><span class="var-desc">Numbers / display font</span></div>
-  </div>
-
-  <h3>Typography Sizes</h3>
-  <div class="var-grid">
-    <div class="var-row"><span class="var-name">--font-size-name-h</span><span class="var-default">11px</span><span class="var-desc">Pokémon name (horizontal)</span></div>
-    <div class="var-row"><span class="var-name">--font-size-name-v</span><span class="var-default">12px</span><span class="var-desc">Pokémon name (vertical)</span></div>
-    <div class="var-row"><span class="var-name">--font-size-level</span><span class="var-default">10px</span><span class="var-desc">Level text</span></div>
-    <div class="var-row"><span class="var-name">--font-size-type</span><span class="var-default">9px</span><span class="var-desc">Type badge text</span></div>
-    <div class="var-row"><span class="var-name">--font-size-move</span><span class="var-default">9.5px</span><span class="var-desc">Move name text</span></div>
-    <div class="var-row"><span class="var-name">--font-size-stat-label</span><span class="var-default">6.5px</span><span class="var-desc">Stat label (ATK/DEF…)</span></div>
-    <div class="var-row"><span class="var-name">--font-size-stat-val</span><span class="var-default">9px</span><span class="var-desc">Stat value (+2/−1…)</span></div>
-    <div class="var-row"><span class="var-name">--font-size-ability</span><span class="var-default">9px</span><span class="var-desc">Ability / passive text</span></div>
-    <div class="var-row"><span class="var-name">--font-size-status</span><span class="var-default">9px</span><span class="var-desc">Status / tera badge text</span></div>
-    <div class="var-row"><span class="var-name">--font-size-hp</span><span class="var-default">9px</span><span class="var-desc">HP number text</span></div>
-    <div class="var-row"><span class="var-name">--font-size-shiny</span><span class="var-default">11px</span><span class="var-desc">Shiny ✨ badge</span></div>
-  </div>
-
-  <h3>Layout & Effects</h3>
-  <div class="var-grid">
     <div class="var-row"><span class="var-name">--sprite-size</span><span class="var-default">72px</span><span class="var-desc">Sprite width</span></div>
     <div class="var-row"><span class="var-name">--sprite-size-h</span><span class="var-default">60px</span><span class="var-desc">Sprite max-height</span></div>
     <div class="var-row"><span class="var-name">--card-gap</span><span class="var-default">8px</span><span class="var-desc">Gap between cards</span></div>
     <div class="var-row"><span class="var-name">--stat-grid-height</span><span class="var-default">26px</span><span class="var-desc">Stat stage row height</span></div>
     <div class="var-row"><span class="var-name">--hp-bar-height</span><span class="var-default">4px</span><span class="var-desc">HP bar thickness</span></div>
     <div class="var-row"><span class="var-name">--hp-bar-radius</span><span class="var-default">4px</span><span class="var-desc">HP bar corner radius</span></div>
-    <div class="var-row"><span class="var-name">--hp-bar-bg</span><span class="var-default">rgba(255,255,255,0.1)</span><span class="var-desc">HP bar track colour</span></div>
     <div class="var-row"><span class="var-name">--wave-number-size</span><span class="var-default">52px</span><span class="var-desc">Wave number font size</span></div>
     <div class="var-row"><span class="var-name">--stat-value-size</span><span class="var-default">22px</span><span class="var-desc">Stats panel value size</span></div>
     <div class="var-row"><span class="var-name">--timer-size</span><span class="var-default">18px</span><span class="var-desc">Run timer font size</span></div>
@@ -625,14 +440,20 @@ node server.js</code></pre>
     <div class="var-row"><span class="var-name">--fainted-filter</span><span class="var-default">grayscale(0.75)</span><span class="var-desc">Fainted card CSS filter</span></div>
   </div>
 
-  <h3>Type Colours</h3>
-  <p>Every Pokémon type has its own CSS class (<code>.type-FIRE</code>, <code>.type-WATER</code>, etc.) with RGB component variables (<code>--tr</code>, <code>--tg</code>, <code>--tb</code>). Override any type colour in custom.css:</p>
-  <pre><code>/* Change Fire type to a brighter orange */
-.type-FIRE { --tr: 255; --tg: 90; --tb: 0; }
+  <h3>Wave Widget Encounter Colours</h3>
+  <p>Each encounter type has three variables: <code>--enc-{type}-color</code>, <code>--enc-{type}-bg</code>, <code>--enc-{type}-border</code>. Types: <code>rival</code>, <code>evil-grunt</code>, <code>evil-leader</code>, <code>gym</code>, <code>elite</code>, <code>champion</code>, <code>final</code>, <code>wild</code>, <code>trainer</code>.</p>
 
-/* Make Psychic type hot pink */
-.type-PSYCHIC { --tr: 255; --tg: 0; --tb: 128; }</code></pre>
-  <p>This affects type badges, move dots, tera badges — anywhere that type's colour appears.</p>
+  <h2 id="custom-types" class="anchor">Type Colours</h2>
+  <p>Every Pokémon type has a CSS class with RGB component variables. These control type badges, move dots, and tera badges wherever that type appears.</p>
+  <pre><code>/* Recolour a type */
+.type-FIRE     { --tr: 255; --tg: 90;  --tb: 0;   }
+.type-WATER    { --tr: 64;  --tg: 180; --tb: 255; }
+
+/* Make all types greyscale */
+.type-FIRE, .type-WATER, .type-GRASS /* ... */ {
+  --tr: 180; --tg: 180; --tb: 180;
+}</code></pre>
+  <p>Available classes: <code>.type-NORMAL</code> <code>.type-FIRE</code> <code>.type-WATER</code> <code>.type-ELECTRIC</code> <code>.type-GRASS</code> <code>.type-ICE</code> <code>.type-FIGHTING</code> <code>.type-POISON</code> <code>.type-GROUND</code> <code>.type-FLYING</code> <code>.type-PSYCHIC</code> <code>.type-BUG</code> <code>.type-ROCK</code> <code>.type-GHOST</code> <code>.type-DRAGON</code> <code>.type-DARK</code> <code>.type-STEEL</code> <code>.type-FAIRY</code></p>
 
   <h2 id="custom-examples" class="anchor">Example Configurations</h2>
   <p>Copy any of these into OBS Custom CSS or your <code>custom.css</code> file.</p>
@@ -698,28 +519,30 @@ node server.js</code></pre>
 }</code></pre>
   </div>
 
-  <!-- ═══ ARCHITECTURE ═══ -->
   <h2 id="architecture" class="anchor">Architecture</h2>
   <pre><code>PokéRogue tab
-  └── Tampermonkey script (reads window.gameInfo, POSTs every 1s)
+  └── Tampermonkey v2.1 (reads window.gameInfo, POSTs every 1s)
         └── POST /update → Node.js server (server.js)
-              ├── Normalises game state (moves, types, abilities…)
-              ├── Decrypts nothing — uses only the official gameInfo API
+              ├── Normalises game state (moves+types, abilities, stat stages…)
               ├── Resolves sprites from Showdown CDN (cached in memory)
               └── Serves overlay pages
                     ├── /party, /card    → card-shared.js + card-shared.css
+                    │                      (shared renderer, one place to update)
                     ├── /wave            → wave.html
                     ├── /stats           → stats.html
                     ├── /full            → overlay.html
-                    └── /sprite          → slot or name+form based</code></pre>
+                    └── /sprite?slot=N   → polls /data, swaps image on change
 
-  <!-- ═══ LICENSE ═══ -->
+CSS loading order (every page):
+  theme.css → page styles → custom.css
+  (custom.css always wins the cascade)</code></pre>
+
   <h2 id="credits" class="anchor">Credits</h2>
   <p>Thanks to <a href="https://github.com/cannonb33/Pokerogue-Overlay" target="_blank">cannonb33</a> for the original base code that this project was built upon.</p>
 
   <h2 id="license" class="anchor">License</h2>
   <p>MIT — free to use, modify, and distribute. See <a href="https://github.com/Scoooom/Pokerogue-Overlay/blob/v2/LICENSE" target="_blank">LICENSE</a>.</p>
-  <p>Sprites are served via the <a href="https://play.pokemonshowdown.com/" target="_blank">Pokémon Showdown</a> CDN. Pokémon is © Nintendo / Game Freak. This project is not affiliated with PokéRogue or its developers.</p>
+  <p>Sprites served via the <a href="https://play.pokemonshowdown.com/" target="_blank">Pokémon Showdown</a> CDN. Pokémon is © Nintendo / Game Freak. This project is not affiliated with PokéRogue or its developers.</p>
 
 </main>
 
