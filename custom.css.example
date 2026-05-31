@@ -1,0 +1,16 @@
+/*
+ * PokéRogue Overlay — Custom CSS
+ * ─────────────────────────────────────────────────────────────────────────────
+ * This file is loaded by every overlay page after theme.css.
+ * Add your overrides here. They apply everywhere without needing OBS Custom CSS.
+ *
+ * For a full list of available CSS variables, visit /docs
+ *
+ * Example:
+ *
+ * :root {
+ *   --color-accent: #ff6b6b;
+ *   --border-radius-card: 0px;
+ *   --bg-card: rgba(0, 0, 0, 0.95);
+ * }
+ */
