@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>PokéRogue – Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/card-shared.css">
+  <style>
+    body {
+      background: transparent;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-family: 'Rajdhani', 'Inter', sans-serif;
+      color: #f8fbff;
+    }
+
+    /* Single card — use vertical layout by default (wider, more info) */
+    .card {
+      width: 320px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="/card-shared.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const slot   = parseInt(params.get('slot') ?? '0');
+
+    function render(data) {
+      const p = (data.party || [])[slot];
+      document.getElementById('root').innerHTML = p ? renderCard(p, slot) : renderEmpty();
+    }
+
+    async function fetchData() {
+      try {
+        const res  = await fetch('/data', { cache: 'no-store' });
+        const data = await res.json();
+        render(data);
+      } catch (e) {}
+    }
+
+    setInterval(fetchData, 1000);
+    fetchData();
+  </script>
+</body>
+</html>

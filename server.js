@@ -218,6 +218,7 @@ app.get("/full",  (req, res) => res.sendFile(path.join(__dirname, "overlay.html"
 app.get("/wave",  (req, res) => res.sendFile(path.join(__dirname, "wave.html")));
 app.get("/party", (req, res) => res.sendFile(path.join(__dirname, "party.html")));
 app.get("/stats", (req, res) => res.sendFile(path.join(__dirname, "stats.html")));
+app.get("/card",  (req, res) => res.sendFile(path.join(__dirname, "card.html")));
 
 // ── Sprite ────────────────────────────────────────────────────────────────────
 // GET /sprite?slot=0        → HTML page with <img> (OBS browser source)
