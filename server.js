@@ -333,10 +333,15 @@ app.post("/update", (req, res) => {
   const { gameInfo, weather, localStorage_data } = req.body;
   if (!gameInfo) return res.status(400).json({ error: "missing gameInfo" });
 
-  rawPayload = { ...req.body, receivedAt: Date.now() };
-
-  // Decrypt the matching session slot
   const match = findActiveSession(localStorage_data, gameInfo);
+
+  rawPayload = {
+    ...req.body,
+    receivedAt:    Date.now(),
+    sessionData:   match?.session || null,
+    sessionKey:    match?.key     || null,
+  };
+
   const session = match?.session || null;
 
   latestData = {
