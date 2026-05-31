@@ -26,39 +26,6 @@
       gap: 6px;
     }
 
-    /* ── Weather banner ──────────────────────────────────────────────────── */
-    .weather-banner {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 10px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-
-    .weather-icon { font-size: 16px; line-height: 1; }
-    .weather-name { flex: 1; }
-    .weather-turns {
-      font-size: 10px;
-      font-weight: 600;
-      opacity: 0.65;
-    }
-
-    /* Weather colour themes */
-    .weather-sunny      { background: rgba(248,208,48,0.18);  border-color: rgba(248,208,48,0.35);  color: #f8d030; }
-    .weather-rain       { background: rgba(104,144,240,0.18); border-color: rgba(104,144,240,0.35); color: #9ab0f8; }
-    .weather-sandstorm  { background: rgba(224,192,104,0.18); border-color: rgba(224,192,104,0.35); color: #e0c068; }
-    .weather-hail       { background: rgba(152,216,216,0.18); border-color: rgba(152,216,216,0.35); color: #98d8d8; }
-    .weather-snow       { background: rgba(200,220,255,0.18); border-color: rgba(200,220,255,0.35); color: #c8dcff; }
-    .weather-fog        { background: rgba(160,160,180,0.18); border-color: rgba(160,160,180,0.35); color: #b8b8d0; }
-    .weather-heavy-rain { background: rgba(64,100,200,0.22);  border-color: rgba(64,100,200,0.45);  color: #6488e8; }
-    .weather-harsh-sun  { background: rgba(255,140,20,0.22);  border-color: rgba(255,140,20,0.45);  color: #ff9020; }
-    .weather-strong-winds { background: rgba(168,144,240,0.18); border-color: rgba(168,144,240,0.35); color: #c0b0ff; }
-
     /* ── Strip (horizontal default) ─────────────────────────────────────── */
     .strip {
       display: flex;
@@ -204,19 +171,6 @@
   <script>
     const isVertical = new URLSearchParams(location.search).get('layout') === 'vertical';
 
-    // ── WeatherType enum map ──────────────────────────────────────────────────
-    const WEATHER = {
-      0: null,
-      1: { name: 'Harsh Sunlight', icon: '☀️',  cls: 'weather-sunny' },
-      2: { name: 'Rain',           icon: '🌧️',  cls: 'weather-rain' },
-      3: { name: 'Sandstorm',      icon: '🌪️',  cls: 'weather-sandstorm' },
-      4: { name: 'Hail',           icon: '🌨️',  cls: 'weather-hail' },
-      5: { name: 'Snow',           icon: '❄️',  cls: 'weather-snow' },
-      6: { name: 'Fog',            icon: '🌫️',  cls: 'weather-fog' },
-      7: { name: 'Heavy Rain',     icon: '⛈️',  cls: 'weather-heavy-rain' },
-      8: { name: 'Harsh Sun',      icon: '🔥',  cls: 'weather-harsh-sun' },
-      9: { name: 'Strong Winds',   icon: '💨',  cls: 'weather-strong-winds' },
-    };
 
     // ── Type RGB ──────────────────────────────────────────────────────────────
     const TYPE_RGB = {
@@ -330,21 +284,9 @@
       </div>`;
     }
 
-    function renderWeather(weather) {
-      if (!weather || !weather.weatherType) return '';
-      const w = WEATHER[weather.weatherType];
-      if (!w) return '';
-      const turns = weather.turnsLeft > 0 ? `${weather.turnsLeft} turn${weather.turnsLeft !== 1 ? 's' : ''} left` : 'Permanent';
-      return `<div class="weather-banner ${w.cls}">
-        <span class="weather-icon">${w.icon}</span>
-        <span class="weather-name">${w.name}</span>
-        <span class="weather-turns">${turns}</span>
-      </div>`;
-    }
 
     function render(data) {
       const team    = data.party || [];
-      const weather = data.weather || null;
       const slots   = [...team];
       while (slots.length < 6) slots.push(null);
 
@@ -354,13 +296,6 @@
 
       const wrapper = document.getElementById('wrapper');
       wrapper.innerHTML = '';
-
-      const weatherHtml = renderWeather(weather);
-      if (weatherHtml) {
-        const banner = document.createElement('div');
-        banner.innerHTML = weatherHtml;
-        wrapper.appendChild(banner.firstElementChild);
-      }
 
       wrapper.appendChild(strip);
     }
