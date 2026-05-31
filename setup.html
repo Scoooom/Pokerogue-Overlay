@@ -552,7 +552,7 @@
         <div class="route-meta">
           <div class="route-path"><span class="method-tag">GET</span> /wave</div>
           <div class="route-name">Wave Display</div>
-          <div class="route-desc">Compact widget showing the current biome, wave number, game mode badge, and a live boss countdown chip that pulses red when a boss wave is active.</div>
+          <div class="route-desc">Compact widget showing the current biome, wave number, game mode badge, and a live next-encounter chip. Knows all Classic fixed battles — rival, evil team, Elite Four, Eternatus — and gym leader waves based on your cycle.</div>
           <div class="route-tags">
             <span class="tag obs">OBS Source</span>
             <span class="tag page">Widget</span>
@@ -563,10 +563,25 @@
       <div class="route-preview">
         <div class="preview-label">Preview</div>
         <div class="iframe-shell shell-wave">
-          <iframe src="/wave" width="260" height="115" scrolling="yes"></iframe>
+          <iframe src="/wave" width="260" height="140" scrolling="yes"></iframe>
+        </div>
+        <div class="params">
+          <div class="params-head">
+            <span>Parameter</span><span>Type</span><span>Description</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">cycle</span>
+            <span class="param-type">20 | 30</span>
+            <span class="param-desc">Gym leader cycle for this run. Omit if unknown — all possible gym waves will show as <strong>(?)</strong>.</span>
+          </div>
         </div>
         <div class="obs-tip">
-          <strong>OBS tip:</strong> Recommended size ~280×130px. Transparent background. Works well anchored to a corner of your game capture.
+          <strong>OBS tip:</strong> Set the URL once at the start of each run. Use <code>/wave?cycle=20</code> or <code>/wave?cycle=30</code> depending on which wave your first gym appears. The cycle buttons inside the widget are a convenience for browser-based use — for OBS, just change the source URL directly.
+          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+            <button class="copy-btn" onclick="copyUrl(this, '/wave')">Copy ? URL</button>
+            <button class="copy-btn" onclick="copyUrl(this, '/wave?cycle=20')">Copy C-20 URL</button>
+            <button class="copy-btn" onclick="copyUrl(this, '/wave?cycle=30')">Copy C-30 URL</button>
+          </div>
         </div>
       </div>
     </div>
