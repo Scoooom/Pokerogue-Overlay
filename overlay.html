@@ -12,15 +12,15 @@
       --bg3: #070c14;
       --panel: rgba(12, 18, 30, 0.88);
       --border: rgba(255, 255, 255, 0.22);
-      --text: #f8fbff;
+      --text: var(--color-text);
       --muted: rgba(248, 251, 255, 0.72);
-      --good: #35e878;
-      --warn: #ffd447;
-      --bad: #ff4f5e;
-      --burn: #ff643d;
-      --sleep: #9aa8ff;
-      --paralyze: #ffd447;
-      --freeze: #69d7ff;
+      --good:     var(--color-good);
+      --warn:     var(--color-warn);
+      --bad:      var(--color-bad);
+      --burn:     var(--color-status-brn);
+      --sleep:    var(--color-status-slp);
+      --paralyze: var(--color-status-par);
+      --freeze:   var(--color-status-frz);
     }
 
     * { box-sizing: border-box; }
@@ -495,6 +495,7 @@
     .save { background: #35e878; color:#04100a; }
     .cancel { background: rgba(255,255,255,.14); color:white; }
   </style>
+  <link rel="stylesheet" href="/theme.css">
   <link rel="stylesheet" href="/custom.css">
 </head>
 <body>
