@@ -101,7 +101,7 @@ No data leaves your machine. No private save data is read.
 
 ## Credits
 
-Thanks to **[cannonb33](https://github.com/cannonb33)** for the original base code that this project was built upon.
+Thanks to **[cannonb33](https://github.com/cannonb33/Pokerogue-Overlay)** for the original base code that this project was built upon.
 
 ## License
 
