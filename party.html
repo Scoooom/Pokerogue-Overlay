@@ -15,7 +15,9 @@
 
   <script src="/card-shared.js"></script>
   <script>
-    const isVertical = new URLSearchParams(location.search).get('layout') === 'vertical';
+    const params    = new URLSearchParams(location.search);
+    const isVertical = params.get('layout') === 'vertical';
+    const isMinimal  = params.has('minimal');
 
     function render(data) {
       const team    = data.party || [];
@@ -24,7 +26,7 @@
 
       const strip = document.createElement('div');
       strip.className = 'strip' + (isVertical ? ' vertical' : '');
-      strip.innerHTML = slots.map((p, i) => p ? renderCard(p, i) : renderEmpty()).join('');
+      strip.innerHTML = slots.map((p, i) => p ? renderCard(p, i, isMinimal) : renderEmpty()).join('');
 
       const wrapper = document.getElementById('wrapper');
       wrapper.innerHTML = '';

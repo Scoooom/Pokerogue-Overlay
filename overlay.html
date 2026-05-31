@@ -116,6 +116,13 @@
       flex: 1;
     }
 
+    .card.minimal .mon-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      justify-content: center;
+    }
+
     .card {
       position: relative;
       min-height: 0;
@@ -594,6 +601,7 @@
 
   let currentEditKey = null;
   let currentTeamCache = [];
+  const isMinimal = new URLSearchParams(location.search).has('minimal');
   let allMovesByName = new Map(FALLBACK_MOVES.map(([name, type]) => [name.toLowerCase(), { name, type }]));
 
   function storageKey(mon) { return `pokerogue-overlay-custom:${mon.name || 'unknown'}:${mon.form || ''}`; }
@@ -760,6 +768,22 @@
     const displayName = p.nickname ? `${p.nickname} (${realName})` : realName;
     const moves = [...(p.moves || [])];
     while (moves.length < 4) moves.push(null);
+
+    if (isMinimal) {
+      return `
+      <div class="card minimal" style="--type-rgb:${typeRgb(primaryType)}">
+        <div class="sprite-column">
+          <div class="sprite-box">
+            <img class="sprite" src="/sprite?name=${encodeURIComponent(realName)}&form=${encodeURIComponent(p.form||'')}&raw" alt="${realName}">
+          </div>
+        </div>
+        <div class="mon-body">
+          <div class="name">${displayName}</div>
+          <div class="types">${(p.types || []).map(renderType).join('')}</div>
+          ${p.status ? renderStatus(p.status) : ''}
+        </div>
+      </div>`;
+    }
 
     return `
       <div class="card" style="--type-rgb:${typeRgb(primaryType)}">

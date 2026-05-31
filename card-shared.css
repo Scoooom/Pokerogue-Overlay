@@ -276,3 +276,34 @@
       border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
       color: rgb(var(--tr), var(--tg), var(--tb));
     }
+
+    /* ── Minimal card layout ─────────────────────────────────────────────────── */
+    .card-minimal {
+      align-items: center;
+    }
+
+    /* Horizontal minimal — tighter, no right column flex column needed */
+    .strip:not(.vertical) .card-minimal {
+      width: 100px;
+      padding: 6px 5px 7px;
+      gap: 3px;
+    }
+
+    .strip:not(.vertical) .card-minimal .poke-name {
+      font-size: 10px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    .strip:not(.vertical) .card-minimal .types {
+      justify-content: center;
+    }
+
+    /* Vertical minimal */
+    .strip.vertical .card-minimal {
+      padding: 6px 8px;
+      gap: 8px;
+    }

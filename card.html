@@ -33,13 +33,14 @@
 
   <script src="/card-shared.js"></script>
   <script>
-    const params = new URLSearchParams(location.search);
-    const slot   = parseInt(params.get('slot') ?? '0');
+    const params    = new URLSearchParams(location.search);
+    const slot      = parseInt(params.get('slot') ?? '0');
+    const isMinimal = params.has('minimal');
 
     function render(data) {
       const p = (data.party || [])[slot];
       document.getElementById('root').innerHTML = `<div class="strip">${
-        p ? renderCard(p, slot) : renderEmpty()
+        p ? renderCard(p, slot, isMinimal) : renderEmpty()
       }</div>`;
     }
 

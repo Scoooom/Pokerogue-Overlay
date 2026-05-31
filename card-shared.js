@@ -65,13 +65,38 @@ function statStagesHtml(stages) {
   return `<div class="stat-stages">${cells.join('')}</div>`;
 }
 
-function renderCard(p, slot) {
+function renderCard(p, slot, minimal = false) {
   const pct         = hpPct(p);
   const primaryType = ((p.types || [])[0] || 'normal').toUpperCase();
   const primaryRgb  = typeRgb((p.types || [])[0] || 'Normal');
-  const isFainted  = pct === 0;
-  const shinyHtml  = p.shiny ? `<div class="shiny-badge">✨</div>` : '';
-  const typesHtml  = (p.types || []).map(typeBadge).join('');
+  const isFainted   = pct === 0;
+  const shinyHtml   = p.shiny ? `<div class="shiny-badge">✨</div>` : '';
+  const typesHtml   = (p.types || []).map(typeBadge).join('');
+
+  const statusHtml = (() => {
+    if (!p.status) return '';
+    const key   = String(p.status).toUpperCase().slice(0, 3);
+    const style = STATUS_STYLE[key] || 'background:var(--status-unknown-bg,rgba(255,255,255,0.15));border:1px solid var(--status-unknown-border,rgba(255,255,255,0.3));color:var(--status-unknown-color,#fff)';
+    return `<div class="status-badge" style="${style}">${p.status}</div>`;
+  })();
+
+  if (minimal) {
+    return `
+      <div class="card card-minimal type-primary-${primaryType} ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
+        <div class="col-left">
+          <div class="sprite-wrap">
+            <img class="sprite" src="/sprite?name=${encodeURIComponent(cleanName(p.name))}&form=${encodeURIComponent(p.form||'')}&raw" alt="${p.name}">
+          </div>
+          ${shinyHtml}
+        </div>
+        <div class="col-right">
+          <div class="poke-name">${p.nickname || p.name}</div>
+          <div class="types">${typesHtml}</div>
+          ${statusHtml ? `<div class="info-row">${statusHtml}</div>` : ''}
+        </div>
+      </div>`;
+  }
+
   const stagesHtml = statStagesHtml(p.statStages);
 
   const abilityHtml = (() => {
@@ -88,13 +113,6 @@ function renderCard(p, slot) {
     return `<div class="tera-badge type-${cls}${active ? ' tera-active' : ''}">
       ${active ? '◆' : '◇'} ${p.teraType}
     </div>`;
-  })();
-
-  const statusHtml = (() => {
-    if (!p.status) return '';
-    const key   = String(p.status).toUpperCase().slice(0, 3);
-    const style = STATUS_STYLE[key] || 'background:var(--status-unknown-bg,rgba(255,255,255,0.15));border:1px solid var(--status-unknown-border,rgba(255,255,255,0.3));color:var(--status-unknown-color,#fff)';
-    return `<div class="status-badge" style="${style}">${p.status}</div>`;
   })();
 
   const moves = [...(p.moves || [])];
