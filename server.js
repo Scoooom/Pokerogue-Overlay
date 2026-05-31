@@ -223,21 +223,31 @@ app.get("/stats", (req, res) => res.sendFile(path.join(__dirname, "stats.html"))
 // GET /sprite?slot=0        → HTML page with <img> (OBS browser source)
 // GET /sprite?slot=0&raw=1  → raw image bytes (for use inside <img src=>)
 // ── Sprite ────────────────────────────────────────────────────────────────────
-// GET /sprite?name=Bramblin&form=     → HTML page (OBS browser source)
-// GET /sprite?name=Bramblin&form=&raw → raw image bytes (for <img src>)
-// Identity-based URL so browser can cache indefinitely per pokemon
+// GET /sprite?slot=N          → HTML page (OBS browser source) — dynamic, always current slot
+// GET /sprite?name=X&form=Y&raw → raw image bytes (for <img src>) — browser-cacheable
 app.get("/sprite", async (req, res) => {
   const raw  = req.query.raw !== undefined;
-  const name = req.query.name;
-  const form = req.query.form || "";
 
-  if (!name) return res.status(400).json({ error: "missing ?name=" });
+  let pokemon;
 
-  const pokemon = { name, form };
+  if (req.query.slot !== undefined) {
+    // Slot mode — OBS browser source, always reflects current slot contents
+    const slot = parseInt(req.query.slot);
+    if (isNaN(slot) || slot < 0 || slot > 5)
+      return res.status(400).json({ error: "slot must be 0–5" });
+    pokemon = latestData.party[slot];
+    if (!pokemon)
+      return res.status(404).json({ error: `No pokemon in slot ${slot}` });
+  } else if (req.query.name) {
+    // Name mode — identity-based, browser-cacheable, for use in <img src>
+    pokemon = { name: req.query.name, form: req.query.form || "" };
+  } else {
+    return res.status(400).json({ error: "provide ?slot=N or ?name=X" });
+  }
 
   try {
     const { buf, type, url } = await getCachedSprite(pokemon);
-    console.log(`/sprite ${name}${form ? "-"+form : ""}${raw ? " (raw)" : ""} → ${url}`);
+    console.log(`/sprite ${pokemon.name}${raw ? " (raw)" : ""} → ${url}`);
 
     if (raw) {
       res.set("Content-Type", type);
@@ -245,9 +255,10 @@ app.get("/sprite", async (req, res) => {
       return res.send(buf);
     }
 
-    const b64 = buf.toString("base64");
+    // HTML page for OBS browser source — polls every second to catch slot changes
+    const label = pokemon.nickname || pokemon.name;
     res.set("Content-Type", "text/html");
-    res.set("Cache-Control", "public, max-age=3600");
+    res.set("Cache-Control", "no-cache");
     res.send(`<!DOCTYPE html>
 <html>
 <head>
@@ -259,11 +270,28 @@ app.get("/sprite", async (req, res) => {
 </style>
 </head>
 <body>
-<img src="data:${type};base64,${b64}" alt="${name}">
+<img id="spr" src="/sprite?name=${encodeURIComponent(pokemon.name)}&form=${encodeURIComponent(pokemon.form||"")}&raw" alt="${label}">
+<script>
+  // Poll for slot changes and swap the image src when the pokemon changes
+  ${req.query.slot !== undefined ? `
+  let current = ${JSON.stringify(pokemon.name + "|" + (pokemon.form||""))};
+  setInterval(async () => {
+    try {
+      const d = await (await fetch('/data')).json();
+      const p = (d.party || [])[${parseInt(req.query.slot)}];
+      if (!p) return;
+      const key = p.name + '|' + (p.form || '');
+      if (key !== current) {
+        current = key;
+        document.getElementById('spr').src = '/sprite?name=' + encodeURIComponent(p.name) + '&form=' + encodeURIComponent(p.form||'') + '&raw';
+      }
+    } catch(e) {}
+  }, 1000);` : ''}
+</script>
 </body>
 </html>`);
   } catch (err) {
-    console.error(`/sprite: no working sprite for ${name}`);
+    console.error(`/sprite: no working sprite for ${pokemon.name}`);
     if (raw) return res.status(404).json({ error: "No working sprite found" });
     res.set("Content-Type", "text/html");
     res.send(`<!DOCTYPE html><html><body style="background:transparent;margin:0"></body></html>`);
