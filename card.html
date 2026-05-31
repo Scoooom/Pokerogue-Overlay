@@ -11,53 +11,21 @@
       background: transparent;
       margin: 0;
       padding: 0;
-      width: 160px;
       overflow: hidden;
-    }
-
-    body {
       font-family: 'Rajdhani', 'Inter', sans-serif;
       color: #f8fbff;
     }
 
-    #root {
-      width: 160px;
+    /* Override strip styles — single card, no strip chrome */
+    .strip.vertical {
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      width: auto;
+      backdrop-filter: none;
     }
-
-    /* Force vertical card layout */
-    .card {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: stretch !important;
-      width: 160px !important;
-      padding: var(--card-padding-v) !important;
-      gap: 10px !important;
-    }
-
-    .col-left {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: flex-start !important;
-      gap: 4px !important;
-      flex-shrink: 0 !important;
-      width: var(--sprite-size) !important;
-    }
-
-    .col-right {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 3px !important;
-      flex: 1 !important;
-      min-width: 0 !important;
-      justify-content: center !important;
-    }
-
-    .shiny-badge { position: static !important; }
-    .poke-name { font-size: var(--font-size-name-v) !important; font-weight: 700 !important; text-align: left !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; width: 100% !important; }
-    .name-level { display: flex !important; align-items: baseline !important; gap: 6px !important; }
-    .types { justify-content: flex-start !important; }
-    .moves { display: grid !important; grid-template-columns: 1fr 1fr !important; }
   </style>
   <link rel="stylesheet" href="/custom.css">
 </head>
@@ -71,7 +39,10 @@
 
     function render(data) {
       const p = (data.party || [])[slot];
-      document.getElementById('root').innerHTML = p ? renderCard(p, slot) : renderEmpty();
+      // Wrap in strip.vertical so all vertical card CSS applies naturally
+      document.getElementById('root').innerHTML = `<div class="strip vertical">${
+        p ? renderCard(p, slot) : renderEmpty()
+      }</div>`;
     }
 
     async function fetchData() {
