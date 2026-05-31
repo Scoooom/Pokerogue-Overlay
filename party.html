@@ -133,6 +133,28 @@
 
     .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.08); margin: 1px 0; }
 
+    .tera-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 10px;
+      border: 1px solid;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .tera-active {
+      animation: tera-pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes tera-pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.55; }
+    }
+
     /* ── Stat stages ─────────────────────────────────────────────────────── */
     .stat-stages {
       display: flex;
@@ -239,6 +261,15 @@
       const typesHtml  = (p.types || []).map(typeBadge).join('');
       const stagesHtml = statStagesHtml(p.statStages);
 
+      const teraHtml = (() => {
+        if (!p.teraType) return '';
+        const rgb = typeRgb(p.teraType);
+        const active = p.isTerastallized;
+        return `<div class="tera-badge${active ? ' tera-active' : ''}" style="background:rgba(${rgb},${active ? '0.3' : '0.12'});border-color:rgba(${rgb},${active ? '0.7' : '0.35'});color:rgba(${rgb},${active ? '1' : '0.7'});">
+          ${active ? '◆' : '◇'} ${p.teraType}
+        </div>`;
+      })();
+
       const statusHtml = (() => {
         if (!p.status) return '';
         const key   = String(p.status).toUpperCase().slice(0, 3);
@@ -264,6 +295,7 @@
             </div>
             <div class="types">${typesHtml}</div>
             ${statusHtml}
+            ${teraHtml}
             ${stagesHtml}
             <div class="hp-bar-wrap">
               <div class="hp-bar-bg">

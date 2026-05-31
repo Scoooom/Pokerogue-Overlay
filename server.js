@@ -76,6 +76,7 @@ function normalizeGameInfo(raw) {
     gameMode:        info.gameMode ?? "",
     playTime:        info.playTime ?? 0,
     money:           info.money ?? 0,
+    runName:         info.name  || "",
     party:           Array.isArray(info.party) ? info.party.map(normalizePokemon) : [],
   };
 }
@@ -185,7 +186,7 @@ let gymCycle = null; // null = unknown, 20 or 30 = known
 // ── Game state ────────────────────────────────────────────────────────────────
 let latestData = {
   gameInfoVersion: "",
-  wave: "--", biome: "", gameMode: "", playTime: 0, money: 0,
+  wave: "--", biome: "", gameMode: "", playTime: 0, money: 0, runName: "",
   party: [], updatedAt: Date.now(),
 };
 
