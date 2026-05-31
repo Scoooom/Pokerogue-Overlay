@@ -179,25 +179,33 @@
     }
 
     /* ── Stat stages ─────────────────────────────────────────────────────── */
+    /* Stat stages — always in flow, fixed height, one row of chips */
     .stat-stages {
-      position: absolute;
-      bottom: 6px;
-      left: 6px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: nowrap;
       gap: 2px;
-      align-items: flex-start;
-      pointer-events: none;
+      height: 14px;
+      align-items: center;
+      overflow: hidden;
+      width: 100%;
     }
+
+    /* Horizontal: center the chips */
+    .strip:not(.vertical) .stat-stages { justify-content: center; }
+
+    /* Vertical: left-align */
+    .strip.vertical .stat-stages { justify-content: flex-start; }
 
     .stat-chip {
       font-size: 7.5px;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 1px 4px;
-      border-radius: 4px;
-      line-height: 1.4;
+      letter-spacing: 0.03em;
+      padding: 1px 3px;
+      border-radius: 3px;
+      line-height: 1.3;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .stat-up   { background: rgba(53,232,120,0.2);  border: 1px solid rgba(53,232,120,0.45);  color: #35e878; }
@@ -271,7 +279,7 @@
 
     // Render stat stage chips — only show non-zero stages
     function statStagesHtml(stages) {
-      if (!stages) return '';
+      if (!stages) return '<div class="stat-stages"></div>';
       const chips = Object.entries(STAT_LABELS)
         .filter(([key]) => stages[key] && stages[key] !== 0)
         .map(([key, label]) => {
@@ -280,7 +288,6 @@
           const arrows = val > 0 ? '▲'.repeat(Math.min(val, 3)) : '▼'.repeat(Math.min(-val, 3));
           return `<span class="stat-chip ${cls}">${label}${arrows}</span>`;
         });
-      if (!chips.length) return '';
       return `<div class="stat-stages">${chips.join('')}</div>`;
     }
 
@@ -320,7 +327,6 @@
 
       return `
         <div class="card ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
-          ${stagesHtml}
           <div class="col-left">
             <div class="sprite-wrap">
               <img class="sprite" src="/sprite?name=${encodeURIComponent(cleanName(p.name))}&form=${encodeURIComponent(p.form||"")}&raw" alt="${p.name}">
@@ -335,6 +341,7 @@
             <div class="types">${typesHtml}</div>
             <div class="info-row">${statusHtml}${teraHtml}</div>
             <div class="ability-line">${abilityHtml}</div>
+            ${stagesHtml}
             <div class="hp-bar-wrap">
               <div class="hp-bar-bg">
                 <div class="hp-bar-fill" style="width:${pct}%;background:${hpColor(pct)};"></div>
