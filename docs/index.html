@@ -167,6 +167,7 @@
   <a href="#route-full">/full</a>
   <a href="#route-sprite">/sprite</a>
   <a href="#route-api">API routes</a>
+  <a href="#route-minimal">?minimal mode</a>
 
   <div class="sidebar-section">Customization</div>
   <a href="#custom-how">How it works</a>
@@ -272,6 +273,7 @@ node server.js</code></pre>
     <thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
     <tbody>
       <tr><td>layout</td><td>string</td><td><code>horizontal</code> (default, ~840px wide) or <code>vertical</code> (320px wide, 2×2 move grid)</td></tr>
+      <tr><td>minimal</td><td>flag</td><td>Show only sprite, name, types, and status. See <a href="#route-minimal">?minimal mode</a>.</td></tr>
     </tbody>
   </table>
 
@@ -281,6 +283,7 @@ node server.js</code></pre>
     <thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
     <tbody>
       <tr><td>slot</td><td>0–5</td><td>Party slot to display. Default: 0.</td></tr>
+      <tr><td>minimal</td><td>flag</td><td>Show only sprite, name, types, and status. See <a href="#route-minimal">?minimal mode</a>.</td></tr>
     </tbody>
   </table>
 
@@ -309,7 +312,7 @@ node server.js</code></pre>
   <p>Run stats panel: wave, biome, game mode badge, live timer (counts up between server polls), shiny count, alive count, money (₽), and run name (shown only when set, e.g. "Mono Type", "Nuzlocke").</p>
 
   <h2 id="route-full" class="anchor">/full</h2>
-  <p>The original full-featured overlay with an inline editor. Click <strong>EDIT</strong> on any Pokémon to manually adjust moves, ability, passive, or nature — useful when the game doesn't expose certain fields via <code>window.gameInfo</code>.</p>
+  <p>The original full-featured overlay with an inline editor. Click <strong>EDIT</strong> on any Pokémon to manually adjust moves, ability, passive, or nature — useful when the game doesn't expose certain fields via <code>window.gameInfo</code>. Supports <code>?minimal</code> to show compact cards.</p>
 
   <h2 id="route-sprite" class="anchor">/sprite</h2>
   <p>Transparent HTML page containing the sprite for the given party slot. Polls <code>/data</code> every second and swaps the image when the Pokémon in that slot changes — no full page reload.</p>
@@ -518,6 +521,19 @@ node server.js</code></pre>
   --hp-bar-height:        3px;
 }</code></pre>
   </div>
+
+  <h2 id="route-minimal" class="anchor">?minimal mode</h2>
+  <p>Adding <code>?minimal</code> to <code>/party</code>, <code>/card</code>, or <code>/full</code> strips each card down to the essentials — sprite, name, types, and status condition only. Everything else (level, ability, passive, tera, stat stages, HP bar, moves) is hidden.</p>
+  <table class="route-table">
+    <thead><tr><th>URL</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>/party?minimal</td><td>Minimal party strip (horizontal)</td></tr>
+      <tr><td>/party?layout=vertical&amp;minimal</td><td>Minimal party strip (vertical)</td></tr>
+      <tr><td>/card?slot=0&amp;minimal</td><td>Minimal single card</td></tr>
+      <tr><td>/full?minimal</td><td>Full overlay with minimal cards</td></tr>
+    </tbody>
+  </table>
+  <p>Useful as a compact secondary overlay, or when you want to show the team composition without cluttering the stream.</p>
 
   <h2 id="architecture" class="anchor">Architecture</h2>
   <pre><code>PokéRogue tab
