@@ -158,6 +158,54 @@
       0%, 100% { box-shadow: 0 0 0 0 rgba(255,79,94,0.4); }
       50%       { box-shadow: 0 0 0 5px rgba(255,79,94,0); }
     }
+
+    .cycle-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 2px;
+    }
+
+    .cycle-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .cycle-val {
+      font-size: 12px;
+      font-weight: 700;
+      flex: 1;
+    }
+
+    .cycle-btn {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 5px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .cycle-btn:hover {
+      border-color: rgba(34,211,238,0.4);
+      color: var(--accent);
+      background: rgba(34,211,238,0.08);
+    }
+
+    .cycle-btn.active {
+      border-color: rgba(34,211,238,0.6);
+      color: var(--accent);
+      background: rgba(34,211,238,0.14);
+    }
   </style>
 </head>
 <body>
@@ -174,6 +222,14 @@
     <div class="boss-row">
       <div class="boss-chip hidden" id="bossChip">BOSS NOW</div>
       <div class="next-boss-label" id="bossLabel"></div>
+    </div>
+    <div class="divider" style="width:100%;height:1px;background:rgba(255,255,255,0.08);margin:2px 0;"></div>
+    <div class="cycle-row" id="cycleRow">
+      <span class="cycle-label">Gym</span>
+      <span class="cycle-val" id="cycleVal">? Unknown</span>
+      <button class="cycle-btn" id="btn20" onclick="setCycle(20)">C-20</button>
+      <button class="cycle-btn" id="btn30" onclick="setCycle(30)">C-30</button>
+      <button class="cycle-btn" onclick="setCycle(null)">?</button>
     </div>
   </div>
 
@@ -205,40 +261,54 @@
       200: { type: 'Final Boss',  label: 'Eternatus',       icon: '☄️' },
     };
 
-    // Every 10th wave is a wild boss unless it's a fixed battle
-    // Every 20th/30th (and +30 after) may be a gym leader in classic
-    // Gym leader waves: 20, 30, then every 30 after that (60,90,120,150,180)
-    // (50% chance each, so we mark them as "possible" gym leader)
-    const GYM_LEADER_WAVES = new Set([20, 30, 60, 90, 120, 150, 180]);
+    // Gym waves depend on cycle (20 or 30).
+    // Cycle 20: gyms at 20, 50, 80, 110, 140, 170
+    // Cycle 30: gyms at 30, 60, 90, 120, 150, 180
+    function getGymWaves(cycle) {
+      if (!cycle) return new Set(); // unknown — show nothing
+      const waves = new Set();
+      for (let w = cycle; w <= 180; w += 30) waves.add(w);
+      return waves;
+    }
 
-    function getEncounterAt(wave) {
+    function getEncounterAt(wave, gymWaves) {
       const w = Number(wave);
       if (FIXED_BATTLES[w]) return FIXED_BATTLES[w];
-      if (GYM_LEADER_WAVES.has(w)) return { type: 'Gym Leader', label: 'Gym Leader', icon: '🏅' };
-      if (w % 10 === 0) return { type: 'Wild Boss',   label: 'Wild Boss',   icon: '⭐' };
+      if (gymWaves.has(w)) return { type: 'Gym Leader', label: 'Gym Leader', icon: '🏅' };
+      if (w % 10 === 0) return { type: 'Wild Boss', label: 'Wild Boss', icon: '⭐' };
       return null;
     }
 
-    function getNextBoss(currentWave) {
+    function getNextBoss(currentWave, gymWaves) {
       const w = Number(currentWave) || 0;
-      // Find next notable encounter from current wave onward
       for (let i = w; i <= 200; i++) {
-        const enc = getEncounterAt(i);
+        const enc = getEncounterAt(i, gymWaves);
         if (enc) return { wave: i, ...enc };
       }
       return null;
     }
 
     function update(data) {
-      const wave = data.wave ?? '--';
-      const biome = data.biome || 'Unknown';
-      const mode = data.gameMode || '';
+      const wave    = data.wave ?? '--';
+      const biome   = data.biome || 'Unknown';
+      const mode    = data.gameMode || '';
+      const cycle   = data.gymCycle || null;
 
       document.getElementById('wave').textContent = wave;
       document.getElementById('biome').textContent = biome;
       document.getElementById('mode').textContent = mode;
 
-      const next = getNextBoss(wave);
+      // Show/hide cycle selector
+      const cycleRow = document.getElementById('cycleRow');
+      const cycleVal = document.getElementById('cycleVal');
+      if (cycleRow) {
+        cycleRow.style.display = '';
+        cycleVal.textContent = cycle ? `Cycle ${cycle}` : '? Unknown';
+        cycleVal.style.color = cycle ? 'var(--good)' : 'var(--warn)';
+      }
+
+      const gymWaves = getGymWaves(cycle);
+      const next = getNextBoss(wave, gymWaves);
       const chip = document.getElementById('bossChip');
       const label = document.getElementById('bossLabel');
 
@@ -274,6 +344,15 @@
       } catch (e) {
         document.getElementById('wave').textContent = '?';
       }
+    }
+
+    async function setCycle(cycle) {
+      await fetch('/cycle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cycle }),
+      });
+      fetchData();
     }
 
     setInterval(fetchData, 1000);

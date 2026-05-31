@@ -177,6 +177,9 @@ function fetchFirstWorking(candidates) {
   });
 }
 
+// ── Cycle state (20 or 30 — set manually, persists until reset) ──────────────
+let gymCycle = null; // null = unknown, 20 or 30 = known
+
 // ── Game state ────────────────────────────────────────────────────────────────
 let latestData = {
   gameInfoVersion: "",
@@ -265,8 +268,22 @@ app.get("/names", (req, res) => {
   }));
 });
 
+// ── Cycle ─────────────────────────────────────────────────────────────────────
+// GET  /cycle        → { cycle: 20|30|null }
+// POST /cycle        → { cycle: 20|30|null } to set; null resets to unknown
+app.get("/cycle", (req, res) => res.json({ cycle: gymCycle }));
+
+app.post("/cycle", (req, res) => {
+  const { cycle } = req.body;
+  if (cycle !== 20 && cycle !== 30 && cycle !== null)
+    return res.status(400).json({ error: "cycle must be 20, 30, or null" });
+  gymCycle = cycle;
+  console.log(`Gym cycle set to: ${gymCycle ?? "unknown"}`);
+  res.json({ cycle: gymCycle });
+});
+
 // ── Data ──────────────────────────────────────────────────────────────────────
-app.get("/data", (req, res) => res.json(latestData));
+app.get("/data", (req, res) => res.json({ ...latestData, gymCycle }));
 
 // ── Raw ───────────────────────────────────────────────────────────────────────
 // GET /raw — the exact payload received from Tampermonkey, unmodified
