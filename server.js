@@ -221,6 +221,22 @@ app.get("/stats", (req, res) => res.sendFile(path.join(__dirname, "stats.html"))
 app.get("/card",  (req, res) => res.sendFile(path.join(__dirname, "card.html")));
 app.get("/docs",  (req, res) => res.sendFile(path.join(__dirname, "docs.html")));
 
+// ── Custom CSS ────────────────────────────────────────────────────────────────
+// Place a custom.css file in the project root to inject custom styles into
+// every overlay page without needing OBS Custom CSS.
+app.get("/custom.css", (req, res) => {
+  const p = path.join(__dirname, "custom.css");
+  if (fs.existsSync(p)) {
+    res.set("Content-Type", "text/css");
+    res.set("Cache-Control", "no-cache");
+    res.sendFile(p);
+  } else {
+    // Return empty CSS so the <link> never 404s
+    res.set("Content-Type", "text/css");
+    res.send("");
+  }
+});
+
 // ── Sprite ────────────────────────────────────────────────────────────────────
 // GET /sprite?slot=0        → HTML page with <img> (OBS browser source)
 // GET /sprite?slot=0&raw=1  → raw image bytes (for use inside <img src=>)

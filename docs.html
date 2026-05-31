@@ -310,6 +310,7 @@
     /* ── Section anchors ── */
     .anchor { scroll-margin-top: 32px; }
   </style>
+  <link rel="stylesheet" href="/custom.css">
 </head>
 <body>
 
@@ -452,6 +453,16 @@ node server.js</code></pre>
 
   <!-- ═══ CUSTOMIZATION ═══ -->
   <h2 id="custom-how" class="anchor">How Customization Works</h2>
+  <h3>Option 1 — custom.css file (recommended for development)</h3>
+  <p>Create a <code>custom.css</code> file in the project root. It is loaded by every overlay page automatically and is excluded from git so it stays local to your machine.</p>
+  <pre><code>/* custom.css — place in the Pokerogue-Overlay folder */
+:root {
+  --color-accent: #ff6b6b;
+  --border-radius-card: 0px;
+}</code></pre>
+  <p>The server returns an empty file if <code>custom.css</code> doesn't exist, so no errors occur.</p>
+
+  <h3>Option 2 — OBS Custom CSS</h3>
   <p>Every visual property is defined as a CSS custom property (variable) in <code>theme.css</code>, which is loaded by every overlay page. To override anything, paste your CSS into the <strong>Custom CSS</strong> field of the OBS browser source.</p>
   <div class="callout">
     In OBS: right-click a browser source → <strong>Properties</strong> → scroll to <strong>Custom CSS</strong>. Paste your overrides there. Standard CSS cascade applies — your values win over the defaults.
