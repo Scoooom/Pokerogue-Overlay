@@ -1,189 +1,106 @@
-# Pokerogue-Overlay
-Free Stream overlay made for Pokerogue
+# PokéRogue Overlay
 
-Search "cmd" in the address bar of this folder, and then type node server.js and then enter to start it. it should automatically start working.
+A local Node.js server that reads your live [PokéRogue](https://pokerogue.net) game state and serves browser-source-ready overlay pages for OBS and other streaming software.
 
-
-chatgpt generated instructions and overview
-
-
-# PokéRogue Auto-Updating Stream Overlay
-
-A browser-based overlay that automatically displays your current PokéRogue run for streaming (OBS / TikTok), including your team, HP, moves, and upcoming boss waves.
+**[📖 Full Documentation](https://scoooom.github.io/Pokerogue-Overlay)**
 
 ---
 
-## 🧩 What This Does
+## Features
 
-* Automatically tracks your **team in real time**
-* Displays:
-
-  * Pokémon sprites
-  * HP bars
-  * Level, status, tera type
-  * Moves (with type colors)
-  * Ability, passive, nature (manual)
-* Shows **upcoming boss battles**
-* Designed for **stream overlays**
+- **Party strip** — all 6 slots with sprite, name, level, types, ability, passive, tera type, status, stat stages, HP bar, and moves
+- **Single slot card** — focused view of one Pokémon
+- **Wave widget** — current wave, biome, and next encounter countdown with full Classic mode battle map (rival, evil team, gym leaders, Elite Four, Eternatus)
+- **Run stats** — wave, biome, timer, money, shiny count, alive count, run name
+- **Sprite proxy** — server-side Showdown CDN resolution with caching, no flickering
+- **Fully themeable** — 60+ CSS variables, `custom.css` support, OBS Custom CSS compatible
 
 ---
 
-## ⚙️ Requirements
+## Requirements
 
-* Node.js installed
-* A browser with **Tampermonkey extension**
-* OBS (or similar streaming software)
-
----
-
-## 📁 Files Included
-
-Place all of these in the same folder:
-
-```
-overlay.html
-server.js
-moves.txt
-dna-splicer.png
-```
+- [Node.js](https://nodejs.org/) 18 or later
+- [Tampermonkey](https://www.tampermonkey.net/) browser extension
+- OBS or any streaming software that supports browser sources
 
 ---
 
-## 🚀 Setup Instructions
+## Quick Start
 
-### 1. Start the server
-
-Open a terminal in the folder and run:
-
-```
+```bash
+git clone https://github.com/Scoooom/Pokerogue-Overlay.git -b v2
+cd Pokerogue-Overlay
+npm install
 node server.js
 ```
 
-You should see a message that it’s running on:
+Then open **http://localhost:3000** for the setup page.
+
+### Install the Tampermonkey script
+
+In Tampermonkey, create a new script and paste the URL below — it will auto-update from GitHub whenever a new version is pushed:
 
 ```
-http://localhost:3000
+https://raw.githubusercontent.com/Scoooom/Pokerogue-Overlay/refs/heads/v2/tampermonkey.user.js
 ```
 
----
-
-### 2. Install the userscript
-
-* Open Tampermonkey in your browser
-* Create a new script
-* Paste the provided userscript code
-* Save it
-
-This script is what reads PokéRogue data.
+Or install it directly from the setup page at `http://localhost:3000`.
 
 ---
 
-### 3. Open PokéRogue
+## OBS Sources
 
-Go to:
-
-```
-https://pokerogue.net/
-```
-
-Make sure the userscript is enabled.
+| URL | Description | Recommended size |
+|-----|-------------|-----------------|
+| `http://localhost:3000/party` | 6-slot party strip (horizontal) | 840×175px |
+| `http://localhost:3000/party?layout=vertical` | Party strip (vertical) | 320×510px |
+| `http://localhost:3000/card?slot=0` | Single slot card | 320×175px |
+| `http://localhost:3000/wave` | Wave / biome / encounter widget | 280×140px |
+| `http://localhost:3000/wave?cycle=20` | Wave widget — C-20 gym cycle | 280×140px |
+| `http://localhost:3000/wave?cycle=30` | Wave widget — C-30 gym cycle | 280×140px |
+| `http://localhost:3000/stats` | Run stats panel | 230×260px |
+| `http://localhost:3000/sprite?slot=0` | Single sprite (slot-based) | any |
+| `http://localhost:3000/full` | Full overlay with editor | 860×520px |
 
 ---
 
-### 4. Open the overlay
+## Customization
 
-In your browser (or OBS), open:
+Every visual property is a CSS variable. Override them in OBS Custom CSS or create a `custom.css` file in the project root:
 
-```
-http://localhost:3000
+```bash
+cp custom.css.example custom.css
+# edit custom.css freely — it's gitignored
 ```
 
----
+Example:
 
-### 5. Add to OBS
-
-* Add a **Browser Source**
-* Set URL to:
-
-  ```
-  http://localhost:3000
-  ```
-* Resize and position as needed
-* Place your game capture in the top-left area
-
----
-
-## 📝 Important Notes / Limitations
-
-* Some data must be **entered manually**, including:
-
-  * moves 
-  * abilities
-  * passives
-  * natures
-
-* This is because PokéRogue does not expose all of this information
-
-* Fusion Pokémon:
-
-  * Uses the **primary Pokémon’s sprite**
-  * Falls back to a **DNA splicer if needed**
-
-* Mega / alternate forms:
-
-  * Attempts to load correct sprite
-  * Falls back to base form if unavailable
-
----
-
-## 🎮 Controls (Overlay Editor)
-
-* Click **EDIT** on a Pokémon to:
-
-  * set moves
-  * set ability / passive / nature
-* Changes are saved automatically
-
----
-
-## 🔧 Troubleshooting
-
-### Overlay not updating
-
-* Make sure server is running
-* Make sure userscript is enabled
-* Refresh both PokéRogue and the overlay
-
-### Moves not showing types
-
-* Ensure `moves.txt` is in the folder
-* Restart the server
-
-### Sprites flickering / missing
-
-* Usually resolves automatically
-* Some forms may fallback intentionally
-
----
-
-## 📌 Summary
-
-This system works by:
-
-```
-PokéRogue → userscript → local server → overlay
+```css
+:root {
+  --color-accent: #ff6b6b;
+  --border-radius-card: 0px;
+  --bg-card: rgba(0, 0, 0, 0.95);
+}
 ```
 
-Once set up, it is mostly automatic.
+See the [full variable reference](https://scoooom.github.io/Pokerogue-Overlay#custom-vars) for all 60+ variables.
 
 ---
 
-## 💡 Optional Improvements
+## How It Works
 
-* Add facecam/chat to empty panels
-* Customize layout in overlay.html
-* Expand move database if needed
+```
+PokéRogue tab → Tampermonkey → POST /update → Node.js server → OBS browser sources
+```
+
+The Tampermonkey script reads `window.gameInfo` — the official extension API exposed by the PokéRogue developers — and POSTs it to the local server once per second. The server normalises the data, resolves sprites from the Pokémon Showdown CDN, and serves the overlay pages.
+
+No data leaves your machine. No private save data is read.
 
 ---
 
-If you run into issues or want features, feel free to modify or extend it.
+## License
+
+MIT — see [LICENSE](LICENSE)
+
+Sprites served via [Pokémon Showdown](https://play.pokemonshowdown.com/) CDN. Pokémon is © Nintendo / Game Freak.
