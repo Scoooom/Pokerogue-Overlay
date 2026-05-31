@@ -873,7 +873,6 @@
       const data = await res.json();
       const summary = {
         receivedAt: new Date(data.receivedAt).toLocaleTimeString(),
-        sessionKey: data.sessionKey || null,
         weather: data.weather,
         gameInfo: {
           gameInfoVersion: data.gameInfo?.gameInfoVersion,
@@ -888,7 +887,6 @@
             statStages: p.statStages,
           })),
         },
-        sessionData: data.sessionData || null,
       };
       document.getElementById('rawPreview').textContent = JSON.stringify(summary, null, 2);
     } catch {

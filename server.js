@@ -3,42 +3,6 @@ const cors     = require("cors");
 const path     = require("path");
 const fs       = require("fs");
 const https    = require("https");
-const CryptoJS = require("crypto-js");
-
-const SAVE_KEY = "x0i2O7WRiANTqPmZ";
-
-function decryptSave(raw) {
-  try {
-    const bytes = CryptoJS.AES.decrypt(raw, SAVE_KEY);
-    const str   = bytes.toString(CryptoJS.enc.Utf8);
-    return str ? JSON.parse(str) : null;
-  } catch (e) {
-    return null;
-  }
-}
-
-// Find the session slot that matches the active gameInfo (by wave + gameMode)
-function findActiveSession(localStorage_data, gameInfo) {
-  if (!localStorage_data || !gameInfo) return null;
-  for (const [key, raw] of Object.entries(localStorage_data)) {
-    if (!key.startsWith("sessionData")) continue;
-    const session = decryptSave(raw);
-    if (!session) continue;
-    // Match on waveIndex and gameMode
-    if (session.waveIndex === gameInfo.wave &&
-        session.gameMode  === gameInfo.gameMode) {
-      return { key, session };
-    }
-  }
-  // Fallback: return the first decryptable session
-  for (const [key, raw] of Object.entries(localStorage_data)) {
-    if (!key.startsWith("sessionData")) continue;
-    const session = decryptSave(raw);
-    if (session) return { key, session };
-  }
-  return null;
-}
-
 const app  = express();
 const PORT = 3000;
 
@@ -219,7 +183,7 @@ let gymCycle = null; // null = unknown, 20 or 30 = known
 let latestData = {
   gameInfoVersion: "",
   wave: "--", biome: "", gameMode: "", playTime: 0, money: 0,
-  weather: null, party: [], enemyParty: [], seed: null, updatedAt: Date.now(),
+  weather: null, party: [], updatedAt: Date.now(),
 };
 
 app.use(cors());
@@ -330,29 +294,17 @@ app.get("/raw", (req, res) => {
 
 // ── Update (from Tampermonkey) ────────────────────────────────────────────────
 app.post("/update", (req, res) => {
-  const { gameInfo, weather, localStorage_data } = req.body;
+  const { gameInfo, weather } = req.body;
   if (!gameInfo) return res.status(400).json({ error: "missing gameInfo" });
 
-  const match = findActiveSession(localStorage_data, gameInfo);
-
-  rawPayload = {
-    ...req.body,
-    receivedAt:    Date.now(),
-    sessionData:   match?.session || null,
-    sessionKey:    match?.key     || null,
-  };
-
-  const session = match?.session || null;
+  rawPayload = { ...req.body, receivedAt: Date.now() };
 
   latestData = {
     ...normalizeGameInfo(gameInfo, weather),
-    seed:       session?.seed       || null,
-    enemyParty: session?.enemyParty || [],
-    updatedAt:  Date.now(),
+    updatedAt: Date.now(),
   };
 
-  const enemyNames = (latestData.enemyParty || []).map(e => e.species ?? e.name ?? "?").join(", ");
-  console.log(`[Wave ${latestData.wave}] ${latestData.biome} | Party: ${latestData.party.map(p => p.name).join(", ")}${enemyNames ? " | Enemy: " + enemyNames : ""}`);
+  console.log(`[Wave ${latestData.wave}] ${latestData.biome} | ${latestData.party.map(p => p.name).join(", ")}`);
   res.json({ ok: true });
 });
 

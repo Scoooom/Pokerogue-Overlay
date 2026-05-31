@@ -22,19 +22,9 @@
       if (w) weather = { weatherType: w.weatherType, turnsLeft: w.turnsLeft };
     } catch (e) {}
 
-    // Grab all raw encrypted session/trainer data from localStorage
-    // Server will decrypt these with crypto-js
-    const localStorage_data = {};
-    for (const key of Object.keys(localStorage)) {
-      if (key.startsWith('sessionData') || key.startsWith('data_')) {
-        localStorage_data[key] = localStorage.getItem(key);
-      }
-    }
-
     const payload = {
       gameInfo: info,
       weather,
-      localStorage_data,
     };
 
     try {
