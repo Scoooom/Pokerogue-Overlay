@@ -16,14 +16,13 @@
       color: #f8fbff;
     }
 
-    /* Override strip styles — single card, no strip chrome */
-    .strip.vertical {
+    /* Strip chrome removed — just the bare card */
+    .strip:not(.vertical) {
       background: none;
       border: none;
       border-radius: 0;
       box-shadow: none;
       padding: 0;
-      width: auto;
       backdrop-filter: none;
     }
   </style>
@@ -39,8 +38,7 @@
 
     function render(data) {
       const p = (data.party || [])[slot];
-      // Wrap in strip.vertical so all vertical card CSS applies naturally
-      document.getElementById('root').innerHTML = `<div class="strip vertical">${
+      document.getElementById('root').innerHTML = `<div class="strip">${
         p ? renderCard(p, slot) : renderEmpty()
       }</div>`;
     }
