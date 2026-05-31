@@ -179,37 +179,47 @@
     }
 
     /* ── Stat stages ─────────────────────────────────────────────────────── */
-    /* Stat stages — always in flow, fixed height, one row of chips */
+    /* Stat stages — fixed 7-cell grid, always visible */
     .stat-stages {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
       gap: 2px;
-      height: 14px;
-      align-items: center;
-      overflow: hidden;
       width: 100%;
-    }
-
-    /* Horizontal: center the chips */
-    .strip:not(.vertical) .stat-stages { justify-content: center; }
-
-    /* Vertical: left-align */
-    .strip.vertical .stat-stages { justify-content: flex-start; }
-
-    .stat-chip {
-      font-size: 7.5px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      padding: 1px 3px;
-      border-radius: 3px;
-      line-height: 1.3;
-      white-space: nowrap;
+      height: 26px;
       flex-shrink: 0;
     }
 
-    .stat-up   { background: rgba(53,232,120,0.2);  border: 1px solid rgba(53,232,120,0.45);  color: #35e878; }
-    .stat-down { background: rgba(255,79,94,0.2);   border: 1px solid rgba(255,79,94,0.45);   color: #ff4f5e; }
+    .stat-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      gap: 0px;
+      overflow: hidden;
+    }
+
+    .stat-cell-label {
+      font-size: 6.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .stat-cell-val {
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1.1;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .stat-neutral { color: rgba(255,255,255,0.25); }
+    .stat-up      { color: #35e878; border-color: rgba(53,232,120,0.3); background: rgba(53,232,120,0.08); }
+    .stat-down    { color: #ff4f5e; border-color: rgba(255,79,94,0.3);  background: rgba(255,79,94,0.08);  }
 
     /* ── Empty slot ──────────────────────────────────────────────────────── */
     .card.empty { opacity: 0.15; border-style: dashed; --card-rgb: 139,92,246; }
@@ -279,16 +289,17 @@
 
     // Render stat stage chips — only show non-zero stages
     function statStagesHtml(stages) {
-      if (!stages) return '<div class="stat-stages"></div>';
-      const chips = Object.entries(STAT_LABELS)
-        .filter(([key]) => stages[key] && stages[key] !== 0)
-        .map(([key, label]) => {
-          const val = stages[key];
-          const cls = val > 0 ? 'stat-up' : 'stat-down';
-          const arrows = val > 0 ? '▲'.repeat(Math.min(val, 3)) : '▼'.repeat(Math.min(-val, 3));
-          return `<span class="stat-chip ${cls}">${label}${arrows}</span>`;
-        });
-      return `<div class="stat-stages">${chips.join('')}</div>`;
+      const s = stages || {};
+      const cells = Object.entries(STAT_LABELS).map(([key, label]) => {
+        const val = s[key] ?? 0;
+        const cls = val > 0 ? 'stat-up' : val < 0 ? 'stat-down' : 'stat-neutral';
+        const display = val === 0 ? '–' : (val > 0 ? '+' : '') + val;
+        return `<div class="stat-cell ${cls}">
+          <span class="stat-cell-label">${label}</span>
+          <span class="stat-cell-val">${display}</span>
+        </div>`;
+      });
+      return `<div class="stat-stages">${cells.join('')}</div>`;
     }
 
     function renderCard(p, slot) {
