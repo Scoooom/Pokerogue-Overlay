@@ -741,7 +741,7 @@
         <div class="route-meta">
           <div class="route-path"><span class="method-tag">GET</span> /raw</div>
           <div class="route-name">Raw Tampermonkey Payload</div>
-          <div class="route-desc">Returns the exact unmodified payload received from the Tampermonkey script — the full <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">window.gameInfo</code> object plus raw weather. Useful for debugging normalization issues or discovering new fields the game exposes.</div>
+          <div class="route-desc">Returns the exact unmodified <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">window.gameInfo</code> object as received from the Tampermonkey script. Useful for debugging normalization issues or discovering new fields the game exposes.</div>
           <div class="route-tags">
             <span class="tag api">JSON API</span>
           </div>
@@ -871,22 +871,21 @@
     try {
       const res  = await fetch('/raw', { cache: 'no-store' });
       const data = await res.json();
+      const gi = data.gameInfo || {};
       const summary = {
         receivedAt: new Date(data.receivedAt).toLocaleTimeString(),
-        weather: data.weather,
-        gameInfo: {
-          gameInfoVersion: data.gameInfo?.gameInfoVersion,
-          wave: data.gameInfo?.wave,
-          biome: data.gameInfo?.biome,
-          gameMode: data.gameInfo?.gameMode,
-          playTime: data.gameInfo?.playTime,
-          party: (data.gameInfo?.party || []).map(p => ({
-            name: p.name,
-            form: p.form || undefined,
-            moveset: p.moveset,
-            statStages: p.statStages,
-          })),
-        },
+        gameInfoVersion: gi.gameInfoVersion,
+        wave: gi.wave,
+        biome: gi.biome,
+        gameMode: gi.gameMode,
+        playTime: gi.playTime,
+        money: gi.money,
+        party: (gi.party || []).map(p => ({
+          name: p.name,
+          form: p.form || undefined,
+          moveset: p.moveset,
+          statStages: p.statStages,
+        })),
       };
       document.getElementById('rawPreview').textContent = JSON.stringify(summary, null, 2);
     } catch {

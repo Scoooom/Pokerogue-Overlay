@@ -300,7 +300,7 @@ app.post("/update", (req, res) => {
   const gameInfo = req.body;
   if (!gameInfo || !gameInfo.gameInfoVersion) return res.status(400).json({ error: "missing gameInfo" });
 
-  rawPayload = { ...gameInfo, receivedAt: Date.now() };
+  rawPayload = { gameInfo, receivedAt: Date.now() };
 
   latestData = {
     ...normalizeGameInfo(gameInfo),
