@@ -216,6 +216,12 @@
     // Stat display names (short)
     const STAT_LABELS = { atk:'ATK', def:'DEF', spAtk:'SPA', spDef:'SPD', speed:'SPE', acc:'ACC', eva:'EVA' };
 
+    function cleanName(name) {
+      let n = String(name || "").trim();
+      if (n.toLowerCase().endsWith("-mega")) n = n.slice(0, -5);
+      return n.split(" ").filter(Boolean).join(" ");
+    }
+
     function typeRgb(t) { return TYPE_RGB[(t||'').toUpperCase()] || '139,92,246'; }
 
     function hpPct(p) {
@@ -284,7 +290,7 @@
         <div class="card ${isFainted ? 'fainted' : ''}" style="--card-rgb:${primaryRgb}">
           <div class="col-left">
             <div class="sprite-wrap">
-              <img class="sprite" src="/sprite?slot=${slot}&raw" alt="${p.name}">
+              <img class="sprite" src="/sprite?name=${encodeURIComponent(cleanName(p.name))}&form=${encodeURIComponent(p.form||"")}&raw" alt="${p.name}">
             </div>
             ${shinyHtml}
           </div>

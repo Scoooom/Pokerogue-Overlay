@@ -222,35 +222,32 @@ app.get("/stats", (req, res) => res.sendFile(path.join(__dirname, "stats.html"))
 // ── Sprite ────────────────────────────────────────────────────────────────────
 // GET /sprite?slot=0        → HTML page with <img> (OBS browser source)
 // GET /sprite?slot=0&raw=1  → raw image bytes (for use inside <img src=>)
+// ── Sprite ────────────────────────────────────────────────────────────────────
+// GET /sprite?name=Bramblin&form=     → HTML page (OBS browser source)
+// GET /sprite?name=Bramblin&form=&raw → raw image bytes (for <img src>)
+// Identity-based URL so browser can cache indefinitely per pokemon
 app.get("/sprite", async (req, res) => {
-  const slot = parseInt(req.query.slot);
-  if (isNaN(slot) || slot < 0 || slot > 5)
-    return res.status(400).json({ error: "slot must be 0–5" });
+  const raw  = req.query.raw !== undefined;
+  const name = req.query.name;
+  const form = req.query.form || "";
 
-  const pokemon = latestData.party[slot];
-  if (!pokemon)
-    return res.status(404).json({ error: `No pokemon in slot ${slot}` });
+  if (!name) return res.status(400).json({ error: "missing ?name=" });
 
-  const realName   = cleanPokemonName(pokemon.name);
-  const candidates = spriteCandidates(realName, pokemon.form);
-  const raw        = req.query.raw !== undefined;
+  const pokemon = { name, form };
 
   try {
-    const { buf, type, url } = await fetchFirstWorking(candidates);
-    console.log(`/sprite slot=${slot}${raw ? " (raw)" : ""} → ${pokemon.name} → ${url}`);
+    const { buf, type, url } = await getCachedSprite(pokemon);
+    console.log(`/sprite ${name}${form ? "-"+form : ""}${raw ? " (raw)" : ""} → ${url}`);
 
     if (raw) {
-      // Return raw image bytes — safe to use in <img src="/sprite?slot=0&raw">
       res.set("Content-Type", type);
-      res.set("Cache-Control", "no-cache");
+      res.set("Cache-Control", "public, max-age=3600");
       return res.send(buf);
     }
 
-    // Return a minimal HTML page — use as an OBS browser source
-    const b64   = buf.toString("base64");
-    const mime  = type;
-    const name  = pokemon.nickname || pokemon.name;
+    const b64 = buf.toString("base64");
     res.set("Content-Type", "text/html");
+    res.set("Cache-Control", "public, max-age=3600");
     res.send(`<!DOCTYPE html>
 <html>
 <head>
@@ -262,11 +259,11 @@ app.get("/sprite", async (req, res) => {
 </style>
 </head>
 <body>
-<img src="data:${mime};base64,${b64}" alt="${name}">
+<img src="data:${type};base64,${b64}" alt="${name}">
 </body>
 </html>`);
   } catch (err) {
-    console.error(`/sprite slot=${slot}: no working sprite for ${pokemon.name}`);
+    console.error(`/sprite: no working sprite for ${name}`);
     if (raw) return res.status(404).json({ error: "No working sprite found" });
     res.set("Content-Type", "text/html");
     res.send(`<!DOCTYPE html><html><body style="background:transparent;margin:0"></body></html>`);

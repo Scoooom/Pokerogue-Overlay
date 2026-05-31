@@ -654,12 +654,12 @@
         <div class="route-meta">
           <div class="route-path"><span class="method-tag">GET</span> /sprite</div>
           <div class="route-name">Sprite by Slot</div>
-          <div class="route-desc">Serves the sprite for whichever Pokémon is currently in the given party slot. Without <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> returns a transparent HTML page (use as OBS browser source). With <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> returns raw image bytes (use inside <code>&lt;img src&gt;</code>).</div>
+          <div class="route-desc">Serves a sprite by Pokémon name and form. Identity-based URL means the browser caches each sprite indefinitely — no flickering. Without <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> returns a transparent HTML page (OBS browser source). With <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> returns raw image bytes (for <code>&lt;img src&gt;</code>).</div>
           <div class="route-tags">
             <span class="tag api">API / Redirect</span>
           </div>
         </div>
-        <button class="copy-btn" onclick="copyUrl(this, '/sprite?slot=0')">Copy URL</button>
+        <button class="copy-btn" onclick="copyUrl(this, '/sprite?name=Charizard&form=')">Copy URL</button>
       </div>
       <div class="route-preview">
         <div class="preview-label">Live sprites — slots 0–5 (updates every 2s)</div>
@@ -673,9 +673,14 @@
             <span>Parameter</span><span>Type</span><span>Description</span>
           </div>
           <div class="param-row">
-            <span class="param-name">slot</span>
-            <span class="param-type">integer</span>
-            <span class="param-desc">Party slot index, 0–5. Required.</span>
+            <span class="param-name">name</span>
+            <span class="param-type">string</span>
+            <span class="param-desc">Pokémon name (e.g. Charizard, Zacian). Required.</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">form</span>
+            <span class="param-type">string</span>
+            <span class="param-desc">Form name (e.g. crowned, mega). Empty string for base form.</span>
           </div>
           <div class="param-row">
             <span class="param-name">raw</span>
@@ -684,8 +689,8 @@
           </div>
         </div>
         <div class="obs-tip">
-          <strong>OBS browser source:</strong> <code>http://localhost:3000/sprite?slot=0</code><br>
-          <strong>Inside an &lt;img&gt; tag:</strong> <code>&lt;img src="http://localhost:3000/sprite?slot=0&amp;raw"&gt;</code>
+          <strong>OBS browser source:</strong> <code>http://localhost:3000/sprite?name=Charizard&amp;form=</code><br>
+          <strong>Inside an &lt;img&gt; tag:</strong> <code>&lt;img src="http://localhost:3000/sprite?name=Charizard&amp;form=&amp;raw"&gt;</code>
         </div>
       </div>
     </div>
@@ -805,11 +810,11 @@
           <img src="" alt="" style="opacity:0.15;" onerror="this.style.display='none'">
           <span>slot ${i}</span>
         </div>`;
-      const url = `/sprite?slot=${i}&raw`;
+      const url = `/sprite?name=${encodeURIComponent(p.name)}&form=${encodeURIComponent(p.form||'')}&raw`;
       return `
         <div class="sprite-slot">
           <img src="${url}" alt="${p.name}" title="${p.name}${p.shiny ? ' ✨' : ''}">
-          <span>slot ${i}${p.shiny ? ' ✨' : ''}</span>
+          <span>${p.name}${p.shiny ? ' ✨' : ''}</span>
         </div>`;
     }).join('');
   }

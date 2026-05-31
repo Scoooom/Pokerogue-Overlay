@@ -763,7 +763,7 @@
       <div class="card" style="--type-rgb:${typeRgb(primaryType)}">
         <div class="sprite-column">
           <div class="sprite-box">
-            <img class="sprite" src="/sprite?slot=${index}&raw" alt="${realName}">
+            <img class="sprite" src="/sprite?name=${encodeURIComponent(realName)}&form=${encodeURIComponent(p.form||"")}&raw" alt="${realName}">
           </div>
         </div>
         <div class="mon-body">
