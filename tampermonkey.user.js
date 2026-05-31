@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name         PokéRogue Overlay Exporter
 // @namespace    local.pokerogue.overlay
-// @version      2.0.1
+// @version      2.0.2
+// @description  Sends game state to the PokéRogue Overlay server for stream overlays
 // @match        https://pokerogue.net/*
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/Scoooom/Pokerogue-Overlay/refs/heads/v2/tampermonkey.user.js
