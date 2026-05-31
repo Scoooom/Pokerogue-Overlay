@@ -720,6 +720,27 @@
       </div>
     </div>
 
+    <!-- /raw -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /raw</div>
+          <div class="route-name">Raw Tampermonkey Payload</div>
+          <div class="route-desc">Returns the exact unmodified payload received from the Tampermonkey script — the full <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">window.gameInfo</code> object plus raw weather. Useful for debugging normalization issues or discovering new fields the game exposes.</div>
+          <div class="route-tags">
+            <span class="tag api">JSON API</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/raw')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Live response</div>
+        <div style="background:#000;border:1px solid var(--border);border-radius:8px;padding:16px;font-size:11px;line-height:1.7;color:#a3e635;max-height:200px;overflow:auto;font-family:var(--mono);" id="rawPreview">
+          Click Refresh to load…
+        </div>
+      </div>
+    </div>
+
   </div><!-- /routes -->
 
   <footer>
@@ -831,11 +852,39 @@
   }
 
   // ── Refresh all ───────────────────────────────────────────────────────────
+  async function refreshRaw() {
+    try {
+      const res  = await fetch('/raw', { cache: 'no-store' });
+      const data = await res.json();
+      // Show a summary rather than the full blob
+      const summary = {
+        receivedAt: new Date(data.receivedAt).toLocaleTimeString(),
+        weather: data.weather,
+        gameInfo: {
+          gameInfoVersion: data.gameInfo?.gameInfoVersion,
+          wave: data.gameInfo?.wave,
+          biome: data.gameInfo?.biome,
+          gameMode: data.gameInfo?.gameMode,
+          playTime: data.gameInfo?.playTime,
+          party: (data.gameInfo?.party || []).map(p => ({
+            name: p.name,
+            form: p.form || undefined,
+            moveset: p.moveset,
+            statStages: p.statStages,
+          })),
+        },
+      };
+      document.getElementById('rawPreview').textContent = JSON.stringify(summary, null, 2);
+    } catch {
+      document.getElementById('rawPreview').textContent = '// Server offline or no data received yet';
+    }
+  }
+
   async function refreshAll() {
     const btn = document.getElementById('refreshBtn');
     btn.classList.add('spinning');
     btn.textContent = '↻ Refreshing…';
-    await Promise.all([checkStatus(), refreshData(), refreshNames()]);
+    await Promise.all([checkStatus(), refreshData(), refreshNames(), refreshRaw()]);
     btn.classList.remove('spinning');
     btn.textContent = '↻ Refresh';
   }

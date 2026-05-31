@@ -268,10 +268,20 @@ app.get("/names", (req, res) => {
 // ── Data ──────────────────────────────────────────────────────────────────────
 app.get("/data", (req, res) => res.json(latestData));
 
+// ── Raw ───────────────────────────────────────────────────────────────────────
+// GET /raw — the exact payload received from Tampermonkey, unmodified
+let rawPayload = null;
+app.get("/raw", (req, res) => {
+  if (!rawPayload) return res.status(503).json({ error: "No data received yet" });
+  res.json(rawPayload);
+});
+
 // ── Update (from Tampermonkey) ────────────────────────────────────────────────
 app.post("/update", (req, res) => {
   const { gameInfo, weather } = req.body;
   if (!gameInfo) return res.status(400).json({ error: "missing gameInfo" });
+
+  rawPayload = { ...req.body, receivedAt: Date.now() };
 
   latestData = {
     ...normalizeGameInfo(gameInfo, weather),
@@ -292,4 +302,5 @@ app.listen(PORT, () => {
   console.log(`  Sprite:  http://localhost:${PORT}/sprite?slot=0`);
   console.log(`  Names:   http://localhost:${PORT}/names`);
   console.log(`  Data:    http://localhost:${PORT}/data`);
+  console.log(`  Raw:     http://localhost:${PORT}/raw`);
 });
