@@ -690,16 +690,17 @@
       <div class="route-header">
         <div class="route-meta">
           <div class="route-path"><span class="method-tag">GET</span> /sprite</div>
-          <div class="route-name">Sprite by Slot</div>
-          <div class="route-desc">Serves a sprite by Pokémon name and form. Identity-based URL means the browser caches each sprite indefinitely — no flickering. Without <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> returns a transparent HTML page (OBS browser source). With <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> returns raw image bytes (for <code>&lt;img src&gt;</code>).</div>
+          <div class="route-name">Sprite</div>
+          <div class="route-desc">Serves a transparent HTML page with the sprite for the given party slot. Use as an OBS browser source — updates automatically when the Pokémon in that slot changes. Add <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?raw</code> to get raw image bytes instead.</div>
           <div class="route-tags">
-            <span class="tag api">API / Redirect</span>
+            <span class="tag obs">OBS Source</span>
+            <span class="tag api">JSON API</span>
           </div>
         </div>
-        <button class="copy-btn" onclick="copyUrl(this, '/sprite?name=Charizard&form=')">Copy URL</button>
+        <button class="copy-btn" onclick="copyUrl(this, '/sprite?slot=0')">Copy URL</button>
       </div>
       <div class="route-preview">
-        <div class="preview-label">Live sprites — slots 0–5 (updates every 2s)</div>
+        <div class="preview-label">Live sprites — slots 0–5</div>
         <div class="iframe-shell shell-sprite">
           <div class="sprite-preview-grid" id="spriteGrid">
             <!-- Filled by JS -->
@@ -710,24 +711,18 @@
             <span>Parameter</span><span>Type</span><span>Description</span>
           </div>
           <div class="param-row">
-            <span class="param-name">name</span>
-            <span class="param-type">string</span>
-            <span class="param-desc">Pokémon name (e.g. Charizard, Zacian). Required.</span>
-          </div>
-          <div class="param-row">
-            <span class="param-name">form</span>
-            <span class="param-type">string</span>
-            <span class="param-desc">Form name (e.g. crowned, mega). Empty string for base form.</span>
+            <span class="param-name">slot</span>
+            <span class="param-type">0–5</span>
+            <span class="param-desc">Party slot to show. Required.</span>
           </div>
           <div class="param-row">
             <span class="param-name">raw</span>
             <span class="param-type">flag</span>
-            <span class="param-desc">Return raw image bytes instead of an HTML page. Use when embedding in an &lt;img src&gt; tag.</span>
+            <span class="param-desc">Return raw image bytes instead of an HTML page.</span>
           </div>
         </div>
         <div class="obs-tip">
-          <strong>OBS browser source:</strong> <code>http://localhost:3000/sprite?name=Charizard&amp;form=</code><br>
-          <strong>Inside an &lt;img&gt; tag:</strong> <code>&lt;img src="http://localhost:3000/sprite?name=Charizard&amp;form=&amp;raw"&gt;</code>
+          <strong>OBS tip:</strong> Set URL to <code>http://localhost:3000/sprite?slot=0</code> and size to match your layout. The page polls for changes — no manual refresh needed.
         </div>
       </div>
     </div>
