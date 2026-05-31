@@ -3,24 +3,26 @@
 <head>
   <title>PokéRogue Stream Layout</title>
   <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/custom.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@500;700;900&display=swap');
 
     :root {
-      --bg1:   var(--overlay-bg1);
-      --bg2:   var(--overlay-bg2);
-      --bg3:   var(--overlay-bg3);
-      --panel: var(--overlay-panel);
-      --border: var(--overlay-border);
-      --text:  var(--color-text);
-      --muted: var(--overlay-muted);
-      --good:     var(--color-good);
-      --warn:     var(--color-warn);
-      --bad:      var(--color-bad);
-      --burn:     var(--color-status-brn);
-      --sleep:    var(--color-status-slp);
-      --paralyze: var(--color-status-par);
-      --freeze:   var(--color-status-frz);
+      --bg1:   var(--overlay-bg1, #150a2b);
+      --bg2:   var(--overlay-bg2, #061a32);
+      --bg3:   var(--overlay-bg3, #070c14);
+      --panel: var(--overlay-panel, rgba(12,18,30,0.88));
+      --border: var(--overlay-border, rgba(255,255,255,0.22));
+      --text:  var(--color-text, #f8fbff);
+      --muted: var(--overlay-muted, rgba(248,251,255,0.72));
+      --good:     var(--color-good, #35e878);
+      --warn:     var(--color-warn, #ffd447);
+      --bad:      var(--color-bad, #ff4f5e);
+      --burn:     var(--color-status-brn, #ff643d);
+      --sleep:    var(--color-status-slp, #9aa8ff);
+      --paralyze: var(--color-status-par, #ffd447);
+      --freeze:   var(--color-status-frz, #69d7ff);
     }
 
     * { box-sizing: border-box; }
@@ -502,8 +504,6 @@
     .save { background: var(--overlay-good-text); color:var(--overlay-good-dark); }
     .cancel { background: var(--overlay-border-mid); color:white; }
   </style>
-  <link rel="stylesheet" href="/theme.css">
-  <link rel="stylesheet" href="/custom.css">
 </head>
 <body>
   <main class="layout">
