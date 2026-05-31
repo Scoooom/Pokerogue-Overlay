@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>PokéRogue – Wave Display</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --good:   #35e878;
+      --warn:   #ffd447;
+      --bad:    #ff4f5e;
+      --accent: #22d3ee;
+      --purple: #a78bfa;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: transparent;
+      font-family: 'Rajdhani', 'Inter', sans-serif;
+      color: #f8fbff;
+      /* For OBS: set browser source background to transparent */
+    }
+
+    /* ── Container ─────────────────────────────── */
+    .widget {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 14px 20px 14px 16px;
+      background: linear-gradient(135deg, rgba(10,10,30,0.88), rgba(6,15,40,0.82));
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06) inset;
+      min-width: 220px;
+    }
+
+    /* ── Top row: biome + mode ─────────────────── */
+    .top-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .biome {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.9;
+      flex: 1;
+    }
+
+    .mode-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: rgba(167,139,250,0.18);
+      border: 1px solid rgba(167,139,250,0.35);
+      color: var(--purple);
+      white-space: nowrap;
+    }
+
+    /* ── Wave number ────────────────────────────── */
+    .wave-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .wave-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .wave-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-shadow: 0 0 24px rgba(34,211,238,0.5);
+    }
+
+    /* ── Boss indicator ─────────────────────────── */
+    .boss-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .boss-chip {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .boss-chip.now {
+      background: rgba(255,79,94,0.22);
+      border: 1px solid rgba(255,79,94,0.55);
+      color: var(--bad);
+      animation: pulse-bad 1.4s ease-in-out infinite;
+    }
+
+    .boss-chip.soon {
+      background: rgba(255,212,71,0.18);
+      border: 1px solid rgba(255,212,71,0.4);
+      color: var(--warn);
+    }
+
+    .boss-chip.normal {
+      background: rgba(53,232,120,0.12);
+      border: 1px solid rgba(53,232,120,0.3);
+      color: var(--good);
+    }
+
+    .boss-chip.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .next-boss-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── Divider ────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 2px 0;
+    }
+
+    @keyframes pulse-bad {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,79,94,0.4); }
+      50%       { box-shadow: 0 0 0 5px rgba(255,79,94,0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="widget">
+    <div class="top-row">
+      <div class="biome" id="biome">Town</div>
+      <div class="mode-badge" id="mode">Classic</div>
+    </div>
+    <div class="divider"></div>
+    <div class="wave-row">
+      <div class="wave-label">Wave</div>
+      <div class="wave-number" id="wave">--</div>
+    </div>
+    <div class="boss-row">
+      <div class="boss-chip hidden" id="bossChip">BOSS NOW</div>
+      <div class="next-boss-label" id="bossLabel"></div>
+    </div>
+  </div>
+
+  <script>
+    // Boss waves (every 10th wave is a trainer, every 50th is major boss)
+    const BOSS_WAVES = [];
+    for (let w = 10; w <= 500; w += 10) {
+      const isMajor = w % 50 === 0;
+      BOSS_WAVES.push({ wave: w, type: isMajor ? 'Elite' : 'Trainer' });
+    }
+
+    function getNextBoss(currentWave) {
+      const w = Number(currentWave) || 0;
+      return BOSS_WAVES.find(b => b.wave >= w) || null;
+    }
+
+    function update(data) {
+      const wave = data.wave ?? '--';
+      const biome = data.biome || 'Unknown';
+      const mode = data.gameMode || '';
+
+      document.getElementById('wave').textContent = wave;
+      document.getElementById('biome').textContent = biome;
+      document.getElementById('mode').textContent = mode;
+
+      const next = getNextBoss(wave);
+      const chip = document.getElementById('bossChip');
+      const label = document.getElementById('bossLabel');
+
+      if (!next || wave === '--') {
+        chip.className = 'boss-chip hidden';
+        label.textContent = '';
+        return;
+      }
+
+      const dist = next.wave - Number(wave);
+
+      if (dist === 0) {
+        chip.className = 'boss-chip now';
+        chip.textContent = `⚡ ${next.type} BOSS`;
+        label.textContent = `Wave ${next.wave}`;
+      } else if (dist <= 5) {
+        chip.className = 'boss-chip soon';
+        chip.textContent = `${next.type} in ${dist}`;
+        label.textContent = `Wave ${next.wave}`;
+      } else {
+        chip.className = 'boss-chip normal';
+        chip.textContent = `Next: Wave ${next.wave}`;
+        label.textContent = `${next.type} (${dist} away)`;
+      }
+    }
+
+    async function fetchData() {
+      try {
+        const res = await fetch('/data', { cache: 'no-store' });
+        const data = await res.json();
+        update(data);
+      } catch (e) {
+        document.getElementById('wave').textContent = '?';
+      }
+    }
+
+    setInterval(fetchData, 1000);
+    fetchData();
+  </script>
+</body>
+</html>

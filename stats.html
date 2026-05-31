@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>PokéRogue – Run Stats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent:  #22d3ee;
+      --purple:  #a78bfa;
+      --gold:    #ffd447;
+      --good:    #35e878;
+      --shiny:   #f9d34a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: transparent;
+      font-family: 'Rajdhani', 'Inter', sans-serif;
+      color: #f8fbff;
+    }
+
+    /* ── Widget ─────────────────────────────────── */
+    .widget {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0;
+      background: linear-gradient(160deg, rgba(10,10,28,0.88), rgba(5,10,26,0.84));
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 14px;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.52);
+      min-width: 200px;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px 8px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .run-icon {
+      font-size: 16px;
+    }
+
+    .header-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .mode-tag {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: rgba(167,139,250,0.16);
+      border: 1px solid rgba(167,139,250,0.3);
+      color: var(--purple);
+    }
+
+    /* ── Stat rows ──────────────────────────────── */
+    .stats {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 0 4px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: center;
+      padding: 6px 16px;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+
+    .stat-row:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .stat-icon {
+      font-size: 14px;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.48);
+      text-transform: uppercase;
+      flex: 1;
+    }
+
+    .stat-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      color: #fff;
+      text-align: right;
+    }
+
+    .stat-value.accent { color: var(--accent); }
+    .stat-value.gold   { color: var(--gold); }
+    .stat-value.good   { color: var(--good); }
+    .stat-value.shiny  { color: var(--shiny); }
+
+    .stat-unit {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      margin-left: 3px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 2px 0;
+    }
+
+    /* ── Timer ──────────────────────────────────── */
+    .timer-display {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="widget">
+    <div class="header">
+      <span class="run-icon">🎮</span>
+      <span class="header-label">Run Stats</span>
+      <span class="mode-tag" id="mode">Classic</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat-row">
+        <span class="stat-icon">🌊</span>
+        <span class="stat-label">Wave</span>
+        <span class="stat-value accent" id="wave">--</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-icon">🗺️</span>
+        <span class="stat-label">Biome</span>
+        <span class="stat-value" id="biome" style="font-size:14px; font-family:'Rajdhani',sans-serif; font-weight:700;">--</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-row">
+        <span class="stat-icon">⏱️</span>
+        <span class="stat-label">Time</span>
+        <span class="timer-display" id="timer">00:00</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-row">
+        <span class="stat-icon">✨</span>
+        <span class="stat-label">Shinies</span>
+        <span class="stat-value shiny" id="shinies">--</span>
+        <span class="stat-unit" id="shiny-max">/ 6</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-icon">❤️</span>
+        <span class="stat-label">Alive</span>
+        <span class="stat-value good" id="alive">--</span>
+        <span class="stat-unit">/ 6</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function formatTime(seconds) {
+      const s = Number(seconds) || 0;
+      const h = Math.floor(s / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = Math.floor(s % 60);
+      if (h > 0) return `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+      return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+    }
+
+    // Local timer — increments every second using the server's playTime as base
+    let basePlayTime = 0;
+    let baseReceivedAt = Date.now();
+    let timerInterval = null;
+
+    function startLocalTimer() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - baseReceivedAt) / 1000);
+        document.getElementById('timer').textContent = formatTime(basePlayTime + elapsed);
+      }, 1000);
+    }
+
+    function update(data) {
+      const wave = data.wave ?? '--';
+      const biome = data.biome || '--';
+      const mode = data.gameMode || '';
+      const team = data.team || [];
+      const playTime = Number(data.playTime) || 0;
+
+      document.getElementById('wave').textContent = wave;
+      document.getElementById('biome').textContent = biome;
+      document.getElementById('mode').textContent = mode;
+
+      // Update local timer base
+      basePlayTime = playTime;
+      baseReceivedAt = Date.now();
+
+      // Count shinies and alive
+      const shinyCount = team.filter(p => p.shiny).length;
+      const aliveCount = team.filter(p => {
+        const hp = Number(p.hp ?? p.currentHP ?? 0);
+        return hp > 0;
+      }).length;
+      const total = team.length || 6;
+
+      document.getElementById('shinies').textContent = shinyCount;
+      document.getElementById('shiny-max').textContent = `/ ${total}`;
+      document.getElementById('alive').textContent = aliveCount;
+
+      // Immediate timer update
+      document.getElementById('timer').textContent = formatTime(playTime);
+      startLocalTimer();
+    }
+
+    async function fetchData() {
+      try {
+        const res = await fetch('/data', { cache: 'no-store' });
+        const data = await res.json();
+        update(data);
+      } catch (e) {}
+    }
+
+    setInterval(fetchData, 2000);
+    fetchData();
+  </script>
+</body>
+</html>

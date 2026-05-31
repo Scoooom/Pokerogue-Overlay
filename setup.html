@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokéRogue Overlay — Setup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #09090f;
+      --surface:  #111118;
+      --border:   rgba(255,255,255,0.08);
+      --border2:  rgba(255,255,255,0.14);
+      --text:     #e8eaf2;
+      --muted:    rgba(232,234,242,0.45);
+      --accent:   #22d3ee;
+      --accent2:  #a78bfa;
+      --green:    #34d399;
+      --red:      #f87171;
+      --mono:     'Space Mono', monospace;
+      --head:     'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ── Layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: var(--head);
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .status-dot.offline {
+      background: var(--red);
+      box-shadow: 0 0 8px var(--red);
+      animation: none;
+    }
+
+    .status-text {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .refresh-btn {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 5px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .refresh-btn:hover {
+      background: rgba(34,211,238,0.08);
+      border-color: rgba(34,211,238,0.35);
+      color: var(--accent);
+    }
+
+    .refresh-btn.spinning {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: var(--head);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Route cards ── */
+    .routes {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 56px;
+    }
+
+    .route-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .route-card:hover {
+      border-color: var(--border2);
+    }
+
+    .route-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .route-meta { flex: 1; min-width: 0; }
+
+    .route-path {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(34,211,238,0.08);
+      border: 1px solid rgba(34,211,238,0.2);
+      border-radius: 6px;
+      padding: 4px 10px;
+      margin-bottom: 8px;
+    }
+
+    .method-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(167,139,250,0.15);
+      border: 1px solid rgba(167,139,250,0.3);
+      color: var(--accent2);
+    }
+
+    .route-name {
+      font-family: var(--head);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .route-desc {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 480px;
+    }
+
+    .route-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--border2);
+      color: var(--muted);
+    }
+
+    .tag.obs   { border-color: rgba(34,211,238,0.3);  color: var(--accent); }
+    .tag.api   { border-color: rgba(167,139,250,0.3); color: var(--accent2); }
+    .tag.page  { border-color: rgba(52,211,153,0.3);  color: var(--green); }
+
+    /* ── Copy button ── */
+    .copy-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      color: var(--muted);
+      padding: 6px 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover {
+      background: rgba(34,211,238,0.08);
+      border-color: rgba(34,211,238,0.3);
+      color: var(--accent);
+    }
+
+    .copy-btn.copied {
+      background: rgba(52,211,153,0.1);
+      border-color: rgba(52,211,153,0.4);
+      color: var(--green);
+    }
+
+    /* ── Preview area ── */
+    .route-preview {
+      padding: 20px 24px;
+    }
+
+    .preview-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .iframe-shell {
+      overflow: auto;
+      background: repeating-conic-gradient(rgba(255,255,255,0.03) 0% 25%, transparent 0% 50%) 0 0 / 20px 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Different shell sizes per route */
+    .shell-overlay { min-height: 320px; }
+    .shell-wave    { min-height: 160px; justify-content: flex-start; }
+    .shell-party   { min-height: 160px; overflow-x: auto; }
+    .shell-stats   { min-height: 280px; justify-content: flex-start; }
+    .shell-sprite  { min-height: 140px; }
+
+    iframe {
+      border: none;
+      border-radius: 6px;
+      display: block;
+      background: transparent;
+    }
+
+    /* For the sprite, we show an img tag instead */
+    .sprite-preview-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    .sprite-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sprite-slot img {
+      width: 72px;
+      height: 72px;
+      image-rendering: pixelated;
+      object-fit: contain;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .sprite-slot span {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ── Params table ── */
+    .params {
+      margin-top: 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .params-head {
+      display: grid;
+      grid-template-columns: 120px 80px 1fr;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .param-row {
+      display: grid;
+      grid-template-columns: 120px 80px 1fr;
+      padding: 8px 12px;
+      font-size: 11.5px;
+      border-bottom: 1px solid var(--border);
+      gap: 8px;
+    }
+
+    .param-row:last-child { border-bottom: none; }
+
+    .param-name  { color: var(--accent); font-weight: 700; }
+    .param-type  { color: var(--accent2); }
+    .param-desc  { color: var(--muted); }
+
+    /* ── Quick start ── */
+    .quickstart {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .qs-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--head);
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .qs-steps {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .qs-step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(34,211,238,0.12);
+      border: 1px solid rgba(34,211,238,0.3);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-text { font-size: 12px; color: var(--muted); line-height: 1.6; padding-top: 2px; }
+    .step-text code {
+      color: var(--accent);
+      background: rgba(34,211,238,0.08);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: var(--mono);
+    }
+
+    /* ── OBS tip box ── */
+    .obs-tip {
+      background: rgba(167,139,250,0.06);
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 14px;
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .obs-tip strong { color: var(--accent2); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      font-size: 11px;
+      color: rgba(232,234,242,0.25);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="logo-row">
+      <div class="logo-icon">🎮</div>
+      <div>
+        <h1>PokéRogue Overlay</h1>
+      </div>
+    </div>
+    <p class="subtitle">
+      A local Node.js server that reads your live game state and serves
+      dedicated browser sources for OBS. Add each route as a Browser Source
+      and position it anywhere on your scene.
+    </p>
+    <div class="status-row">
+      <div class="status-dot" id="statusDot"></div>
+      <span class="status-text" id="statusText">Click refresh to load data</span>
+      <button class="refresh-btn" id="refreshBtn" onclick="refreshAll()">↻ Refresh</button>
+    </div>
+  </header>
+
+  <!-- ── Quick start ── -->
+  <div class="section-label">Quick Start</div>
+  <div class="quickstart">
+    <div class="qs-header">Getting set up in 3 steps</div>
+    <div class="qs-steps">
+      <div class="qs-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Start the server — open a terminal in this folder and run <code>node server.js</code></div>
+      </div>
+      <div class="qs-step">
+        <div class="step-num">2</div>
+        <div class="step-text">Install the Tampermonkey script in your browser, then open <code>pokerogue.net</code> — data will start flowing automatically</div>
+      </div>
+      <div class="qs-step">
+        <div class="step-num">3</div>
+        <div class="step-text">In OBS, add a <strong>Browser Source</strong> for each route you want below. Set background to transparent (check <em>Custom CSS</em> → <code>body { background: transparent; }</code>)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Routes ── -->
+  <div class="section-label" style="margin-top:48px;">Browser Source Routes</div>
+  <div class="routes">
+
+    <!-- / Main overlay -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /full</div>
+          <div class="route-name">Main Overlay</div>
+          <div class="route-desc">Full-featured overlay panel showing your entire party with HP bars, moves, abilities, natures, and boss wave tracker. Includes an inline editor for manual data entry.</div>
+          <div class="route-tags">
+            <span class="tag obs">OBS Source</span>
+            <span class="tag page">Full Page</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/full')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Preview</div>
+        <div class="iframe-shell shell-overlay">
+          <iframe src="/full" width="900" height="280" style="transform:scale(0.62);transform-origin:top left;width:1500px;height:460px;border-radius:10px;"></iframe>
+        </div>
+        <div class="obs-tip">
+          <strong>OBS tip:</strong> Use 1920×1080 browser source. Place your game capture behind this layer. The left panel is intentionally blank — that's where your game capture goes.
+        </div>
+      </div>
+    </div>
+
+    <!-- /wave -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /wave</div>
+          <div class="route-name">Wave Display</div>
+          <div class="route-desc">Compact widget showing the current biome, wave number, game mode badge, and a live boss countdown chip that pulses red when a boss wave is active.</div>
+          <div class="route-tags">
+            <span class="tag obs">OBS Source</span>
+            <span class="tag page">Widget</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/wave')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Preview</div>
+        <div class="iframe-shell shell-wave">
+          <iframe src="/wave" width="260" height="115" scrolling="yes"></iframe>
+        </div>
+        <div class="obs-tip">
+          <strong>OBS tip:</strong> Recommended size ~280×130px. Transparent background. Works well anchored to a corner of your game capture.
+        </div>
+      </div>
+    </div>
+
+    <!-- /party -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /party</div>
+          <div class="route-name">Party Strip</div>
+          <div class="route-desc">6-slot party panel showing every Pokémon's sprite, name, level, types, HP bar, moves, status, and shiny ✨ badge. Fainted Pokémon are automatically dimmed. Supports two layouts via the <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?layout=</code> param.</div>
+          <div class="route-tags">
+            <span class="tag obs">OBS Source</span>
+            <span class="tag page">Widget</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/party')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Horizontal — <code style="color:#22d3ee;font-size:11px;">/party</code> or <code style="color:#22d3ee;font-size:11px;">/party?layout=horizontal</code></div>
+        <div class="iframe-shell shell-party">
+          <iframe src="/party" width="820" height="160" scrolling="yes"></iframe>
+        </div>
+        <div class="obs-tip" style="margin-bottom:12px;">
+          <strong>OBS tip:</strong> Recommended size ~840×175px. Great placed along the bottom of your scene.
+        </div>
+        <div class="preview-label" style="margin-top:8px;">Vertical — <code style="color:#22d3ee;font-size:11px;">/party?layout=vertical</code></div>
+        <div class="iframe-shell" style="min-height:520px;justify-content:flex-start;">
+          <iframe src="/party?layout=vertical" width="320" height="510" scrolling="yes"></iframe>
+        </div>
+        <div class="obs-tip">
+          <strong>OBS tip:</strong> Recommended size ~340×530px. Works well as a side panel beside your game capture.
+        </div>
+      </div>
+    </div>
+
+    <!-- /stats -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /stats</div>
+          <div class="route-name">Run Stats</div>
+          <div class="route-desc">Panel showing wave count, current biome, game mode, a live run timer (counts up between server polls), shiny count, and alive Pokémon count.</div>
+          <div class="route-tags">
+            <span class="tag obs">OBS Source</span>
+            <span class="tag page">Widget</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/stats')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Preview</div>
+        <div class="iframe-shell shell-stats">
+          <iframe src="/stats" width="220" height="230" scrolling="yes"></iframe>
+        </div>
+        <div class="obs-tip">
+          <strong>OBS tip:</strong> Recommended size ~230×240px. Pairs well with the wave widget — stack them vertically in a side panel.
+        </div>
+      </div>
+    </div>
+
+    <!-- /sprite -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /sprite</div>
+          <div class="route-name">Sprite by Slot</div>
+          <div class="route-desc">Redirects to the official PokéRogue sprite for whichever Pokémon is currently in the given party slot. Automatically uses the shiny sprite if that Pokémon is shiny — no parameters needed beyond the slot number.</div>
+          <div class="route-tags">
+            <span class="tag api">API / Redirect</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/sprite?slot=0')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Live sprites — slots 0–5 (updates every 2s)</div>
+        <div class="iframe-shell shell-sprite">
+          <div class="sprite-preview-grid" id="spriteGrid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+        <div class="params">
+          <div class="params-head">
+            <span>Parameter</span><span>Type</span><span>Description</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">slot</span>
+            <span class="param-type">integer</span>
+            <span class="param-desc">Party slot index, 0–5. Required.</span>
+          </div>
+        </div>
+        <div class="obs-tip">
+          <strong>Usage:</strong> Use as an image source anywhere — OBS image, custom HTML widget, Streamlabs label, etc. Example: <code>&lt;img src="http://localhost:3000/sprite?slot=0"&gt;</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- /names -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /names</div>
+          <div class="route-name">Slot Names</div>
+          <div class="route-desc">Returns the name (or nickname if set) of Pokémon in the party. Without a param returns all 6 slots as an array. Pass <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?slot=N</code> to get a single slot. Empty slots return <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">null</code>.</div>
+          <div class="route-tags">
+            <span class="tag api">JSON API</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/names')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Live response</div>
+        <div style="background:#000;border:1px solid var(--border);border-radius:8px;padding:16px;font-size:11px;line-height:1.7;color:#a3e635;max-height:160px;overflow:auto;font-family:var(--mono);" id="namesPreview">
+          Loading…
+        </div>
+        <div class="params">
+          <div class="params-head"><span>Parameter</span><span>Type</span><span>Description</span></div>
+          <div class="param-row">
+            <span class="param-name">slot</span>
+            <span class="param-type">integer?</span>
+            <span class="param-desc">Optional. Party slot 0–5. Omit to get all slots.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- /data -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /data</div>
+          <div class="route-name">Raw Game Data</div>
+          <div class="route-desc">Returns the full current game state as JSON. All browser source pages poll this endpoint every 1–2 seconds. Useful for building custom widgets or debugging.</div>
+          <div class="route-tags">
+            <span class="tag api">JSON API</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/data')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Live response</div>
+        <div style="background:#000; border:1px solid var(--border); border-radius:8px; padding:16px; font-size:11px; line-height:1.7; color:#a3e635; max-height:200px; overflow:auto; font-family:var(--mono);" id="dataPreview">
+          Loading…
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /routes -->
+
+  <footer>
+    <span>PokéRogue Overlay — running on localhost:3000</span>
+    <span id="footerTime"></span>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+  const BASE = '';
+
+  // ── Server status check ──────────────────────────────────────────────────
+  async function checkStatus() {
+    try {
+      const res = await fetch('/data', { cache: 'no-store' });
+      const data = await res.json();
+      const dot = document.getElementById('statusDot');
+      const txt = document.getElementById('statusText');
+      dot.classList.remove('offline');
+      const teamSize = (data.team || []).length;
+      if (teamSize > 0) {
+        txt.textContent = `Server online · Wave ${data.wave} · ${data.biome} · ${teamSize} Pokémon in party`;
+      } else {
+        txt.textContent = 'Server online · Waiting for game data — open PokéRogue with Tampermonkey enabled';
+      }
+    } catch {
+      document.getElementById('statusDot').classList.add('offline');
+      document.getElementById('statusText').textContent = 'Server offline — run node server.js';
+    }
+  }
+
+  // ── Sprite grid ──────────────────────────────────────────────────────────
+  function buildSpriteGrid(team) {
+    const grid = document.getElementById('spriteGrid');
+    const slots = [...(team || [])];
+    while (slots.length < 6) slots.push(null);
+
+    grid.innerHTML = slots.map((p, i) => {
+      if (!p) return `
+        <div class="sprite-slot">
+          <img src="" alt="" style="opacity:0.15;" onerror="this.style.display='none'">
+          <span>slot ${i}</span>
+        </div>`;
+      const url = `/sprite?slot=${i}&_cb=${Date.now()}`;
+      return `
+        <div class="sprite-slot">
+          <img src="${url}" alt="${p.name}" title="${p.name}${p.shiny ? ' ✨' : ''}">
+          <span>slot ${i}${p.shiny ? ' ✨' : ''}</span>
+        </div>`;
+    }).join('');
+  }
+
+  // ── Data preview ─────────────────────────────────────────────────────────
+  async function refreshNames() {
+    try {
+      const res  = await fetch('/names', { cache: 'no-store' });
+      const data = await res.json();
+      document.getElementById('namesPreview').textContent = JSON.stringify(data, null, 2);
+    } catch {
+      document.getElementById('namesPreview').textContent = '// Server offline';
+    }
+  }
+
+  async function refreshData() {
+    try {
+      const res = await fetch('/data', { cache: 'no-store' });
+      const data = await res.json();
+
+      // Pretty-print a summary (not the full blob)
+      const summary = {
+        wave: data.wave,
+        biome: data.biome,
+        gameMode: data.gameMode,
+        playTime: data.playTime,
+        party: (data.team || []).map(p => ({
+          name: p.name,
+          form: p.form || undefined,
+          level: p.level,
+          hp: `${p.hp}/${p.maxHp}`,
+          shiny: p.shiny || undefined,
+          types: p.types,
+        })),
+        updatedAt: new Date(data.updatedAt).toLocaleTimeString(),
+      };
+      document.getElementById('dataPreview').textContent = JSON.stringify(summary, null, 2);
+      buildSpriteGrid(data.team);
+    } catch {
+      document.getElementById('dataPreview').textContent = '// No data — server offline or game not running';
+    }
+  }
+
+  // ── Copy URL ─────────────────────────────────────────────────────────────
+  function copyUrl(btn, route) {
+    const url = `http://localhost:3000${route}`;
+    navigator.clipboard.writeText(url).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy URL';
+        btn.classList.remove('copied');
+      }, 1800);
+    });
+  }
+
+  // ── Footer clock ────────────────────────────────────────────────────────
+  function tick() {
+    document.getElementById('footerTime').textContent = new Date().toLocaleTimeString();
+  }
+
+  // ── Refresh all ───────────────────────────────────────────────────────────
+  async function refreshAll() {
+    const btn = document.getElementById('refreshBtn');
+    btn.classList.add('spinning');
+    btn.textContent = '↻ Refreshing…';
+    await Promise.all([checkStatus(), refreshData(), refreshNames()]);
+    btn.classList.remove('spinning');
+    btn.textContent = '↻ Refresh';
+  }
+
+  // ── Init ─────────────────────────────────────────────────────────────────
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>

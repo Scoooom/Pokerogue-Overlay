@@ -1,0 +1,2864 @@
+{
+  "10,000,000 Volt Thunderbolt": {
+    "type": "Electric"
+  },
+  "Absorb": {
+    "type": "Grass"
+  },
+  "Accelerock": {
+    "type": "Rock"
+  },
+  "Acid": {
+    "type": "Poison"
+  },
+  "Acid Armor": {
+    "type": "Poison"
+  },
+  "Acid Downpour": {
+    "type": "Poison"
+  },
+  "Acid Spray": {
+    "type": "Poison"
+  },
+  "Acrobatics": {
+    "type": "Flying"
+  },
+  "Acupressure": {
+    "type": "Normal"
+  },
+  "Aerial Ace": {
+    "type": "Flying"
+  },
+  "Aeroblast": {
+    "type": "Flying"
+  },
+  "After You": {
+    "type": "Normal"
+  },
+  "Agility": {
+    "type": "Psychic"
+  },
+  "Air Cutter": {
+    "type": "Flying"
+  },
+  "Air Slash": {
+    "type": "Flying"
+  },
+  "All-Out Pummeling": {
+    "type": "Fighting"
+  },
+  "Alluring Voice": {
+    "type": "Fairy"
+  },
+  "Ally Switch": {
+    "type": "Psychic"
+  },
+  "Amnesia": {
+    "type": "Psychic"
+  },
+  "Anchor Shot": {
+    "type": "Steel"
+  },
+  "Ancient Power": {
+    "type": "Rock"
+  },
+  "Apple Acid": {
+    "type": "Grass"
+  },
+  "Aqua Cutter": {
+    "type": "Water"
+  },
+  "Aqua Jet": {
+    "type": "Water"
+  },
+  "Aqua Ring": {
+    "type": "Water"
+  },
+  "Aqua Step": {
+    "type": "Water"
+  },
+  "Aqua Tail": {
+    "type": "Water"
+  },
+  "Armor Cannon": {
+    "type": "Fire"
+  },
+  "Arm Thrust": {
+    "type": "Fighting"
+  },
+  "Aromatherapy": {
+    "type": "Grass"
+  },
+  "Aromatic Mist": {
+    "type": "Fairy"
+  },
+  "Assist": {
+    "type": "Normal"
+  },
+  "Assurance": {
+    "type": "Dark"
+  },
+  "Astonish": {
+    "type": "Ghost"
+  },
+  "Astral Barrage": {
+    "type": "Ghost"
+  },
+  "Attack Order": {
+    "type": "Bug"
+  },
+  "Attract": {
+    "type": "Normal"
+  },
+  "Aura Sphere": {
+    "type": "Fighting"
+  },
+  "Aura Wheel": {
+    "type": "Electric"
+  },
+  "Aurora Beam": {
+    "type": "Ice"
+  },
+  "Aurora Veil": {
+    "type": "Ice"
+  },
+  "Autotomize": {
+    "type": "Steel"
+  },
+  "Avalanche": {
+    "type": "Ice"
+  },
+  "Axe Kick": {
+    "type": "Fighting"
+  },
+  "Baby-Doll Eyes": {
+    "type": "Fairy"
+  },
+  "Baddy Bad": {
+    "type": "Dark"
+  },
+  "Baneful Bunker": {
+    "type": "Poison"
+  },
+  "Barb Barrage": {
+    "type": "Poison"
+  },
+  "Barrage": {
+    "type": "Normal"
+  },
+  "Barrier": {
+    "type": "Psychic"
+  },
+  "Baton Pass": {
+    "type": "Normal"
+  },
+  "Beak Blast": {
+    "type": "Flying"
+  },
+  "Beat Up": {
+    "type": "Dark"
+  },
+  "Behemoth Bash": {
+    "type": "Steel"
+  },
+  "Behemoth Blade": {
+    "type": "Steel"
+  },
+  "Belch": {
+    "type": "Poison"
+  },
+  "Belly Drum": {
+    "type": "Normal"
+  },
+  "Bestow": {
+    "type": "Normal"
+  },
+  "Bide": {
+    "type": "Normal"
+  },
+  "Bind": {
+    "type": "Normal"
+  },
+  "Bite": {
+    "type": "Dark"
+  },
+  "Bitter Blade": {
+    "type": "Fire"
+  },
+  "Bitter Malice": {
+    "type": "Ghost"
+  },
+  "Black Hole Eclipse": {
+    "type": "Dark"
+  },
+  "Blast Burn": {
+    "type": "Fire"
+  },
+  "Blaze Kick": {
+    "type": "Fire"
+  },
+  "Blazing Torque": {
+    "type": "Fire"
+  },
+  "Bleakwind Storm": {
+    "type": "Flying"
+  },
+  "Blizzard": {
+    "type": "Ice"
+  },
+  "Block": {
+    "type": "Normal"
+  },
+  "Blood Moon": {
+    "type": "Normal"
+  },
+  "Bloom Doom": {
+    "type": "Grass"
+  },
+  "Blue Flare": {
+    "type": "Fire"
+  },
+  "Body Press": {
+    "type": "Fighting"
+  },
+  "Body Slam": {
+    "type": "Normal"
+  },
+  "Bolt Beak": {
+    "type": "Electric"
+  },
+  "Bolt Strike": {
+    "type": "Electric"
+  },
+  "Bone Club": {
+    "type": "Ground"
+  },
+  "Bonemerang": {
+    "type": "Ground"
+  },
+  "Bone Rush": {
+    "type": "Ground"
+  },
+  "Boomburst": {
+    "type": "Normal"
+  },
+  "Bounce": {
+    "type": "Flying"
+  },
+  "Bouncy Bubble": {
+    "type": "Water"
+  },
+  "Branch Poke": {
+    "type": "Grass"
+  },
+  "Brave Bird": {
+    "type": "Flying"
+  },
+  "Breaking Swipe": {
+    "type": "Dragon"
+  },
+  "Breakneck Blitz": {
+    "type": "Normal"
+  },
+  "Brick Break": {
+    "type": "Fighting"
+  },
+  "Brine": {
+    "type": "Water"
+  },
+  "Brutal Swing": {
+    "type": "Dark"
+  },
+  "Bubble": {
+    "type": "Water"
+  },
+  "Bubble Beam": {
+    "type": "Water"
+  },
+  "Bug Bite": {
+    "type": "Bug"
+  },
+  "Bug Buzz": {
+    "type": "Bug"
+  },
+  "Bulk Up": {
+    "type": "Fighting"
+  },
+  "Bulldoze": {
+    "type": "Ground"
+  },
+  "Bullet Punch": {
+    "type": "Steel"
+  },
+  "Bullet Seed": {
+    "type": "Grass"
+  },
+  "Burning Bulwark": {
+    "type": "Fire"
+  },
+  "Burning Jealousy": {
+    "type": "Fire"
+  },
+  "Burn Up": {
+    "type": "Fire"
+  },
+  "Buzzy Buzz": {
+    "type": "Electric"
+  },
+  "Calm Mind": {
+    "type": "Psychic"
+  },
+  "Camouflage": {
+    "type": "Normal"
+  },
+  "Captivate": {
+    "type": "Normal"
+  },
+  "Catastropika": {
+    "type": "Electric"
+  },
+  "Ceaseless Edge": {
+    "type": "Dark"
+  },
+  "Celebrate": {
+    "type": "Normal"
+  },
+  "Charge": {
+    "type": "Electric"
+  },
+  "Charge Beam": {
+    "type": "Electric"
+  },
+  "Charm": {
+    "type": "Fairy"
+  },
+  "Chatter": {
+    "type": "Flying"
+  },
+  "Chilling Water": {
+    "type": "Water"
+  },
+  "Chilly Reception": {
+    "type": "Ice"
+  },
+  "Chip Away": {
+    "type": "Normal"
+  },
+  "Chloroblast": {
+    "type": "Grass"
+  },
+  "Circle Throw": {
+    "type": "Fighting"
+  },
+  "Clamp": {
+    "type": "Water"
+  },
+  "Clanging Scales": {
+    "type": "Dragon"
+  },
+  "Clangorous Soul": {
+    "type": "Dragon"
+  },
+  "Clangorous Soulblaze": {
+    "type": "Dragon"
+  },
+  "Clear Smog": {
+    "type": "Poison"
+  },
+  "Close Combat": {
+    "type": "Fighting"
+  },
+  "Coaching": {
+    "type": "Fighting"
+  },
+  "Coil": {
+    "type": "Poison"
+  },
+  "Collision Course": {
+    "type": "Fighting"
+  },
+  "Combat Torque": {
+    "type": "Fighting"
+  },
+  "Comet Punch": {
+    "type": "Normal"
+  },
+  "Comeuppance": {
+    "type": "Dark"
+  },
+  "Confide": {
+    "type": "Normal"
+  },
+  "Confuse Ray": {
+    "type": "Ghost"
+  },
+  "Confusion": {
+    "type": "Psychic"
+  },
+  "Constrict": {
+    "type": "Normal"
+  },
+  "Continental Crush": {
+    "type": "Rock"
+  },
+  "Conversion": {
+    "type": "Normal"
+  },
+  "Conversion 2": {
+    "type": "Normal"
+  },
+  "Copycat": {
+    "type": "Normal"
+  },
+  "Core Enforcer": {
+    "type": "Dragon"
+  },
+  "Corkscrew Crash": {
+    "type": "Steel"
+  },
+  "Corrosive Gas": {
+    "type": "Poison"
+  },
+  "Cosmic Power": {
+    "type": "Psychic"
+  },
+  "Cotton Guard": {
+    "type": "Grass"
+  },
+  "Cotton Spore": {
+    "type": "Grass"
+  },
+  "Counter": {
+    "type": "Fighting"
+  },
+  "Court Change": {
+    "type": "Normal"
+  },
+  "Covet": {
+    "type": "Normal"
+  },
+  "Crabhammer": {
+    "type": "Water"
+  },
+  "Crafty Shield": {
+    "type": "Fairy"
+  },
+  "Cross Chop": {
+    "type": "Fighting"
+  },
+  "Cross Poison": {
+    "type": "Poison"
+  },
+  "Crunch": {
+    "type": "Dark"
+  },
+  "Crush Claw": {
+    "type": "Normal"
+  },
+  "Crush Grip": {
+    "type": "Normal"
+  },
+  "Curse": {
+    "type": "Ghost"
+  },
+  "Cut": {
+    "type": "Normal"
+  },
+  "Darkest Lariat": {
+    "type": "Dark"
+  },
+  "Dark Pulse": {
+    "type": "Dark"
+  },
+  "Dark Void": {
+    "type": "Dark"
+  },
+  "Dazzling Gleam": {
+    "type": "Fairy"
+  },
+  "Decorate": {
+    "type": "Fairy"
+  },
+  "Defend Order": {
+    "type": "Bug"
+  },
+  "Defense Curl": {
+    "type": "Normal"
+  },
+  "Defog": {
+    "type": "Flying"
+  },
+  "Destiny Bond": {
+    "type": "Ghost"
+  },
+  "Detect": {
+    "type": "Fighting"
+  },
+  "Devastating Drake": {
+    "type": "Dragon"
+  },
+  "Diamond Storm": {
+    "type": "Rock"
+  },
+  "Dig": {
+    "type": "Ground"
+  },
+  "Dire Claw": {
+    "type": "Poison"
+  },
+  "Disable": {
+    "type": "Normal"
+  },
+  "Disarming Voice": {
+    "type": "Fairy"
+  },
+  "Discharge": {
+    "type": "Electric"
+  },
+  "Dive": {
+    "type": "Water"
+  },
+  "Dizzy Punch": {
+    "type": "Normal"
+  },
+  "Doodle": {
+    "type": "Normal"
+  },
+  "Doom Desire": {
+    "type": "Steel"
+  },
+  "Double-Edge": {
+    "type": "Normal"
+  },
+  "Double Hit": {
+    "type": "Normal"
+  },
+  "Double Iron Bash": {
+    "type": "Steel"
+  },
+  "Double Kick": {
+    "type": "Fighting"
+  },
+  "Double Shock": {
+    "type": "Electric"
+  },
+  "Double Slap": {
+    "type": "Normal"
+  },
+  "Double Team": {
+    "type": "Normal"
+  },
+  "Draco Meteor": {
+    "type": "Dragon"
+  },
+  "Dragon Ascent": {
+    "type": "Flying"
+  },
+  "Dragon Breath": {
+    "type": "Dragon"
+  },
+  "Dragon Cheer": {
+    "type": "Dragon"
+  },
+  "Dragon Claw": {
+    "type": "Dragon"
+  },
+  "Dragon Dance": {
+    "type": "Dragon"
+  },
+  "Dragon Darts": {
+    "type": "Dragon"
+  },
+  "Dragon Energy": {
+    "type": "Dragon"
+  },
+  "Dragon Hammer": {
+    "type": "Dragon"
+  },
+  "Dragon Pulse": {
+    "type": "Dragon"
+  },
+  "Dragon Rage": {
+    "type": "Dragon"
+  },
+  "Dragon Rush": {
+    "type": "Dragon"
+  },
+  "Dragon Tail": {
+    "type": "Dragon"
+  },
+  "Draining Kiss": {
+    "type": "Fairy"
+  },
+  "Drain Punch": {
+    "type": "Fighting"
+  },
+  "Dream Eater": {
+    "type": "Psychic"
+  },
+  "Drill Peck": {
+    "type": "Flying"
+  },
+  "Drill Run": {
+    "type": "Ground"
+  },
+  "Drum Beating": {
+    "type": "Grass"
+  },
+  "Dual Chop": {
+    "type": "Dragon"
+  },
+  "Dual Wingbeat": {
+    "type": "Flying"
+  },
+  "Dynamax Cannon": {
+    "type": "Dragon"
+  },
+  "Dynamic Punch": {
+    "type": "Fighting"
+  },
+  "Earth Power": {
+    "type": "Ground"
+  },
+  "Earthquake": {
+    "type": "Ground"
+  },
+  "Echoed Voice": {
+    "type": "Normal"
+  },
+  "Eerie Impulse": {
+    "type": "Electric"
+  },
+  "Eerie Spell": {
+    "type": "Psychic"
+  },
+  "Egg Bomb": {
+    "type": "Normal"
+  },
+  "Electric Terrain": {
+    "type": "Electric"
+  },
+  "Electrify": {
+    "type": "Electric"
+  },
+  "Electro Ball": {
+    "type": "Electric"
+  },
+  "Electro Drift": {
+    "type": "Electric"
+  },
+  "Electro Shot": {
+    "type": "Electric"
+  },
+  "Electroweb": {
+    "type": "Electric"
+  },
+  "Embargo": {
+    "type": "Dark"
+  },
+  "Ember": {
+    "type": "Fire"
+  },
+  "Encore": {
+    "type": "Normal"
+  },
+  "Endeavor": {
+    "type": "Normal"
+  },
+  "Endure": {
+    "type": "Normal"
+  },
+  "Energy Ball": {
+    "type": "Grass"
+  },
+  "Entrainment": {
+    "type": "Normal"
+  },
+  "Eruption": {
+    "type": "Fire"
+  },
+  "Esper Wing": {
+    "type": "Psychic"
+  },
+  "Eternabeam": {
+    "type": "Dragon"
+  },
+  "Expanding Force": {
+    "type": "Psychic"
+  },
+  "Explosion": {
+    "type": "Normal"
+  },
+  "Extrasensory": {
+    "type": "Psychic"
+  },
+  "Extreme Evoboost": {
+    "type": "Normal"
+  },
+  "Extreme Speed": {
+    "type": "Normal"
+  },
+  "Facade": {
+    "type": "Normal"
+  },
+  "Fairy Lock": {
+    "type": "Fairy"
+  },
+  "Fairy Wind": {
+    "type": "Fairy"
+  },
+  "Fake Out": {
+    "type": "Normal"
+  },
+  "Fake Tears": {
+    "type": "Dark"
+  },
+  "False Surrender": {
+    "type": "Dark"
+  },
+  "False Swipe": {
+    "type": "Normal"
+  },
+  "Feather Dance": {
+    "type": "Flying"
+  },
+  "Feint": {
+    "type": "Normal"
+  },
+  "Feint Attack": {
+    "type": "Dark"
+  },
+  "Fell Stinger": {
+    "type": "Bug"
+  },
+  "Fickle Beam": {
+    "type": "Dragon"
+  },
+  "Fiery Dance": {
+    "type": "Fire"
+  },
+  "Fiery Wrath": {
+    "type": "Dark"
+  },
+  "Fillet Away": {
+    "type": "Normal"
+  },
+  "Final Gambit": {
+    "type": "Fighting"
+  },
+  "Fire Blast": {
+    "type": "Fire"
+  },
+  "Fire Fang": {
+    "type": "Fire"
+  },
+  "Fire Lash": {
+    "type": "Fire"
+  },
+  "Fire Pledge": {
+    "type": "Fire"
+  },
+  "Fire Punch": {
+    "type": "Fire"
+  },
+  "Fire Spin": {
+    "type": "Fire"
+  },
+  "First Impression": {
+    "type": "Bug"
+  },
+  "Fishious Rend": {
+    "type": "Water"
+  },
+  "Fissure": {
+    "type": "Ground"
+  },
+  "Flail": {
+    "type": "Normal"
+  },
+  "Flame Burst": {
+    "type": "Fire"
+  },
+  "Flame Charge": {
+    "type": "Fire"
+  },
+  "Flamethrower": {
+    "type": "Fire"
+  },
+  "Flame Wheel": {
+    "type": "Fire"
+  },
+  "Flare Blitz": {
+    "type": "Fire"
+  },
+  "Flash": {
+    "type": "Normal"
+  },
+  "Flash Cannon": {
+    "type": "Steel"
+  },
+  "Flatter": {
+    "type": "Dark"
+  },
+  "Fleur Cannon": {
+    "type": "Fairy"
+  },
+  "Fling": {
+    "type": "Dark"
+  },
+  "Flip Turn": {
+    "type": "Water"
+  },
+  "Floaty Fall": {
+    "type": "Flying"
+  },
+  "Floral Healing": {
+    "type": "Fairy"
+  },
+  "Flower Shield": {
+    "type": "Fairy"
+  },
+  "Flower Trick": {
+    "type": "Grass"
+  },
+  "Fly": {
+    "type": "Flying"
+  },
+  "Flying Press": {
+    "type": "Fighting"
+  },
+  "Focus Blast": {
+    "type": "Fighting"
+  },
+  "Focus Energy": {
+    "type": "Normal"
+  },
+  "Focus Punch": {
+    "type": "Fighting"
+  },
+  "Follow Me": {
+    "type": "Normal"
+  },
+  "Force Palm": {
+    "type": "Fighting"
+  },
+  "Foresight": {
+    "type": "Normal"
+  },
+  "Forest": {
+    "type": "Grass"
+  },
+  "Foul Play": {
+    "type": "Dark"
+  },
+  "Freeze-Dry": {
+    "type": "Ice"
+  },
+  "Freeze Shock": {
+    "type": "Ice"
+  },
+  "Freezing Glare": {
+    "type": "Psychic"
+  },
+  "Freezy Frost": {
+    "type": "Ice"
+  },
+  "Frenzy Plant": {
+    "type": "Grass"
+  },
+  "Frost Breath": {
+    "type": "Ice"
+  },
+  "Frustration": {
+    "type": "Normal"
+  },
+  "Fury Attack": {
+    "type": "Normal"
+  },
+  "Fury Cutter": {
+    "type": "Bug"
+  },
+  "Fury Swipes": {
+    "type": "Normal"
+  },
+  "Fusion Bolt": {
+    "type": "Electric"
+  },
+  "Fusion Flare": {
+    "type": "Fire"
+  },
+  "Future Sight": {
+    "type": "Psychic"
+  },
+  "Gastro Acid": {
+    "type": "Poison"
+  },
+  "Gear Grind": {
+    "type": "Steel"
+  },
+  "Gear Up": {
+    "type": "Steel"
+  },
+  "Genesis Supernova": {
+    "type": "Psychic"
+  },
+  "Geomancy": {
+    "type": "Fairy"
+  },
+  "Giga Drain": {
+    "type": "Grass"
+  },
+  "Giga Impact": {
+    "type": "Normal"
+  },
+  "Gigaton Hammer": {
+    "type": "Steel"
+  },
+  "Gigavolt Havoc": {
+    "type": "Electric"
+  },
+  "Glacial Lance": {
+    "type": "Ice"
+  },
+  "Glaciate": {
+    "type": "Ice"
+  },
+  "Glaive Rush": {
+    "type": "Dragon"
+  },
+  "Glare": {
+    "type": "Normal"
+  },
+  "Glitzy Glow": {
+    "type": "Psychic"
+  },
+  "G-Max Befuddle": {
+    "type": "Bug"
+  },
+  "G-Max Cannonade": {
+    "type": "Water"
+  },
+  "G-Max Centiferno": {
+    "type": "Fire"
+  },
+  "G-Max Chi Strike": {
+    "type": "Fighting"
+  },
+  "G-Max Cuddle": {
+    "type": "Normal"
+  },
+  "G-Max Depletion": {
+    "type": "Dragon"
+  },
+  "G-Max Drum Solo": {
+    "type": "Grass"
+  },
+  "G-Max Finale": {
+    "type": "Fairy"
+  },
+  "G-Max Fireball": {
+    "type": "Fire"
+  },
+  "G-Max Foam Burst": {
+    "type": "Water"
+  },
+  "G-Max Gold Rush": {
+    "type": "Normal"
+  },
+  "G-Max Gravitas": {
+    "type": "Psychic"
+  },
+  "G-Max Hydrosnipe": {
+    "type": "Water"
+  },
+  "G-Max Malodor": {
+    "type": "Poison"
+  },
+  "G-Max Meltdown": {
+    "type": "Steel"
+  },
+  "G-Max One Blow": {
+    "type": "Dark"
+  },
+  "G-Max Rapid Flow": {
+    "type": "Water"
+  },
+  "G-Max Replenish": {
+    "type": "Normal"
+  },
+  "G-Max Resonance": {
+    "type": "Ice"
+  },
+  "G-Max Sandblast": {
+    "type": "Ground"
+  },
+  "G-Max Smite": {
+    "type": "Fairy"
+  },
+  "G-Max Snooze": {
+    "type": "Dark"
+  },
+  "G-Max Steelsurge": {
+    "type": "Steel"
+  },
+  "G-Max Stonesurge": {
+    "type": "Water"
+  },
+  "G-Max Stun Shock": {
+    "type": "Electric"
+  },
+  "G-Max Sweetness": {
+    "type": "Grass"
+  },
+  "G-Max Tartness": {
+    "type": "Grass"
+  },
+  "G-Max Terror": {
+    "type": "Ghost"
+  },
+  "G-Max Vine Lash": {
+    "type": "Grass"
+  },
+  "G-Max Volcalith": {
+    "type": "Rock"
+  },
+  "G-Max Volt Crash": {
+    "type": "Electric"
+  },
+  "G-Max Wildfire": {
+    "type": "Fire"
+  },
+  "G-Max Wind Rage": {
+    "type": "Flying"
+  },
+  "Grass Knot": {
+    "type": "Grass"
+  },
+  "Grass Pledge": {
+    "type": "Grass"
+  },
+  "Grass Whistle": {
+    "type": "Grass"
+  },
+  "Grassy Glide": {
+    "type": "Grass"
+  },
+  "Grassy Terrain": {
+    "type": "Grass"
+  },
+  "Grav Apple": {
+    "type": "Grass"
+  },
+  "Gravity": {
+    "type": "Psychic"
+  },
+  "Growl": {
+    "type": "Normal"
+  },
+  "Growth": {
+    "type": "Normal"
+  },
+  "Grudge": {
+    "type": "Ghost"
+  },
+  "Guardian of Alola": {
+    "type": "Fairy"
+  },
+  "Guard Split": {
+    "type": "Psychic"
+  },
+  "Guard Swap": {
+    "type": "Psychic"
+  },
+  "Guillotine": {
+    "type": "Normal"
+  },
+  "Gunk Shot": {
+    "type": "Poison"
+  },
+  "Gust": {
+    "type": "Flying"
+  },
+  "Gyro Ball": {
+    "type": "Steel"
+  },
+  "Hail": {
+    "type": "Ice"
+  },
+  "Hammer Arm": {
+    "type": "Fighting"
+  },
+  "Happy Hour": {
+    "type": "Normal"
+  },
+  "Harden": {
+    "type": "Normal"
+  },
+  "Hard Press": {
+    "type": "Steel"
+  },
+  "Haze": {
+    "type": "Ice"
+  },
+  "Headbutt": {
+    "type": "Normal"
+  },
+  "Head Charge": {
+    "type": "Normal"
+  },
+  "Headlong Rush": {
+    "type": "Ground"
+  },
+  "Head Smash": {
+    "type": "Rock"
+  },
+  "Heal Bell": {
+    "type": "Normal"
+  },
+  "Heal Block": {
+    "type": "Psychic"
+  },
+  "Healing Wish": {
+    "type": "Psychic"
+  },
+  "Heal Order": {
+    "type": "Bug"
+  },
+  "Heal Pulse": {
+    "type": "Psychic"
+  },
+  "Heart Stamp": {
+    "type": "Psychic"
+  },
+  "Heart Swap": {
+    "type": "Psychic"
+  },
+  "Heat Crash": {
+    "type": "Fire"
+  },
+  "Heat Wave": {
+    "type": "Fire"
+  },
+  "Heavy Slam": {
+    "type": "Steel"
+  },
+  "Helping Hand": {
+    "type": "Normal"
+  },
+  "Hex": {
+    "type": "Ghost"
+  },
+  "Hidden Power": {
+    "type": "Normal"
+  },
+  "Hidden Power Bug": {
+    "type": "Bug"
+  },
+  "Hidden Power Dark": {
+    "type": "Dark"
+  },
+  "Hidden Power Dragon": {
+    "type": "Dragon"
+  },
+  "Hidden Power Electric": {
+    "type": "Electric"
+  },
+  "Hidden Power Fighting": {
+    "type": "Fighting"
+  },
+  "Hidden Power Fire": {
+    "type": "Fire"
+  },
+  "Hidden Power Flying": {
+    "type": "Flying"
+  },
+  "Hidden Power Ghost": {
+    "type": "Ghost"
+  },
+  "Hidden Power Grass": {
+    "type": "Grass"
+  },
+  "Hidden Power Ground": {
+    "type": "Ground"
+  },
+  "Hidden Power Ice": {
+    "type": "Ice"
+  },
+  "Hidden Power Poison": {
+    "type": "Poison"
+  },
+  "Hidden Power Psychic": {
+    "type": "Psychic"
+  },
+  "Hidden Power Rock": {
+    "type": "Rock"
+  },
+  "Hidden Power Steel": {
+    "type": "Steel"
+  },
+  "Hidden Power Water": {
+    "type": "Water"
+  },
+  "High Horsepower": {
+    "type": "Ground"
+  },
+  "High Jump Kick": {
+    "type": "Fighting"
+  },
+  "Hold Back": {
+    "type": "Normal"
+  },
+  "Hold Hands": {
+    "type": "Normal"
+  },
+  "Hone Claws": {
+    "type": "Dark"
+  },
+  "Horn Attack": {
+    "type": "Normal"
+  },
+  "Horn Drill": {
+    "type": "Normal"
+  },
+  "Horn Leech": {
+    "type": "Grass"
+  },
+  "Howl": {
+    "type": "Normal"
+  },
+  "Hurricane": {
+    "type": "Flying"
+  },
+  "Hydro Cannon": {
+    "type": "Water"
+  },
+  "Hydro Pump": {
+    "type": "Water"
+  },
+  "Hydro Steam": {
+    "type": "Water"
+  },
+  "Hydro Vortex": {
+    "type": "Water"
+  },
+  "Hyper Beam": {
+    "type": "Normal"
+  },
+  "Hyper Drill": {
+    "type": "Normal"
+  },
+  "Hyper Fang": {
+    "type": "Normal"
+  },
+  "Hyperspace Fury": {
+    "type": "Dark"
+  },
+  "Hyperspace Hole": {
+    "type": "Psychic"
+  },
+  "Hyper Voice": {
+    "type": "Normal"
+  },
+  "Hypnosis": {
+    "type": "Psychic"
+  },
+  "Ice Ball": {
+    "type": "Ice"
+  },
+  "Ice Beam": {
+    "type": "Ice"
+  },
+  "Ice Burn": {
+    "type": "Ice"
+  },
+  "Ice Fang": {
+    "type": "Ice"
+  },
+  "Ice Hammer": {
+    "type": "Ice"
+  },
+  "Ice Punch": {
+    "type": "Ice"
+  },
+  "Ice Shard": {
+    "type": "Ice"
+  },
+  "Ice Spinner": {
+    "type": "Ice"
+  },
+  "Icicle Crash": {
+    "type": "Ice"
+  },
+  "Icicle Spear": {
+    "type": "Ice"
+  },
+  "Icy Wind": {
+    "type": "Ice"
+  },
+  "Imprison": {
+    "type": "Psychic"
+  },
+  "Incinerate": {
+    "type": "Fire"
+  },
+  "Infernal Parade": {
+    "type": "Ghost"
+  },
+  "Inferno": {
+    "type": "Fire"
+  },
+  "Inferno Overdrive": {
+    "type": "Fire"
+  },
+  "Infestation": {
+    "type": "Bug"
+  },
+  "Ingrain": {
+    "type": "Grass"
+  },
+  "Instruct": {
+    "type": "Psychic"
+  },
+  "Ion Deluge": {
+    "type": "Electric"
+  },
+  "Iron Defense": {
+    "type": "Steel"
+  },
+  "Iron Head": {
+    "type": "Steel"
+  },
+  "Iron Tail": {
+    "type": "Steel"
+  },
+  "Ivy Cudgel": {
+    "type": "Grass"
+  },
+  "Jaw Lock": {
+    "type": "Dark"
+  },
+  "Jet Punch": {
+    "type": "Water"
+  },
+  "Judgment": {
+    "type": "Normal"
+  },
+  "Jump Kick": {
+    "type": "Fighting"
+  },
+  "Jungle Healing": {
+    "type": "Grass"
+  },
+  "Karate Chop": {
+    "type": "Fighting"
+  },
+  "Kinesis": {
+    "type": "Psychic"
+  },
+  "King": {
+    "type": "Steel"
+  },
+  "Knock Off": {
+    "type": "Dark"
+  },
+  "Kowtow Cleave": {
+    "type": "Dark"
+  },
+  "Land": {
+    "type": "Ground"
+  },
+  "Laser Focus": {
+    "type": "Normal"
+  },
+  "Lash Out": {
+    "type": "Dark"
+  },
+  "Last Resort": {
+    "type": "Normal"
+  },
+  "Last Respects": {
+    "type": "Ghost"
+  },
+  "Lava Plume": {
+    "type": "Fire"
+  },
+  "Leafage": {
+    "type": "Grass"
+  },
+  "Leaf Blade": {
+    "type": "Grass"
+  },
+  "Leaf Storm": {
+    "type": "Grass"
+  },
+  "Leaf Tornado": {
+    "type": "Grass"
+  },
+  "Leech Life": {
+    "type": "Bug"
+  },
+  "Leech Seed": {
+    "type": "Grass"
+  },
+  "Leer": {
+    "type": "Normal"
+  },
+  "Let": {
+    "type": "Fairy"
+  },
+  "Lick": {
+    "type": "Ghost"
+  },
+  "Life Dew": {
+    "type": "Water"
+  },
+  "Light of Ruin": {
+    "type": "Fairy"
+  },
+  "Light Screen": {
+    "type": "Psychic"
+  },
+  "Light That Burns the Sky": {
+    "type": "Psychic"
+  },
+  "Liquidation": {
+    "type": "Water"
+  },
+  "Lock-On": {
+    "type": "Normal"
+  },
+  "Lovely Kiss": {
+    "type": "Normal"
+  },
+  "Low Kick": {
+    "type": "Fighting"
+  },
+  "Low Sweep": {
+    "type": "Fighting"
+  },
+  "Lucky Chant": {
+    "type": "Normal"
+  },
+  "Lumina Crash": {
+    "type": "Psychic"
+  },
+  "Lunar Blessing": {
+    "type": "Psychic"
+  },
+  "Lunar Dance": {
+    "type": "Psychic"
+  },
+  "Lunge": {
+    "type": "Bug"
+  },
+  "Luster Purge": {
+    "type": "Psychic"
+  },
+  "Mach Punch": {
+    "type": "Fighting"
+  },
+  "Magical Leaf": {
+    "type": "Grass"
+  },
+  "Magical Torque": {
+    "type": "Fairy"
+  },
+  "Magic Coat": {
+    "type": "Psychic"
+  },
+  "Magic Powder": {
+    "type": "Psychic"
+  },
+  "Magic Room": {
+    "type": "Psychic"
+  },
+  "Magma Storm": {
+    "type": "Fire"
+  },
+  "Magnet Bomb": {
+    "type": "Steel"
+  },
+  "Magnetic Flux": {
+    "type": "Electric"
+  },
+  "Magnet Rise": {
+    "type": "Electric"
+  },
+  "Magnitude": {
+    "type": "Ground"
+  },
+  "Make It Rain": {
+    "type": "Steel"
+  },
+  "Malicious Moonsault": {
+    "type": "Dark"
+  },
+  "Malignant Chain": {
+    "type": "Poison"
+  },
+  "Mat Block": {
+    "type": "Fighting"
+  },
+  "Matcha Gotcha": {
+    "type": "Grass"
+  },
+  "Max Airstream": {
+    "type": "Flying"
+  },
+  "Max Darkness": {
+    "type": "Dark"
+  },
+  "Max Flare": {
+    "type": "Fire"
+  },
+  "Max Flutterby": {
+    "type": "Bug"
+  },
+  "Max Geyser": {
+    "type": "Water"
+  },
+  "Max Guard": {
+    "type": "Normal"
+  },
+  "Max Hailstorm": {
+    "type": "Ice"
+  },
+  "Max Knuckle": {
+    "type": "Fighting"
+  },
+  "Max Lightning": {
+    "type": "Electric"
+  },
+  "Max Mindstorm": {
+    "type": "Psychic"
+  },
+  "Max Ooze": {
+    "type": "Poison"
+  },
+  "Max Overgrowth": {
+    "type": "Grass"
+  },
+  "Max Phantasm": {
+    "type": "Ghost"
+  },
+  "Max Quake": {
+    "type": "Ground"
+  },
+  "Max Rockfall": {
+    "type": "Rock"
+  },
+  "Max Starfall": {
+    "type": "Fairy"
+  },
+  "Max Steelspike": {
+    "type": "Steel"
+  },
+  "Max Strike": {
+    "type": "Normal"
+  },
+  "Max Wyrmwind": {
+    "type": "Dragon"
+  },
+  "Mean Look": {
+    "type": "Normal"
+  },
+  "Meditate": {
+    "type": "Psychic"
+  },
+  "Me First": {
+    "type": "Normal"
+  },
+  "Mega Drain": {
+    "type": "Grass"
+  },
+  "Megahorn": {
+    "type": "Bug"
+  },
+  "Mega Kick": {
+    "type": "Normal"
+  },
+  "Mega Punch": {
+    "type": "Normal"
+  },
+  "Memento": {
+    "type": "Dark"
+  },
+  "Menacing Moonraze Maelstrom": {
+    "type": "Ghost"
+  },
+  "Metal Burst": {
+    "type": "Steel"
+  },
+  "Metal Claw": {
+    "type": "Steel"
+  },
+  "Metal Sound": {
+    "type": "Steel"
+  },
+  "Meteor Assault": {
+    "type": "Fighting"
+  },
+  "Meteor Beam": {
+    "type": "Rock"
+  },
+  "Meteor Mash": {
+    "type": "Steel"
+  },
+  "Metronome": {
+    "type": "Normal"
+  },
+  "Mighty Cleave": {
+    "type": "Rock"
+  },
+  "Milk Drink": {
+    "type": "Normal"
+  },
+  "Mimic": {
+    "type": "Normal"
+  },
+  "Mind Blown": {
+    "type": "Fire"
+  },
+  "Mind Reader": {
+    "type": "Normal"
+  },
+  "Minimize": {
+    "type": "Normal"
+  },
+  "Miracle Eye": {
+    "type": "Psychic"
+  },
+  "Mirror Coat": {
+    "type": "Psychic"
+  },
+  "Mirror Move": {
+    "type": "Flying"
+  },
+  "Mirror Shot": {
+    "type": "Steel"
+  },
+  "Mist": {
+    "type": "Ice"
+  },
+  "Mist Ball": {
+    "type": "Psychic"
+  },
+  "Misty Explosion": {
+    "type": "Fairy"
+  },
+  "Misty Terrain": {
+    "type": "Fairy"
+  },
+  "Moonblast": {
+    "type": "Fairy"
+  },
+  "Moongeist Beam": {
+    "type": "Ghost"
+  },
+  "Moonlight": {
+    "type": "Fairy"
+  },
+  "Morning Sun": {
+    "type": "Normal"
+  },
+  "Mortal Spin": {
+    "type": "Poison"
+  },
+  "Mountain Gale": {
+    "type": "Ice"
+  },
+  "Mud Bomb": {
+    "type": "Ground"
+  },
+  "Muddy Water": {
+    "type": "Water"
+  },
+  "Mud Shot": {
+    "type": "Ground"
+  },
+  "Mud-Slap": {
+    "type": "Ground"
+  },
+  "Mud Sport": {
+    "type": "Ground"
+  },
+  "Multi-Attack": {
+    "type": "Normal"
+  },
+  "Mystical Fire": {
+    "type": "Fire"
+  },
+  "Mystical Power": {
+    "type": "Psychic"
+  },
+  "Nasty Plot": {
+    "type": "Dark"
+  },
+  "Natural Gift": {
+    "type": "Normal"
+  },
+  "Nature Power": {
+    "type": "Normal"
+  },
+  "Nature": {
+    "type": "Fairy"
+  },
+  "Needle Arm": {
+    "type": "Grass"
+  },
+  "Never-Ending Nightmare": {
+    "type": "Ghost"
+  },
+  "Night Daze": {
+    "type": "Dark"
+  },
+  "Nightmare": {
+    "type": "Ghost"
+  },
+  "Night Shade": {
+    "type": "Ghost"
+  },
+  "Night Slash": {
+    "type": "Dark"
+  },
+  "Nihil Light": {
+    "type": "Dragon"
+  },
+  "Noble Roar": {
+    "type": "Normal"
+  },
+  "No Retreat": {
+    "type": "Fighting"
+  },
+  "Noxious Torque": {
+    "type": "Poison"
+  },
+  "Nuzzle": {
+    "type": "Electric"
+  },
+  "Oblivion Wing": {
+    "type": "Flying"
+  },
+  "Obstruct": {
+    "type": "Dark"
+  },
+  "Oceanic Operetta": {
+    "type": "Water"
+  },
+  "Octazooka": {
+    "type": "Water"
+  },
+  "Octolock": {
+    "type": "Fighting"
+  },
+  "Odor Sleuth": {
+    "type": "Normal"
+  },
+  "Ominous Wind": {
+    "type": "Ghost"
+  },
+  "Order Up": {
+    "type": "Dragon"
+  },
+  "Origin Pulse": {
+    "type": "Water"
+  },
+  "Outrage": {
+    "type": "Dragon"
+  },
+  "Overdrive": {
+    "type": "Electric"
+  },
+  "Overheat": {
+    "type": "Fire"
+  },
+  "Pain Split": {
+    "type": "Normal"
+  },
+  "Parabolic Charge": {
+    "type": "Electric"
+  },
+  "Parting Shot": {
+    "type": "Dark"
+  },
+  "Payback": {
+    "type": "Dark"
+  },
+  "Pay Day": {
+    "type": "Normal"
+  },
+  "Peck": {
+    "type": "Flying"
+  },
+  "Perish Song": {
+    "type": "Normal"
+  },
+  "Petal Blizzard": {
+    "type": "Grass"
+  },
+  "Petal Dance": {
+    "type": "Grass"
+  },
+  "Phantom Force": {
+    "type": "Ghost"
+  },
+  "Photon Geyser": {
+    "type": "Psychic"
+  },
+  "Pika Papow": {
+    "type": "Electric"
+  },
+  "Pin Missile": {
+    "type": "Bug"
+  },
+  "Plasma Fists": {
+    "type": "Electric"
+  },
+  "Play Nice": {
+    "type": "Normal"
+  },
+  "Play Rough": {
+    "type": "Fairy"
+  },
+  "Pluck": {
+    "type": "Flying"
+  },
+  "Poison Fang": {
+    "type": "Poison"
+  },
+  "Poison Gas": {
+    "type": "Poison"
+  },
+  "Poison Jab": {
+    "type": "Poison"
+  },
+  "Poison Powder": {
+    "type": "Poison"
+  },
+  "Poison Sting": {
+    "type": "Poison"
+  },
+  "Poison Tail": {
+    "type": "Poison"
+  },
+  "Pollen Puff": {
+    "type": "Bug"
+  },
+  "Poltergeist": {
+    "type": "Ghost"
+  },
+  "Population Bomb": {
+    "type": "Normal"
+  },
+  "Pounce": {
+    "type": "Bug"
+  },
+  "Pound": {
+    "type": "Normal"
+  },
+  "Powder": {
+    "type": "Bug"
+  },
+  "Powder Snow": {
+    "type": "Ice"
+  },
+  "Power Gem": {
+    "type": "Rock"
+  },
+  "Power Shift": {
+    "type": "Normal"
+  },
+  "Power Split": {
+    "type": "Psychic"
+  },
+  "Power Swap": {
+    "type": "Psychic"
+  },
+  "Power Trick": {
+    "type": "Psychic"
+  },
+  "Power Trip": {
+    "type": "Dark"
+  },
+  "Power-Up Punch": {
+    "type": "Fighting"
+  },
+  "Power Whip": {
+    "type": "Grass"
+  },
+  "Precipice Blades": {
+    "type": "Ground"
+  },
+  "Present": {
+    "type": "Normal"
+  },
+  "Prismatic Laser": {
+    "type": "Psychic"
+  },
+  "Protect": {
+    "type": "Normal"
+  },
+  "Psybeam": {
+    "type": "Psychic"
+  },
+  "Psyblade": {
+    "type": "Psychic"
+  },
+  "Psychic": {
+    "type": "Psychic"
+  },
+  "Psychic Fangs": {
+    "type": "Psychic"
+  },
+  "Psychic Noise": {
+    "type": "Psychic"
+  },
+  "Psychic Terrain": {
+    "type": "Psychic"
+  },
+  "Psycho Boost": {
+    "type": "Psychic"
+  },
+  "Psycho Cut": {
+    "type": "Psychic"
+  },
+  "Psycho Shift": {
+    "type": "Psychic"
+  },
+  "Psych Up": {
+    "type": "Normal"
+  },
+  "Psyshield Bash": {
+    "type": "Psychic"
+  },
+  "Psyshock": {
+    "type": "Psychic"
+  },
+  "Psystrike": {
+    "type": "Psychic"
+  },
+  "Psywave": {
+    "type": "Psychic"
+  },
+  "Pulverizing Pancake": {
+    "type": "Normal"
+  },
+  "Punishment": {
+    "type": "Dark"
+  },
+  "Purify": {
+    "type": "Poison"
+  },
+  "Pursuit": {
+    "type": "Dark"
+  },
+  "Pyro Ball": {
+    "type": "Fire"
+  },
+  "Quash": {
+    "type": "Dark"
+  },
+  "Quick Attack": {
+    "type": "Normal"
+  },
+  "Quick Guard": {
+    "type": "Fighting"
+  },
+  "Quiver Dance": {
+    "type": "Bug"
+  },
+  "Rage": {
+    "type": "Normal"
+  },
+  "Rage Fist": {
+    "type": "Ghost"
+  },
+  "Rage Powder": {
+    "type": "Bug"
+  },
+  "Raging Bull": {
+    "type": "Normal"
+  },
+  "Raging Fury": {
+    "type": "Fire"
+  },
+  "Rain Dance": {
+    "type": "Water"
+  },
+  "Rapid Spin": {
+    "type": "Normal"
+  },
+  "Razor Leaf": {
+    "type": "Grass"
+  },
+  "Razor Shell": {
+    "type": "Water"
+  },
+  "Razor Wind": {
+    "type": "Normal"
+  },
+  "Recover": {
+    "type": "Normal"
+  },
+  "Recycle": {
+    "type": "Normal"
+  },
+  "Reflect": {
+    "type": "Psychic"
+  },
+  "Reflect Type": {
+    "type": "Normal"
+  },
+  "Refresh": {
+    "type": "Normal"
+  },
+  "Relic Song": {
+    "type": "Normal"
+  },
+  "Rest": {
+    "type": "Psychic"
+  },
+  "Retaliate": {
+    "type": "Normal"
+  },
+  "Return": {
+    "type": "Normal"
+  },
+  "Revelation Dance": {
+    "type": "Normal"
+  },
+  "Revenge": {
+    "type": "Fighting"
+  },
+  "Reversal": {
+    "type": "Fighting"
+  },
+  "Revival Blessing": {
+    "type": "Normal"
+  },
+  "Rising Voltage": {
+    "type": "Electric"
+  },
+  "Roar": {
+    "type": "Normal"
+  },
+  "Roar of Time": {
+    "type": "Dragon"
+  },
+  "Rock Blast": {
+    "type": "Rock"
+  },
+  "Rock Climb": {
+    "type": "Normal"
+  },
+  "Rock Polish": {
+    "type": "Rock"
+  },
+  "Rock Slide": {
+    "type": "Rock"
+  },
+  "Rock Smash": {
+    "type": "Fighting"
+  },
+  "Rock Throw": {
+    "type": "Rock"
+  },
+  "Rock Tomb": {
+    "type": "Rock"
+  },
+  "Rock Wrecker": {
+    "type": "Rock"
+  },
+  "Role Play": {
+    "type": "Psychic"
+  },
+  "Rolling Kick": {
+    "type": "Fighting"
+  },
+  "Rollout": {
+    "type": "Rock"
+  },
+  "Roost": {
+    "type": "Flying"
+  },
+  "Rototiller": {
+    "type": "Ground"
+  },
+  "Round": {
+    "type": "Normal"
+  },
+  "Ruination": {
+    "type": "Dark"
+  },
+  "Sacred Fire": {
+    "type": "Fire"
+  },
+  "Sacred Sword": {
+    "type": "Fighting"
+  },
+  "Safeguard": {
+    "type": "Normal"
+  },
+  "Salt Cure": {
+    "type": "Rock"
+  },
+  "Sand Attack": {
+    "type": "Ground"
+  },
+  "Sandsear Storm": {
+    "type": "Ground"
+  },
+  "Sandstorm": {
+    "type": "Rock"
+  },
+  "Sand Tomb": {
+    "type": "Ground"
+  },
+  "Sappy Seed": {
+    "type": "Grass"
+  },
+  "Savage Spin-Out": {
+    "type": "Bug"
+  },
+  "Scald": {
+    "type": "Water"
+  },
+  "Scale Shot": {
+    "type": "Dragon"
+  },
+  "Scary Face": {
+    "type": "Normal"
+  },
+  "Scorching Sands": {
+    "type": "Ground"
+  },
+  "Scratch": {
+    "type": "Normal"
+  },
+  "Screech": {
+    "type": "Normal"
+  },
+  "Searing Shot": {
+    "type": "Fire"
+  },
+  "Searing Sunraze Smash": {
+    "type": "Steel"
+  },
+  "Secret Power": {
+    "type": "Normal"
+  },
+  "Secret Sword": {
+    "type": "Fighting"
+  },
+  "Seed Bomb": {
+    "type": "Grass"
+  },
+  "Seed Flare": {
+    "type": "Grass"
+  },
+  "Seismic Toss": {
+    "type": "Fighting"
+  },
+  "Self-Destruct": {
+    "type": "Normal"
+  },
+  "Shadow Ball": {
+    "type": "Ghost"
+  },
+  "Shadow Bone": {
+    "type": "Ghost"
+  },
+  "Shadow Claw": {
+    "type": "Ghost"
+  },
+  "Shadow Force": {
+    "type": "Ghost"
+  },
+  "Shadow Punch": {
+    "type": "Ghost"
+  },
+  "Shadow Sneak": {
+    "type": "Ghost"
+  },
+  "Sharpen": {
+    "type": "Normal"
+  },
+  "Shattered Psyche": {
+    "type": "Psychic"
+  },
+  "Shed Tail": {
+    "type": "Normal"
+  },
+  "Sheer Cold": {
+    "type": "Ice"
+  },
+  "Shell Side Arm": {
+    "type": "Poison"
+  },
+  "Shell Smash": {
+    "type": "Normal"
+  },
+  "Shell Trap": {
+    "type": "Fire"
+  },
+  "Shelter": {
+    "type": "Steel"
+  },
+  "Shift Gear": {
+    "type": "Steel"
+  },
+  "Shock Wave": {
+    "type": "Electric"
+  },
+  "Shore Up": {
+    "type": "Ground"
+  },
+  "Signal Beam": {
+    "type": "Bug"
+  },
+  "Silk Trap": {
+    "type": "Bug"
+  },
+  "Silver Wind": {
+    "type": "Bug"
+  },
+  "Simple Beam": {
+    "type": "Normal"
+  },
+  "Sing": {
+    "type": "Normal"
+  },
+  "Sinister Arrow Raid": {
+    "type": "Ghost"
+  },
+  "Sizzly Slide": {
+    "type": "Fire"
+  },
+  "Sketch": {
+    "type": "Normal"
+  },
+  "Skill Swap": {
+    "type": "Psychic"
+  },
+  "Skitter Smack": {
+    "type": "Bug"
+  },
+  "Skull Bash": {
+    "type": "Normal"
+  },
+  "Sky Attack": {
+    "type": "Flying"
+  },
+  "Sky Drop": {
+    "type": "Flying"
+  },
+  "Sky Uppercut": {
+    "type": "Fighting"
+  },
+  "Slack Off": {
+    "type": "Normal"
+  },
+  "Slam": {
+    "type": "Normal"
+  },
+  "Slash": {
+    "type": "Normal"
+  },
+  "Sleep Powder": {
+    "type": "Grass"
+  },
+  "Sleep Talk": {
+    "type": "Normal"
+  },
+  "Sludge": {
+    "type": "Poison"
+  },
+  "Sludge Bomb": {
+    "type": "Poison"
+  },
+  "Sludge Wave": {
+    "type": "Poison"
+  },
+  "Smack Down": {
+    "type": "Rock"
+  },
+  "Smart Strike": {
+    "type": "Steel"
+  },
+  "Smelling Salts": {
+    "type": "Normal"
+  },
+  "Smog": {
+    "type": "Poison"
+  },
+  "Smokescreen": {
+    "type": "Normal"
+  },
+  "Snap Trap": {
+    "type": "Grass"
+  },
+  "Snarl": {
+    "type": "Dark"
+  },
+  "Snatch": {
+    "type": "Dark"
+  },
+  "Snipe Shot": {
+    "type": "Water"
+  },
+  "Snore": {
+    "type": "Normal"
+  },
+  "Snowscape": {
+    "type": "Ice"
+  },
+  "Soak": {
+    "type": "Water"
+  },
+  "Soft-Boiled": {
+    "type": "Normal"
+  },
+  "Solar Beam": {
+    "type": "Grass"
+  },
+  "Solar Blade": {
+    "type": "Grass"
+  },
+  "Sonic Boom": {
+    "type": "Normal"
+  },
+  "Soul-Stealing 7-Star Strike": {
+    "type": "Ghost"
+  },
+  "Spacial Rend": {
+    "type": "Dragon"
+  },
+  "Spark": {
+    "type": "Electric"
+  },
+  "Sparkling Aria": {
+    "type": "Water"
+  },
+  "Sparkly Swirl": {
+    "type": "Fairy"
+  },
+  "Spectral Thief": {
+    "type": "Ghost"
+  },
+  "Speed Swap": {
+    "type": "Psychic"
+  },
+  "Spicy Extract": {
+    "type": "Grass"
+  },
+  "Spider Web": {
+    "type": "Bug"
+  },
+  "Spike Cannon": {
+    "type": "Normal"
+  },
+  "Spikes": {
+    "type": "Ground"
+  },
+  "Spiky Shield": {
+    "type": "Grass"
+  },
+  "Spin Out": {
+    "type": "Steel"
+  },
+  "Spirit Break": {
+    "type": "Fairy"
+  },
+  "Spirit Shackle": {
+    "type": "Ghost"
+  },
+  "Spite": {
+    "type": "Ghost"
+  },
+  "Spit Up": {
+    "type": "Normal"
+  },
+  "Splash": {
+    "type": "Normal"
+  },
+  "Splintered Stormshards": {
+    "type": "Rock"
+  },
+  "Splishy Splash": {
+    "type": "Water"
+  },
+  "Spore": {
+    "type": "Grass"
+  },
+  "Spotlight": {
+    "type": "Normal"
+  },
+  "Springtide Storm": {
+    "type": "Fairy"
+  },
+  "Stealth Rock": {
+    "type": "Rock"
+  },
+  "Steam Eruption": {
+    "type": "Water"
+  },
+  "Steamroller": {
+    "type": "Bug"
+  },
+  "Steel Beam": {
+    "type": "Steel"
+  },
+  "Steel Roller": {
+    "type": "Steel"
+  },
+  "Steel Wing": {
+    "type": "Steel"
+  },
+  "Sticky Web": {
+    "type": "Bug"
+  },
+  "Stockpile": {
+    "type": "Normal"
+  },
+  "Stoked Sparksurfer": {
+    "type": "Electric"
+  },
+  "Stomp": {
+    "type": "Normal"
+  },
+  "Stomping Tantrum": {
+    "type": "Ground"
+  },
+  "Stone Axe": {
+    "type": "Rock"
+  },
+  "Stone Edge": {
+    "type": "Rock"
+  },
+  "Stored Power": {
+    "type": "Psychic"
+  },
+  "Storm Throw": {
+    "type": "Fighting"
+  },
+  "Strange Steam": {
+    "type": "Fairy"
+  },
+  "Strength": {
+    "type": "Normal"
+  },
+  "Strength Sap": {
+    "type": "Grass"
+  },
+  "String Shot": {
+    "type": "Bug"
+  },
+  "Struggle": {
+    "type": "Normal"
+  },
+  "Struggle Bug": {
+    "type": "Bug"
+  },
+  "Stuff Cheeks": {
+    "type": "Normal"
+  },
+  "Stun Spore": {
+    "type": "Grass"
+  },
+  "Submission": {
+    "type": "Fighting"
+  },
+  "Substitute": {
+    "type": "Normal"
+  },
+  "Subzero Slammer": {
+    "type": "Ice"
+  },
+  "Sucker Punch": {
+    "type": "Dark"
+  },
+  "Sunny Day": {
+    "type": "Fire"
+  },
+  "Sunsteel Strike": {
+    "type": "Steel"
+  },
+  "Supercell Slam": {
+    "type": "Electric"
+  },
+  "Super Fang": {
+    "type": "Normal"
+  },
+  "Superpower": {
+    "type": "Fighting"
+  },
+  "Supersonic": {
+    "type": "Normal"
+  },
+  "Supersonic Skystrike": {
+    "type": "Flying"
+  },
+  "Surf": {
+    "type": "Water"
+  },
+  "Surging Strikes": {
+    "type": "Water"
+  },
+  "Swagger": {
+    "type": "Normal"
+  },
+  "Swallow": {
+    "type": "Normal"
+  },
+  "Sweet Kiss": {
+    "type": "Fairy"
+  },
+  "Sweet Scent": {
+    "type": "Normal"
+  },
+  "Swift": {
+    "type": "Normal"
+  },
+  "Switcheroo": {
+    "type": "Dark"
+  },
+  "Swords Dance": {
+    "type": "Normal"
+  },
+  "Synchronoise": {
+    "type": "Psychic"
+  },
+  "Synthesis": {
+    "type": "Grass"
+  },
+  "Syrup Bomb": {
+    "type": "Grass"
+  },
+  "Tachyon Cutter": {
+    "type": "Steel"
+  },
+  "Tackle": {
+    "type": "Normal"
+  },
+  "Tail Glow": {
+    "type": "Bug"
+  },
+  "Tail Slap": {
+    "type": "Normal"
+  },
+  "Tail Whip": {
+    "type": "Normal"
+  },
+  "Tailwind": {
+    "type": "Flying"
+  },
+  "Take Down": {
+    "type": "Normal"
+  },
+  "Take Heart": {
+    "type": "Psychic"
+  },
+  "Tar Shot": {
+    "type": "Rock"
+  },
+  "Taunt": {
+    "type": "Dark"
+  },
+  "Tearful Look": {
+    "type": "Normal"
+  },
+  "Teatime": {
+    "type": "Normal"
+  },
+  "Techno Blast": {
+    "type": "Normal"
+  },
+  "Tectonic Rage": {
+    "type": "Ground"
+  },
+  "Teeter Dance": {
+    "type": "Normal"
+  },
+  "Telekinesis": {
+    "type": "Psychic"
+  },
+  "Teleport": {
+    "type": "Psychic"
+  },
+  "Temper Flare": {
+    "type": "Fire"
+  },
+  "Tera Blast": {
+    "type": "Normal"
+  },
+  "Tera Starstorm": {
+    "type": "Normal"
+  },
+  "Terrain Pulse": {
+    "type": "Normal"
+  },
+  "Thief": {
+    "type": "Dark"
+  },
+  "Thousand Arrows": {
+    "type": "Ground"
+  },
+  "Thousand Waves": {
+    "type": "Ground"
+  },
+  "Thrash": {
+    "type": "Normal"
+  },
+  "Throat Chop": {
+    "type": "Dark"
+  },
+  "Thunder": {
+    "type": "Electric"
+  },
+  "Thunderbolt": {
+    "type": "Electric"
+  },
+  "Thunder Cage": {
+    "type": "Electric"
+  },
+  "Thunderclap": {
+    "type": "Electric"
+  },
+  "Thunder Fang": {
+    "type": "Electric"
+  },
+  "Thunderous Kick": {
+    "type": "Fighting"
+  },
+  "Thunder Punch": {
+    "type": "Electric"
+  },
+  "Thunder Shock": {
+    "type": "Electric"
+  },
+  "Thunder Wave": {
+    "type": "Electric"
+  },
+  "Tickle": {
+    "type": "Normal"
+  },
+  "Tidy Up": {
+    "type": "Normal"
+  },
+  "Topsy-Turvy": {
+    "type": "Dark"
+  },
+  "Torch Song": {
+    "type": "Fire"
+  },
+  "Torment": {
+    "type": "Dark"
+  },
+  "Toxic": {
+    "type": "Poison"
+  },
+  "Toxic Spikes": {
+    "type": "Poison"
+  },
+  "Toxic Thread": {
+    "type": "Poison"
+  },
+  "Trailblaze": {
+    "type": "Grass"
+  },
+  "Transform": {
+    "type": "Normal"
+  },
+  "Tri Attack": {
+    "type": "Normal"
+  },
+  "Trick": {
+    "type": "Psychic"
+  },
+  "Trick-or-Treat": {
+    "type": "Ghost"
+  },
+  "Trick Room": {
+    "type": "Psychic"
+  },
+  "Triple Arrows": {
+    "type": "Fighting"
+  },
+  "Triple Axel": {
+    "type": "Ice"
+  },
+  "Triple Dive": {
+    "type": "Water"
+  },
+  "Triple Kick": {
+    "type": "Fighting"
+  },
+  "Trop Kick": {
+    "type": "Grass"
+  },
+  "Trump Card": {
+    "type": "Normal"
+  },
+  "Twin Beam": {
+    "type": "Psychic"
+  },
+  "Twineedle": {
+    "type": "Bug"
+  },
+  "Twinkle Tackle": {
+    "type": "Fairy"
+  },
+  "Twister": {
+    "type": "Dragon"
+  },
+  "Upper Hand": {
+    "type": "Fighting"
+  },
+  "Uproar": {
+    "type": "Normal"
+  },
+  "U-turn": {
+    "type": "Bug"
+  },
+  "Vacuum Wave": {
+    "type": "Fighting"
+  },
+  "V-create": {
+    "type": "Fire"
+  },
+  "Veevee Volley": {
+    "type": "Normal"
+  },
+  "Venom Drench": {
+    "type": "Poison"
+  },
+  "Venoshock": {
+    "type": "Poison"
+  },
+  "Victory Dance": {
+    "type": "Fighting"
+  },
+  "Vine Whip": {
+    "type": "Grass"
+  },
+  "Vise Grip": {
+    "type": "Normal"
+  },
+  "Vital Throw": {
+    "type": "Fighting"
+  },
+  "Volt Switch": {
+    "type": "Electric"
+  },
+  "Volt Tackle": {
+    "type": "Electric"
+  },
+  "Wake-Up Slap": {
+    "type": "Fighting"
+  },
+  "Waterfall": {
+    "type": "Water"
+  },
+  "Water Gun": {
+    "type": "Water"
+  },
+  "Water Pledge": {
+    "type": "Water"
+  },
+  "Water Pulse": {
+    "type": "Water"
+  },
+  "Water Shuriken": {
+    "type": "Water"
+  },
+  "Water Sport": {
+    "type": "Water"
+  },
+  "Water Spout": {
+    "type": "Water"
+  },
+  "Wave Crash": {
+    "type": "Water"
+  },
+  "Weather Ball": {
+    "type": "Normal"
+  },
+  "Whirlpool": {
+    "type": "Water"
+  },
+  "Whirlwind": {
+    "type": "Normal"
+  },
+  "Wicked Blow": {
+    "type": "Dark"
+  },
+  "Wicked Torque": {
+    "type": "Dark"
+  },
+  "Wide Guard": {
+    "type": "Rock"
+  },
+  "Wildbolt Storm": {
+    "type": "Electric"
+  },
+  "Wild Charge": {
+    "type": "Electric"
+  },
+  "Will-O-Wisp": {
+    "type": "Fire"
+  },
+  "Wing Attack": {
+    "type": "Flying"
+  },
+  "Wish": {
+    "type": "Normal"
+  },
+  "Withdraw": {
+    "type": "Water"
+  },
+  "Wonder Room": {
+    "type": "Psychic"
+  },
+  "Wood Hammer": {
+    "type": "Grass"
+  },
+  "Work Up": {
+    "type": "Normal"
+  },
+  "Worry Seed": {
+    "type": "Grass"
+  },
+  "Wrap": {
+    "type": "Normal"
+  },
+  "Wring Out": {
+    "type": "Normal"
+  },
+  "X-Scissor": {
+    "type": "Bug"
+  },
+  "Yawn": {
+    "type": "Normal"
+  },
+  "Zap Cannon": {
+    "type": "Electric"
+  },
+  "Zen Headbutt": {
+    "type": "Psychic"
+  },
+  "Zing Zap": {
+    "type": "Electric"
+  },
+  "Zippy Zap": {
+    "type": "Electric"
+  },
+  "Paleo Wave": {
+    "type": "Rock"
+  },
+  "Shadow Strike": {
+    "type": "Ghost"
+  },
+  "Polar Flare": {
+    "type": "Fire"
+  }
+}
