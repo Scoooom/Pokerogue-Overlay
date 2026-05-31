@@ -118,23 +118,28 @@
       color: var(--bad);
       animation: pulse-bad 1.4s ease-in-out infinite;
     }
-
     .boss-chip.soon {
       background: rgba(255,212,71,0.18);
       border: 1px solid rgba(255,212,71,0.4);
       color: var(--warn);
     }
-
     .boss-chip.normal {
       background: rgba(53,232,120,0.12);
       border: 1px solid rgba(53,232,120,0.3);
       color: var(--good);
     }
+    .boss-chip.hidden { opacity: 0; pointer-events: none; }
 
-    .boss-chip.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
+    /* Encounter type colours */
+    .enc-rival       { background: rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.4); color: #a78bfa; }
+    .enc-evil-grunt  { background: rgba(248,88,136,0.15);  border-color: rgba(248,88,136,0.35); color: #f85888; }
+    .enc-evil-leader { background: rgba(192,48,40,0.18);   border-color: rgba(192,48,40,0.45);  color: #ff6b5b; }
+    .enc-gym-leader  { background: rgba(104,144,240,0.18); border-color: rgba(104,144,240,0.4); color: #6890f0; }
+    .enc-elite-four  { background: rgba(112,56,248,0.18);  border-color: rgba(112,56,248,0.4);  color: #9060f8; }
+    .enc-champion    { background: rgba(255,212,71,0.2);   border-color: rgba(255,212,71,0.5);  color: #ffd447; }
+    .enc-final-boss  { background: rgba(255,79,94,0.25);   border-color: rgba(255,79,94,0.6);   color: #ff4f5e; animation: pulse-bad 1.4s ease-in-out infinite; }
+    .enc-wild-boss   { background: rgba(53,232,120,0.12);  border-color: rgba(53,232,120,0.3);  color: #35e878; }
+    .enc-trainer     { background: rgba(168,168,120,0.15); border-color: rgba(168,168,120,0.3); color: #c0c080; }
 
     .next-boss-label {
       font-size: 12px;
@@ -173,16 +178,55 @@
   </div>
 
   <script>
-    // Boss waves (every 10th wave is a trainer, every 50th is major boss)
-    const BOSS_WAVES = [];
-    for (let w = 10; w <= 500; w += 10) {
-      const isMajor = w % 50 === 0;
-      BOSS_WAVES.push({ wave: w, type: isMajor ? 'Elite' : 'Trainer' });
+    // ── Classic mode fixed battle map ──────────────────────────────────────────
+    // Sourced from src/enums/fixed-boss-waves.ts and wiki.pokerogue.net
+    const FIXED_BATTLES = {
+      5:   { type: 'Trainer',     label: 'Youngster',       icon: '👦' },
+      8:   { type: 'Rival',       label: 'Rival',           icon: '🤝' },
+      25:  { type: 'Rival',       label: 'Rival',           icon: '🤝' },
+      35:  { type: 'Evil Grunt',  label: 'Team Grunt',      icon: '😈' },
+      55:  { type: 'Rival',       label: 'Rival',           icon: '🤝' },
+      62:  { type: 'Evil Grunt',  label: 'Team Grunt',      icon: '😈' },
+      64:  { type: 'Evil Grunt',  label: 'Team Grunt',      icon: '😈' },
+      66:  { type: 'Evil Grunt',  label: 'Team Grunt',      icon: '😈' },
+      95:  { type: 'Rival',       label: 'Rival',           icon: '🤝' },
+      112: { type: 'Evil Grunt',  label: 'Team Grunt',      icon: '😈' },
+      114: { type: 'Evil Grunt',  label: 'Team Grunt',      icon: '😈' },
+      115: { type: 'Evil Leader', label: 'Team Leader',     icon: '💀' },
+      145: { type: 'Rival',       label: 'Rival',           icon: '🤝' },
+      164: { type: 'Evil Grunt',  label: 'Team Grunt',      icon: '😈' },
+      165: { type: 'Evil Leader', label: 'Team Leader',     icon: '💀' },
+      182: { type: 'Elite Four',  label: 'Elite Four',      icon: '⚔️' },
+      184: { type: 'Elite Four',  label: 'Elite Four',      icon: '⚔️' },
+      186: { type: 'Elite Four',  label: 'Elite Four',      icon: '⚔️' },
+      188: { type: 'Elite Four',  label: 'Elite Four',      icon: '⚔️' },
+      190: { type: 'Champion',    label: 'Champion',        icon: '👑' },
+      195: { type: 'Rival',       label: 'Final Rival',     icon: '🤝' },
+      200: { type: 'Final Boss',  label: 'Eternatus',       icon: '☄️' },
+    };
+
+    // Every 10th wave is a wild boss unless it's a fixed battle
+    // Every 20th/30th (and +30 after) may be a gym leader in classic
+    // Gym leader waves: 20, 30, then every 30 after that (60,90,120,150,180)
+    // (50% chance each, so we mark them as "possible" gym leader)
+    const GYM_LEADER_WAVES = new Set([20, 30, 60, 90, 120, 150, 180]);
+
+    function getEncounterAt(wave) {
+      const w = Number(wave);
+      if (FIXED_BATTLES[w]) return FIXED_BATTLES[w];
+      if (GYM_LEADER_WAVES.has(w)) return { type: 'Gym Leader', label: 'Gym Leader', icon: '🏅' };
+      if (w % 10 === 0) return { type: 'Wild Boss',   label: 'Wild Boss',   icon: '⭐' };
+      return null;
     }
 
     function getNextBoss(currentWave) {
       const w = Number(currentWave) || 0;
-      return BOSS_WAVES.find(b => b.wave >= w) || null;
+      // Find next notable encounter from current wave onward
+      for (let i = w; i <= 200; i++) {
+        const enc = getEncounterAt(i);
+        if (enc) return { wave: i, ...enc };
+      }
+      return null;
     }
 
     function update(data) {
@@ -205,19 +249,20 @@
       }
 
       const dist = next.wave - Number(wave);
+      const typeClass = 'enc-' + next.type.toLowerCase().replace(/\s+/g, '-');
 
       if (dist === 0) {
-        chip.className = 'boss-chip now';
-        chip.textContent = `⚡ ${next.type} BOSS`;
+        chip.className = `boss-chip now ${typeClass}`;
+        chip.textContent = `${next.icon} ${next.label}`;
         label.textContent = `Wave ${next.wave}`;
       } else if (dist <= 5) {
-        chip.className = 'boss-chip soon';
-        chip.textContent = `${next.type} in ${dist}`;
+        chip.className = `boss-chip soon ${typeClass}`;
+        chip.textContent = `${next.icon} ${next.label} in ${dist}`;
         label.textContent = `Wave ${next.wave}`;
       } else {
-        chip.className = 'boss-chip normal';
-        chip.textContent = `Next: Wave ${next.wave}`;
-        label.textContent = `${next.type} (${dist} away)`;
+        chip.className = `boss-chip normal ${typeClass}`;
+        chip.textContent = `${next.icon} ${next.label} · Wave ${next.wave}`;
+        label.textContent = `${dist} waves away`;
       }
     }
 
