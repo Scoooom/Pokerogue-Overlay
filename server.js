@@ -7,7 +7,78 @@ const https   = require("https");
 const app  = express();
 const PORT = 3000;
 
-// ── Showdown sprite logic (mirrors overlay.html) ────────────────────────────
+// ── Move database ─────────────────────────────────────────────────────────────
+const MOVES_DB = JSON.parse(fs.readFileSync(path.join(__dirname, "moves.json")));
+
+// ── Normalization (was in tampermonkey, now lives here) ───────────────────────
+function getName(x) {
+  if (!x) return "";
+  if (typeof x === "string") return x;
+  return x.name || x.label || x.type || x.id || String(x);
+}
+
+function normalizeMove(m) {
+  if (!m) return null;
+  const moveName = (typeof m === "string" ? m : (m.name || m.id || (m.move && m.move.name) || "Unknown Move")).trim();
+  const match    = MOVES_DB[moveName];
+  return {
+    name: moveName,
+    type: match?.type ? match.type.trim().toUpperCase() : "",
+  };
+}
+
+function normalizePokemon(p, index) {
+  const moveset = Array.isArray(p.moves)    ? p.moves
+                : Array.isArray(p.moveset)  ? p.moveset
+                : [];
+  return {
+    name:            p.name || `Pokemon ${index + 1}`,
+    nickname:        p.nickname || "",
+    form:            p.form || "",
+    gender:          p.gender || "",
+    level:           p.level ?? "--",
+    hp:              p.currentHP ?? p.hp ?? "--",
+    maxHp:           p.maxHP ?? p.maxHp ?? "--",
+    status:          p.status || "",
+    types:           Array.isArray(p.types) ? p.types.map(getName) : [],
+    tempTypes:       Array.isArray(p.tempTypes) ? p.tempTypes.map(getName) : [],
+    teraType:        p.teraType || "",
+    isTerastallized: !!p.isTerastallized,
+    ability:         getName(p.ability),
+    tempAbility:     getName(p.tempAbility),
+    passive:         getName(p.passiveAbility),
+    passiveEnabled:  !!p.isPassiveEnabled,
+    nature:          getName(p.nature),
+    moves:           moveset.map(normalizeMove).filter(Boolean),
+    tempMoveset:     Array.isArray(p.tempMoveset) ? p.tempMoveset.map(normalizeMove).filter(Boolean) : [],
+    items:           Array.isArray(p.items)      ? p.items.map(getName)
+                   : Array.isArray(p.heldItems)  ? p.heldItems.map(getName)
+                   : p.heldItem                  ? [getName(p.heldItem)]
+                   : [],
+    baseStats:       p.baseStats || {},
+    statStages:      p.statStages || {},
+    tempStats:       p.tempStats || {},
+    shiny:           !!p.shiny,
+    variant:         p.variant || "",
+    isFusion:        !!p.isFusion,
+  };
+}
+
+function normalizeGameInfo(raw, weather) {
+  const info = raw || {};
+  return {
+    gameInfoVersion: info.gameInfoVersion || "",
+    wave:            info.wave ?? "--",
+    biome:           info.biome ?? "",
+    gameMode:        info.gameMode ?? "",
+    playTime:        info.playTime ?? 0,
+    money:           info.money ?? 0,
+    weather:         weather || null,
+    party:           Array.isArray(info.party) ? info.party.map(normalizePokemon) : [],
+  };
+}
+
+// ── Sprite helpers (Showdown CDN) ─────────────────────────────────────────────
 function slug(name) {
   return String(name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
@@ -28,24 +99,12 @@ function cleanPokemonName(name) {
   return n.split(" ").filter(Boolean).join(" ");
 }
 
-// Strip a form suffix from the name if it's already captured in explicitForm.
-// e.g. "Zacian-crowned" + form "crowned" -> "Zacian"
-//      "Mega Latios"    + form "mega"    -> "Latios"
-//      "Latios-mega"    + form "mega"    -> "Latios"
 function baseNameForSprite(name, explicitForm) {
   let n = cleanPokemonName(name);
-  // Strip "Mega " prefix (e.g. "Mega Latios")
   if (n.toLowerCase().startsWith("mega ")) n = n.slice(5);
-  // Strip hyphenated form suffix when it matches the explicit form
-  // e.g. "Zacian-crowned" with form "crowned" -> "Zacian"
   if (explicitForm) {
     const formSlug = slug(explicitForm);
-    const lower = n.toLowerCase();
-    // Strip "-<form>" suffix
-    if (lower.endsWith("-" + formSlug)) {
-      n = n.slice(0, -(formSlug.length + 1));
-    }
-    // Strip "-mega", "-mega-x", "-mega-y" suffixes regardless
+    if (n.toLowerCase().endsWith("-" + formSlug)) n = n.slice(0, -(formSlug.length + 1));
     n = n.replace(/-mega-[xy]$/i, "").replace(/-mega$/i, "");
   }
   return n.trim();
@@ -97,7 +156,6 @@ function spriteCandidates(name, form) {
   return candidates;
 }
 
-// Try each candidate URL in order, return the first that serves a real image
 function fetchFirstWorking(candidates) {
   return new Promise((resolve, reject) => {
     let i = 0;
@@ -121,12 +179,13 @@ function fetchFirstWorking(candidates) {
 
 // ── Game state ────────────────────────────────────────────────────────────────
 let latestData = {
+  gameInfoVersion: "",
   wave: "--", biome: "", gameMode: "", playTime: 0, money: 0,
-  weather: null, team: [], updatedAt: Date.now()
+  weather: null, party: [], updatedAt: Date.now(),
 };
 
 app.use(cors());
-app.use(express.json({ limit: "2mb" }));
+app.use(express.json({ limit: "10mb" }));
 app.use(express.static(__dirname));
 
 // ── Pages ─────────────────────────────────────────────────────────────────────
@@ -136,20 +195,17 @@ app.get("/wave",  (req, res) => res.sendFile(path.join(__dirname, "wave.html")))
 app.get("/party", (req, res) => res.sendFile(path.join(__dirname, "party.html")));
 app.get("/stats", (req, res) => res.sendFile(path.join(__dirname, "stats.html")));
 
-// ── Sprite endpoint ──────────────────────────────────────────────────────────
-// GET /sprite?slot=0
-// Tries each Showdown candidate in order, proxies the first working image
-// as raw bytes so it can be used directly in <img src="/sprite?slot=N">.
+// ── Sprite ────────────────────────────────────────────────────────────────────
 app.get("/sprite", async (req, res) => {
   const slot = parseInt(req.query.slot);
   if (isNaN(slot) || slot < 0 || slot > 5)
     return res.status(400).json({ error: "slot must be 0–5" });
 
-  const pokemon = latestData.team[slot];
+  const pokemon = latestData.party[slot];
   if (!pokemon)
     return res.status(404).json({ error: `No pokemon in slot ${slot}` });
 
-  const realName = cleanPokemonName(pokemon.name);
+  const realName   = cleanPokemonName(pokemon.name);
   const candidates = spriteCandidates(realName, pokemon.form);
 
   try {
@@ -164,42 +220,47 @@ app.get("/sprite", async (req, res) => {
   }
 });
 
-// ── Slot names ───────────────────────────────────────────────────────────────
-// GET /names        → all 6 slot names as array
-// GET /names?slot=0 → single slot name as string
+// ── Names ─────────────────────────────────────────────────────────────────────
 app.get("/names", (req, res) => {
-  const team = latestData.team || [];
+  const party = latestData.party || [];
   if (req.query.slot !== undefined) {
     const slot = parseInt(req.query.slot);
     if (isNaN(slot) || slot < 0 || slot > 5)
       return res.status(400).json({ error: "slot must be 0–5" });
-    const p = team[slot];
+    const p = party[slot];
     return res.json({ slot, name: p ? (p.nickname || p.name) : null });
   }
-  // Return all slots
-  const slots = Array.from({ length: 6 }, (_, i) => {
-    const p = team[i];
+  res.json(Array.from({ length: 6 }, (_, i) => {
+    const p = party[i];
     return { slot: i, name: p ? (p.nickname || p.name) : null };
-  });
-  res.json(slots);
+  }));
 });
 
-// ── Data API ──────────────────────────────────────────────────────────────────
+// ── Data ──────────────────────────────────────────────────────────────────────
 app.get("/data", (req, res) => res.json(latestData));
 
+// ── Update (from Tampermonkey) ────────────────────────────────────────────────
 app.post("/update", (req, res) => {
-  latestData = { ...req.body, updatedAt: Date.now() };
-  console.log(`[Wave ${latestData.wave}] ${latestData.biome} | Team: ${(latestData.team||[]).map(p=>p.name).join(", ")}`);
+  const { gameInfo, weather } = req.body;
+  if (!gameInfo) return res.status(400).json({ error: "missing gameInfo" });
+
+  latestData = {
+    ...normalizeGameInfo(gameInfo, weather),
+    updatedAt: Date.now(),
+  };
+
+  console.log(`[Wave ${latestData.wave}] ${latestData.biome} | ${latestData.party.map(p => p.name).join(", ")}`);
   res.json({ ok: true });
 });
 
 app.listen(PORT, () => {
   console.log(`PokéRogue overlay running at http://localhost:${PORT}`);
-  console.log(`  Setup guide:   http://localhost:${PORT}/`);
-  console.log(`  Main overlay:  http://localhost:${PORT}/full`);
-  console.log(`  Wave display:  http://localhost:${PORT}/wave`);
-  console.log(`  Party strip:   http://localhost:${PORT}/party`);
-  console.log(`  Run stats:     http://localhost:${PORT}/stats`);
-  console.log(`  Sprite proxy:  http://localhost:${PORT}/sprite?slot=0`);
-  console.log(`  Slot names:    http://localhost:${PORT}/names`);
+  console.log(`  Setup:   http://localhost:${PORT}/`);
+  console.log(`  Full:    http://localhost:${PORT}/full`);
+  console.log(`  Wave:    http://localhost:${PORT}/wave`);
+  console.log(`  Party:   http://localhost:${PORT}/party`);
+  console.log(`  Stats:   http://localhost:${PORT}/stats`);
+  console.log(`  Sprite:  http://localhost:${PORT}/sprite?slot=0`);
+  console.log(`  Names:   http://localhost:${PORT}/names`);
+  console.log(`  Data:    http://localhost:${PORT}/data`);
 });

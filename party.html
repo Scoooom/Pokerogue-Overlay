@@ -343,7 +343,7 @@
     }
 
     function render(data) {
-      const team    = data.team || [];
+      const team    = data.party || [];
       const weather = data.weather || null;
       const slots   = [...team];
       while (slots.length < 6) slots.push(null);
@@ -369,7 +369,7 @@
       try {
         const res  = await fetch('/data', { cache: 'no-store' });
         const data = await res.json();
-        if ((data.team || []).length) render(data);
+        if ((data.party || []).length) render(data);
       } catch (e) {}
     }
 

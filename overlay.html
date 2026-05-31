@@ -824,7 +824,7 @@
     try {
       const res = await fetch('/data', { cache: 'no-store' });
       const data = await res.json();
-      const team = data.team || [];
+      const team = data.party || [];
       currentTeamCache = team;
       renderBossPanel(data.wave);
       document.getElementById('team').innerHTML = team.length ? team.map(renderPokemon).join('') : 'Waiting for team data...';

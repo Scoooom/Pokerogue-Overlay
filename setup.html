@@ -734,7 +734,7 @@
       const dot = document.getElementById('statusDot');
       const txt = document.getElementById('statusText');
       dot.classList.remove('offline');
-      const teamSize = (data.team || []).length;
+      const teamSize = (data.party || []).length;
       if (teamSize > 0) {
         txt.textContent = `Server online · Wave ${data.wave} · ${data.biome} · ${teamSize} Pokémon in party`;
       } else {
@@ -789,7 +789,7 @@
         biome: data.biome,
         gameMode: data.gameMode,
         playTime: data.playTime,
-        party: (data.team || []).map(p => ({
+        party: (data.party || []).map(p => ({
           name: p.name,
           form: p.form || undefined,
           level: p.level,
@@ -800,7 +800,7 @@
         updatedAt: new Date(data.updatedAt).toLocaleTimeString(),
       };
       document.getElementById('dataPreview').textContent = JSON.stringify(summary, null, 2);
-      buildSpriteGrid(data.team);
+      buildSpriteGrid(data.party);
     } catch {
       document.getElementById('dataPreview').textContent = '// No data — server offline or game not running';
     }
