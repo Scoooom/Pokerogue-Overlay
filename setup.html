@@ -803,6 +803,152 @@
 
   </div><!-- /routes -->
 
+  <div class="section">
+    <div class="section-title">Customization</div>
+    <div class="section-desc">Every visual property is controlled by a CSS variable. Paste overrides into the <strong>Custom CSS</strong> field of any OBS browser source. Variables cascade — override once and it affects everything.</div>
+
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-name">How to customize</div>
+          <div class="route-desc">In OBS, right-click a browser source → Properties → scroll down to <strong>Custom CSS</strong>. Paste your overrides there. They apply on top of the default theme without touching any files.</div>
+        </div>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Variable reference</div>
+        <div style="background:#000;border:1px solid var(--border);border-radius:8px;padding:16px;font-size:11px;line-height:2;color:#a3e635;max-height:320px;overflow:auto;font-family:var(--mono);">
+<pre style="margin:0;white-space:pre-wrap;color:#a3e635;">/* ── Colours ──────────────────────── */
+--color-good        /* HP high, alive, stat up      */
+--color-warn        /* HP medium, warnings          */
+--color-bad         /* HP low, stat down, fainted   */
+--color-accent      /* Wave number, timer           */
+--color-shiny       /* Shiny badge colour           */
+--color-passive     /* Passive ability text         */
+--color-text        /* Primary text                 */
+--color-text-muted  /* Labels, secondary text       */
+--color-text-dim    /* Neutral stat value, very dim */
+--color-text-faint  /* Dividers, subtle backgrounds */
+
+/* ── Status conditions ────────────── */
+--color-status-brn  --color-status-par
+--color-status-psn  --color-status-slp  --color-status-frz
+
+/* ── Backgrounds ───────────────────── */
+--bg-body           /* Page background              */
+--bg-card           /* Card background gradient     */
+--bg-strip          /* Party strip background       */
+--bg-widget         /* Wave widget background       */
+--bg-panel          /* Stats panel background       */
+--bg-move           /* Move row background          */
+--bg-stat-neutral   /* Stat cell background (0)     */
+--bg-stat-up        /* Stat cell background (+)     */
+--bg-stat-down      /* Stat cell background (-)     */
+
+/* ── Borders ───────────────────────── */
+--border-color            /* Card / strip border      */
+--border-color-move       /* Move row border          */
+--border-color-stat       /* Stat cell border         */
+--border-color-stat-up    /* Stat cell border (+)     */
+--border-color-stat-down  /* Stat cell border (-)     */
+--border-radius-card      /* Card corner radius       */
+--border-radius-strip     /* Strip corner radius      */
+--border-radius-badge     /* Type/status badge radius */
+--border-radius-move      /* Move row radius          */
+--border-radius-stat      /* Stat cell radius         */
+--border-radius-widget    /* Widget corner radius     */
+
+/* ── Shadows ───────────────────────── */
+--shadow-strip      --shadow-widget
+
+/* ── Typography ────────────────────── */
+--font-main         --font-display
+--font-size-name-h  --font-size-name-v
+--font-size-level   --font-size-type    --font-size-move
+--font-size-stat-label  --font-size-stat-val
+--font-size-ability --font-size-status  --font-size-hp
+--font-size-shiny
+
+/* ── Layout ────────────────────────── */
+--sprite-size       --sprite-size-h
+--card-gap          --stat-grid-height
+--hp-bar-height     --hp-bar-radius     --hp-bar-bg
+--wave-number-size  --biome-size
+--stat-value-size   --timer-size
+
+/* ── Effects ───────────────────────── */
+--fainted-opacity   --fainted-filter</pre>
+        </div>
+
+        <div class="preview-label" style="margin-top:16px;">Example configurations</div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px;">
+
+          <div style="background:#000;border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:11px;">
+            <div style="color:var(--accent);font-weight:700;margin-bottom:8px;">Minimal — no backgrounds, clean text</div>
+            <pre style="margin:0;white-space:pre-wrap;color:#a3e635;">:root {
+  --bg-card: transparent;
+  --bg-strip: transparent;
+  --bg-widget: transparent;
+  --bg-panel: transparent;
+  --bg-move: transparent;
+  --bg-stat-neutral: transparent;
+  --border-color: transparent;
+  --border-color-move: transparent;
+  --border-color-stat: rgba(255,255,255,0.06);
+  --shadow-strip: none;
+  --shadow-widget: none;
+}</pre>
+          </div>
+
+          <div style="background:#000;border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:11px;">
+            <div style="color:var(--accent);font-weight:700;margin-bottom:8px;">Neon — bright glowing borders, vivid colours</div>
+            <pre style="margin:0;white-space:pre-wrap;color:#a3e635;">:root {
+  --color-good:    #00ff88;
+  --color-warn:    #ffee00;
+  --color-bad:     #ff2244;
+  --color-accent:  #00eeff;
+  --border-color:  rgba(0,238,255,0.4);
+  --bg-card: linear-gradient(170deg, rgba(0,10,30,0.95) 0%, rgba(0,5,20,0.95) 100%);
+  --shadow-strip:  0 0 30px rgba(0,238,255,0.15);
+}</pre>
+          </div>
+
+          <div style="background:#000;border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:11px;">
+            <div style="color:var(--accent);font-weight:700;margin-bottom:8px;">High contrast — solid dark, no transparency</div>
+            <pre style="margin:0;white-space:pre-wrap;color:#a3e635;">:root {
+  --bg-card: #0a0a0f;
+  --bg-strip: #0a0a0f;
+  --bg-widget: #0a0a0f;
+  --bg-panel: #0a0a0f;
+  --bg-move: #111118;
+  --border-color: rgba(255,255,255,0.2);
+  --border-radius-card: 4px;
+  --border-radius-strip: 4px;
+  --border-radius-widget: 4px;
+  --fainted-opacity: 0.2;
+}</pre>
+          </div>
+
+          <div style="background:#000;border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:11px;">
+            <div style="color:var(--accent);font-weight:700;margin-bottom:8px;">Compact — smaller text and sprites</div>
+            <pre style="margin:0;white-space:pre-wrap;color:#a3e635;">:root {
+  --sprite-size:       56px;
+  --sprite-size-h:     48px;
+  --font-size-name-v:  10px;
+  --font-size-name-h:  9px;
+  --font-size-move:    8.5px;
+  --font-size-stat-label: 5.5px;
+  --font-size-stat-val:   8px;
+  --stat-grid-height:  22px;
+  --hp-bar-height:     3px;
+}</pre>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div><!-- /customization -->
+
   <footer>
     <span>PokéRogue Overlay — running on localhost:3000</span>
     <span id="footerTime"></span>

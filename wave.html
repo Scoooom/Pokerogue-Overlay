@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>PokéRogue – Wave Display</title>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/theme.css">
   <style>
     :root {
       --good:   #35e878;
@@ -51,7 +52,7 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--color-accent);
       opacity: 0.9;
       flex: 1;
     }
@@ -86,7 +87,7 @@
 
     .wave-number {
       font-family: 'Inter', sans-serif;
-      font-size: 52px;
+      font-size: var(--wave-number-size);
       font-weight: 900;
       line-height: 1;
       letter-spacing: -0.02em;
@@ -115,30 +116,30 @@
     .boss-chip.now {
       background: rgba(255,79,94,0.22);
       border: 1px solid rgba(255,79,94,0.55);
-      color: var(--bad);
+      color: var(--color-bad);
       animation: pulse-bad 1.4s ease-in-out infinite;
     }
     .boss-chip.soon {
       background: rgba(255,212,71,0.18);
       border: 1px solid rgba(255,212,71,0.4);
-      color: var(--warn);
+      color: var(--color-warn);
     }
     .boss-chip.normal {
       background: rgba(53,232,120,0.12);
       border: 1px solid rgba(53,232,120,0.3);
-      color: var(--good);
+      color: var(--color-good);
     }
     .boss-chip.hidden { opacity: 0; pointer-events: none; }
 
     /* Encounter type colours */
-    .enc-rival       { background: rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.4); color: #a78bfa; }
+    .enc-rival       { background: rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.4); color: var(--color-passive); }
     .enc-evil-grunt  { background: rgba(248,88,136,0.15);  border-color: rgba(248,88,136,0.35); color: #f85888; }
     .enc-evil-leader { background: rgba(192,48,40,0.18);   border-color: rgba(192,48,40,0.45);  color: #ff6b5b; }
     .enc-gym-leader  { background: rgba(104,144,240,0.18); border-color: rgba(104,144,240,0.4); color: #6890f0; }
     .enc-elite-four  { background: rgba(112,56,248,0.18);  border-color: rgba(112,56,248,0.4);  color: #9060f8; }
-    .enc-champion    { background: rgba(255,212,71,0.2);   border-color: rgba(255,212,71,0.5);  color: #ffd447; }
-    .enc-final-boss  { background: rgba(255,79,94,0.25);   border-color: rgba(255,79,94,0.6);   color: #ff4f5e; animation: pulse-bad 1.4s ease-in-out infinite; }
-    .enc-wild-boss   { background: rgba(53,232,120,0.12);  border-color: rgba(53,232,120,0.3);  color: #35e878; }
+    .enc-champion    { background: rgba(255,212,71,0.2);   border-color: rgba(255,212,71,0.5);  color: var(--color-warn); }
+    .enc-final-boss  { background: rgba(255,79,94,0.25);   border-color: rgba(255,79,94,0.6);   color: var(--color-bad); animation: pulse-bad 1.4s ease-in-out infinite; }
+    .enc-wild-boss   { background: rgba(53,232,120,0.12);  border-color: rgba(53,232,120,0.3);  color: var(--color-good); }
     .enc-trainer     { background: rgba(168,168,120,0.15); border-color: rgba(168,168,120,0.3); color: #c0c080; }
 
     .next-boss-label {
@@ -197,13 +198,13 @@
 
     .cycle-btn:hover {
       border-color: rgba(34,211,238,0.4);
-      color: var(--accent);
+      color: var(--color-accent);
       background: rgba(34,211,238,0.08);
     }
 
     .cycle-btn.active {
       border-color: rgba(34,211,238,0.6);
-      color: var(--accent);
+      color: var(--color-accent);
       background: rgba(34,211,238,0.14);
     }
   </style>
@@ -309,7 +310,7 @@
       const cycleVal = document.getElementById('cycleVal');
       if (cycleVal) {
         cycleVal.textContent = cycle ? `C-${cycle}` : '?';
-        cycleVal.style.color = cycle ? 'var(--good)' : 'var(--warn)';
+        cycleVal.style.color = cycle ? 'var(--color-good)' : 'var(--color-warn)';
       }
       // Highlight active cycle button
       document.querySelectorAll('.cycle-btn').forEach(btn => {

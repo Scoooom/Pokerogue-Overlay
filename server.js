@@ -367,4 +367,5 @@ app.listen(PORT, () => {
   console.log(`  Names:   http://localhost:${PORT}/names`);
   console.log(`  Data:    http://localhost:${PORT}/data`);
   console.log(`  Raw:     http://localhost:${PORT}/raw`);
+  console.log(`  Card:    http://localhost:${PORT}/card?slot=0`);
 });

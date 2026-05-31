@@ -1,0 +1,117 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PokéRogue Overlay — Theme Variables
+   ───────────────────────────────────────────────────────────────────────────
+   All visual properties are controlled here. Override any variable in your
+   OBS browser source Custom CSS field to customise the overlay.
+
+   Example — paste into OBS Custom CSS:
+   ─────────────────────────────────────
+   :root {
+     --card-bg: rgba(0, 0, 0, 0.95);
+     --accent: #ff6b6b;
+     --color-good: #00ff88;
+     --border-radius-card: 0px;
+   }
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ── Semantic colours ──────────────────────────────────────────────────── */
+  --color-good:       #35e878;   /* HP high, stat up, alive             */
+  --color-warn:       #ffd447;   /* HP medium, warnings                 */
+  --color-bad:        #ff4f5e;   /* HP low, stat down, fainted          */
+  --color-accent:     #22d3ee;   /* Primary accent (wave number, timer) */
+  --color-shiny:      #f9d34a;   /* Shiny badge / shiny count           */
+  --color-passive:    #a78bfa;   /* Passive ability text                */
+
+  /* ── Text ──────────────────────────────────────────────────────────────── */
+  --color-text:       #f8fbff;   /* Primary text                        */
+  --color-text-muted: rgba(255,255,255,0.45); /* Secondary / labels     */
+  --color-text-dim:   rgba(255,255,255,0.25); /* Very dim (neutral stat)*/
+  --color-text-faint: rgba(255,255,255,0.08); /* Dividers, subtle bg    */
+
+  /* ── Fonts ─────────────────────────────────────────────────────────────── */
+  --font-main:        'Rajdhani', 'Inter', sans-serif;
+  --font-display:     'Inter', 'Rajdhani', sans-serif;
+
+  /* ── Backgrounds ───────────────────────────────────────────────────────── */
+  --bg-body:          transparent;
+  --bg-card:          linear-gradient(170deg, rgba(8,10,24,0.88) 0%, rgba(4,8,20,0.84) 100%);
+  --bg-strip:         linear-gradient(180deg, rgba(8,10,24,0.88), rgba(4,8,20,0.84));
+  --bg-widget:        rgba(6,15,40,0.82);
+  --bg-panel:         rgba(5,10,26,0.84);
+  --bg-move:          rgba(255,255,255,0.05);
+  --bg-stat-neutral:  rgba(255,255,255,0.05);
+  --bg-stat-up:       rgba(53,232,120,0.08);
+  --bg-stat-down:     rgba(255,79,94,0.08);
+  --bg-type-badge:    0.28;      /* opacity multiplier for type badge bg*/
+  --bg-empty:         rgba(255,255,255,0.05);
+
+  /* ── Borders ───────────────────────────────────────────────────────────── */
+  --border-color:           rgba(255,255,255,0.13);
+  --border-color-move:      rgba(255,255,255,0.08);
+  --border-color-stat:      rgba(255,255,255,0.08);
+  --border-color-stat-up:   rgba(53,232,120,0.3);
+  --border-color-stat-down: rgba(255,79,94,0.3);
+  --border-radius-card:     12px;
+  --border-radius-strip:    16px;
+  --border-radius-badge:    10px;
+  --border-radius-move:     5px;
+  --border-radius-stat:     4px;
+  --border-radius-widget:   16px;
+
+  /* ── Shadows ───────────────────────────────────────────────────────────── */
+  --shadow-strip:     0 8px 32px rgba(0,0,0,0.55);
+  --shadow-widget:    0 4px 24px rgba(0,0,0,0.5);
+
+  /* ── Card internals ────────────────────────────────────────────────────── */
+  --sprite-size:          72px;   /* Width and max-height of sprite      */
+  --sprite-size-h:        60px;   /* Max-height of sprite                */
+  --card-padding-h:       8px 7px 9px;
+  --card-padding-v:       8px 10px 8px 8px;
+  --card-gap:             8px;    /* Gap between cards in strip          */
+
+  /* ── Typography sizes ──────────────────────────────────────────────────── */
+  --font-size-name-h:     11px;   /* Pokemon name (horizontal)           */
+  --font-size-name-v:     12px;   /* Pokemon name (vertical)             */
+  --font-size-level:      10px;
+  --font-size-type:       9px;
+  --font-size-move:       9.5px;
+  --font-size-stat-label: 6.5px;
+  --font-size-stat-val:   9px;
+  --font-size-ability:    9px;
+  --font-size-status:     9px;
+  --font-size-hp:         9px;
+  --font-size-shiny:      11px;
+
+  /* ── HP bar ────────────────────────────────────────────────────────────── */
+  --hp-bar-height:    4px;
+  --hp-bar-bg:        rgba(255,255,255,0.1);
+  --hp-bar-radius:    4px;
+
+  /* ── Stat stage grid ───────────────────────────────────────────────────── */
+  --stat-grid-height: 26px;
+
+  /* ── Wave widget ───────────────────────────────────────────────────────── */
+  --wave-number-size: 52px;
+  --wave-label-size:  10px;
+  --biome-size:       15px;
+  --mode-badge-size:  10px;
+
+  /* ── Stats widget ──────────────────────────────────────────────────────── */
+  --stat-icon-size:   18px;
+  --stat-label-size:  11px;
+  --stat-value-size:  22px;
+  --timer-size:       18px;
+
+  /* ── Status condition colours ──────────────────────────────────────────── */
+  --color-status-brn:   #ff643d;
+  --color-status-par:   #ffd447;
+  --color-status-psn:   #c080c0;
+  --color-status-slp:   #9aa8ff;
+  --color-status-frz:   #69d7ff;
+
+  /* ── Fainted / empty ───────────────────────────────────────────────────── */
+  --fainted-opacity:  0.38;
+  --fainted-filter:   grayscale(0.75);
+}

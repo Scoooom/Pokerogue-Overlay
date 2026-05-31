@@ -11,12 +11,12 @@ const TYPE_RGB = {
 };
 
 const STATUS_STYLE = {
-  BRN: 'background:rgba(255,100,61,0.25);border:1px solid rgba(255,100,61,0.5);color:#ff643d',
-  PAR: 'background:rgba(255,212,71,0.22);border:1px solid rgba(255,212,71,0.45);color:#ffd447',
-  PSN: 'background:rgba(160,64,160,0.22);border:1px solid rgba(160,64,160,0.45);color:#c080c0',
-  TOX: 'background:rgba(160,64,160,0.22);border:1px solid rgba(160,64,160,0.45);color:#c080c0',
-  SLP: 'background:rgba(154,168,255,0.22);border:1px solid rgba(154,168,255,0.45);color:#9aa8ff',
-  FRZ: 'background:rgba(105,215,255,0.22);border:1px solid rgba(105,215,255,0.45);color:#69d7ff',
+  BRN: 'background:rgba(255,100,61,0.25);border:1px solid rgba(255,100,61,0.5);color:var(--color-status-brn)',
+  PAR: 'background:rgba(255,212,71,0.22);border:1px solid rgba(255,212,71,0.45);color:var(--color-status-par)',
+  PSN: 'background:rgba(160,64,160,0.22);border:1px solid rgba(160,64,160,0.45);color:var(--color-status-psn)',
+  TOX: 'background:rgba(160,64,160,0.22);border:1px solid rgba(160,64,160,0.45);color:var(--color-status-psn)',
+  SLP: 'background:rgba(154,168,255,0.22);border:1px solid rgba(154,168,255,0.45);color:var(--color-status-slp)',
+  FRZ: 'background:rgba(105,215,255,0.22);border:1px solid rgba(105,215,255,0.45);color:var(--color-status-frz)',
 };
 
 const STAT_LABELS = { atk:'ATK', def:'DEF', spAtk:'SPA', spDef:'SPD', speed:'SPE', acc:'ACC', eva:'EVA' };
