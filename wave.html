@@ -53,9 +53,9 @@
       text-transform: uppercase;
       padding: 2px 8px;
       border-radius: var(--border-radius-badge);
-      background: rgba(167,139,250,0.18);
-      border: 1px solid rgba(167,139,250,0.35);
-      color: var(--color-passive);
+      background: var(--mode-badge-bg);
+      border: 1px solid var(--mode-badge-border);
+      color: var(--mode-badge-color);
       white-space: nowrap;
     }
 
@@ -85,7 +85,7 @@
       font-weight: 900;
       color: var(--color-accent);
       line-height: 1;
-      text-shadow: 0 0 24px color-mix(in srgb, var(--color-accent) 50%, transparent);
+      text-shadow: 0 0 24px var(--wave-number-glow);
     }
 
     .boss-row {
@@ -115,25 +115,25 @@
       min-height: 14px;
     }
 
-    .boss-chip.now  { background: rgba(255,79,94,0.22);  border-color: rgba(255,79,94,0.55);  color: var(--color-bad);  animation: pulse-bad 1.4s ease-in-out infinite; }
-    .boss-chip.soon { background: rgba(255,212,71,0.18); border-color: rgba(255,212,71,0.4);  color: var(--color-warn); }
-    .boss-chip.normal { background: rgba(53,232,120,0.12); border-color: rgba(53,232,120,0.3); color: var(--color-good); }
+    .boss-chip.now  { background: var(--enc-final-bg);   border-color: var(--enc-final-border); color: var(--color-bad);  animation: pulse-bad 1.4s ease-in-out infinite; }
+    .boss-chip.soon { background: var(--boss-soon-bg); border-color: var(--boss-soon-border); color: var(--color-warn); }
+    .boss-chip.normal { background: var(--enc-wild-bg);   border-color: var(--enc-wild-border); color: var(--color-good); }
     .boss-chip.hidden { opacity: 0; pointer-events: none; }
 
     /* Encounter type colours */
-    .enc-rival       { background: rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.4); color: #a78bfa; }
-    .enc-evil-grunt  { background: rgba(248,88,136,0.15);  border-color: rgba(248,88,136,0.35); color: #f85888; }
-    .enc-evil-leader { background: rgba(192,48,40,0.18);   border-color: rgba(192,48,40,0.45);  color: #ff6b5b; }
-    .enc-gym-leader  { background: rgba(104,144,240,0.18); border-color: rgba(104,144,240,0.4); color: #6890f0; }
-    .enc-elite-four  { background: rgba(112,56,248,0.18);  border-color: rgba(112,56,248,0.4);  color: #9060f8; }
-    .enc-champion    { background: rgba(255,212,71,0.2);   border-color: rgba(255,212,71,0.5);  color: var(--color-warn); }
-    .enc-final-boss  { background: rgba(255,79,94,0.25);   border-color: rgba(255,79,94,0.6);   color: var(--color-bad); animation: pulse-bad 1.4s ease-in-out infinite; }
-    .enc-wild-boss   { background: rgba(53,232,120,0.12);  border-color: rgba(53,232,120,0.3);  color: var(--color-good); }
-    .enc-trainer     { background: rgba(168,168,120,0.15); border-color: rgba(168,168,120,0.3); color: #c0c080; }
+    .enc-rival       { background: var(--enc-rival-bg);       border-color: var(--enc-rival-border);       color: var(--enc-rival-color); }
+    .enc-evil-grunt  { background: var(--enc-evil-grunt-bg);  border-color: var(--enc-evil-grunt-border);  color: var(--enc-evil-grunt-color); }
+    .enc-evil-leader { background: var(--enc-evil-leader-bg); border-color: var(--enc-evil-leader-border); color: var(--enc-evil-leader-color); }
+    .enc-gym-leader  { background: var(--enc-gym-bg);         border-color: var(--enc-gym-border);         color: var(--enc-gym-color); }
+    .enc-elite-four  { background: var(--enc-elite-bg);       border-color: var(--enc-elite-border);       color: var(--enc-elite-color); }
+    .enc-champion    { background: var(--enc-champion-bg);    border-color: var(--enc-champion-border);    color: var(--enc-champion-color); }
+    .enc-final-boss  { background: var(--enc-final-bg);      border-color: var(--enc-final-border);       color: var(--enc-final-color); animation: pulse-bad 1.4s ease-in-out infinite; }
+    .enc-wild-boss   { background: var(--enc-wild-bg);       border-color: var(--enc-wild-border);        color: var(--enc-wild-color); }
+    .enc-trainer     { background: var(--enc-trainer-bg);    border-color: var(--enc-trainer-border);     color: var(--enc-trainer-color); }
 
     @keyframes pulse-bad {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(255,79,94,0.4); }
-      50%       { box-shadow: 0 0 0 5px rgba(255,79,94,0); }
+      0%, 100% { box-shadow: 0 0 0 0 var(--enc-final-border); }
+      50%       { box-shadow: 0 0 0 5px transparent; }
     }
 
     .cycle-row {
@@ -166,7 +166,7 @@
       padding: 2px 8px;
       border-radius: 5px;
       border: 1px solid var(--border-color);
-      background: rgba(255,255,255,0.06);
+      background: var(--cycle-btn-bg);
       color: var(--color-text-muted);
       cursor: pointer;
       text-decoration: none;
@@ -174,15 +174,15 @@
     }
 
     .cycle-btn:hover {
-      border-color: rgba(34,211,238,0.4);
+      border-color: var(--border-color-stat-up);
       color: var(--color-accent);
-      background: rgba(34,211,238,0.08);
+      background: var(--cycle-btn-hover-bg);
     }
 
     .cycle-btn.active {
-      border-color: rgba(34,211,238,0.6);
+      border-color: var(--cycle-btn-active-border);
       color: var(--color-accent);
-      background: rgba(34,211,238,0.14);
+      background: var(--cycle-btn-active-bg);
     }
   </style>
   <link rel="stylesheet" href="/custom.css">

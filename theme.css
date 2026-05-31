@@ -115,3 +115,153 @@
   --fainted-opacity:  0.38;
   --fainted-filter:   grayscale(0.75);
 }
+
+/* ── Wave widget encounter type colours ────────────────────────────────────── */
+--enc-rival-color:        #a78bfa;
+--enc-rival-bg:           rgba(167,139,250,0.18);
+--enc-rival-border:       rgba(167,139,250,0.4);
+
+--enc-evil-grunt-color:   #f85888;
+--enc-evil-grunt-bg:      rgba(248,88,136,0.15);
+--enc-evil-grunt-border:  rgba(248,88,136,0.35);
+
+--enc-evil-leader-color:  #ff6b5b;
+--enc-evil-leader-bg:     rgba(192,48,40,0.18);
+--enc-evil-leader-border: rgba(192,48,40,0.45);
+
+--enc-gym-color:          #6890f0;
+--enc-gym-bg:             rgba(104,144,240,0.18);
+--enc-gym-border:         rgba(104,144,240,0.4);
+
+--enc-elite-color:        #9060f8;
+--enc-elite-bg:           rgba(112,56,248,0.18);
+--enc-elite-border:       rgba(112,56,248,0.4);
+
+--enc-champion-color:     var(--color-warn);
+--enc-champion-bg:        rgba(255,212,71,0.2);
+--enc-champion-border:    rgba(255,212,71,0.5);
+
+--enc-final-color:        var(--color-bad);
+--enc-final-bg:           rgba(255,79,94,0.25);
+--enc-final-border:       rgba(255,79,94,0.6);
+
+--enc-wild-color:         var(--color-good);
+--enc-wild-bg:            rgba(53,232,120,0.12);
+--enc-wild-border:        rgba(53,232,120,0.3);
+
+--enc-trainer-color:      #c0c080;
+--enc-trainer-bg:         rgba(168,168,120,0.15);
+--enc-trainer-border:     rgba(168,168,120,0.3);
+
+/* ── Mode badge (wave + stats widgets) ─────────────────────────────────────── */
+--mode-badge-color:       var(--color-passive);
+--mode-badge-bg:          rgba(167,139,250,0.18);
+--mode-badge-border:      rgba(167,139,250,0.35);
+
+/* ── Wave number glow ───────────────────────────────────────────────────────── */
+--wave-number-glow:       rgba(34,211,238,0.5);
+
+/* ── Cycle button ───────────────────────────────────────────────────────────── */
+--cycle-btn-bg:           rgba(255,255,255,0.06);
+--cycle-btn-active-bg:    rgba(34,211,238,0.14);
+--cycle-btn-active-border: rgba(34,211,238,0.6);
+
+/* ── Type badge opacity multipliers ────────────────────────────────────────── */
+--type-badge-bg-opacity:      0.28;
+--type-badge-border-opacity:  0.55;
+--move-dot-opacity:           0.9;
+--move-dot-glow-opacity:      0.5;
+--move-border-opacity:        0.22;
+
+/* ── Tera badge opacity multipliers ────────────────────────────────────────── */
+--tera-active-bg-opacity:     0.3;
+--tera-active-border-opacity: 0.7;
+--tera-inactive-bg-opacity:   0.12;
+--tera-inactive-border-opacity: 0.35;
+
+/* ── Status badge fallback ─────────────────────────────────────────────────── */
+--status-unknown-bg:          rgba(255,255,255,0.15);
+--status-unknown-border:      rgba(255,255,255,0.3);
+--status-unknown-color:       var(--color-text);
+
+/* ── overlay.html specific ──────────────────────────────────────────────────── */
+--overlay-bg1:            #150a2b;
+--overlay-bg2:            #061a32;
+--overlay-bg3:            #070c14;
+--overlay-panel:          rgba(12,18,30,0.88);
+--overlay-border:         rgba(255,255,255,0.22);
+--overlay-muted:          rgba(248,251,255,0.72);
+--overlay-glow-purple:    rgba(139,92,246,0.5);
+--overlay-glow-cyan:      rgba(34,211,238,0.38);
+--overlay-glow-pink:      rgba(255,68,126,0.22);
+--overlay-grid-line:      rgba(255,255,255,0.035);
+--overlay-sprite-border:  rgba(255,255,255,0.44);
+--overlay-sprite-bg:      rgba(0,0,0,0.26);
+--overlay-sprite-glow-cyan:   rgba(34,211,238,0.26);
+--overlay-sprite-glow-purple: rgba(139,92,246,0.24);
+--overlay-edit-bg:        #a5f3fc;
+--overlay-edit-color:     #06111f;
+
+/* ── Stats timer row ────────────────────────────────────────────────────────── */
+--timer-row-bg:           rgba(255,255,255,0.03);
+
+/* ── Status badge backgrounds & borders ────────────────────────────────────── */
+--status-brn-bg:     rgba(255,100,61,0.25);
+--status-brn-border: rgba(255,100,61,0.5);
+--status-par-bg:     rgba(255,212,71,0.22);
+--status-par-border: rgba(255,212,71,0.45);
+--status-psn-bg:     rgba(160,64,160,0.22);
+--status-psn-border: rgba(160,64,160,0.45);
+--status-slp-bg:     rgba(154,168,255,0.22);
+--status-slp-border: rgba(154,168,255,0.45);
+--status-frz-bg:     rgba(105,215,255,0.22);
+--status-frz-border: rgba(105,215,255,0.45);
+
+/* ── overlay.html shadows & misc ────────────────────────────────────────────── */
+--overlay-card-shadow:        0 1.4vh 3.2vh rgba(0,0,0,0.38);
+--overlay-sprite-inner-glow:  rgba(0,0,0,0.22);
+--overlay-text-shadow:        0 2px 12px rgba(0,0,0,0.75);
+--overlay-panel-bg:           rgba(0,0,0,0.34);
+--overlay-divider:            rgba(255,255,255,0.08);
+--overlay-divider-border:     rgba(255,255,255,0.15);
+--overlay-sprite-drop-shadow: rgba(0,0,0,0.45);
+--overlay-move-text-shadow:   0 1px 2px rgba(0,0,0,0.55);
+--overlay-move-border:        rgba(255,255,255,0.3);
+--overlay-hp-bg:              rgba(0,0,0,0.45);
+--overlay-hp-border:          rgba(255,255,255,0.12);
+--overlay-stat-text-shadow:   0 1px 2px rgba(0,0,0,0.45);
+--overlay-muted-text:         rgba(255,255,255,0.34);
+
+/* ── Cycle btn hover (wave widget) ──────────────────────────────────────────── */
+--cycle-btn-hover-bg:     rgba(34,211,238,0.08);
+--cycle-btn-hover-border: rgba(34,211,238,0.4);
+
+/* ── Boss chip (non-encounter-type variants) ────────────────────────────────── */
+--boss-soon-bg:     rgba(255,212,71,0.18);
+--boss-soon-border: rgba(255,212,71,0.4);
+
+/* ── overlay.html white rgba values ─────────────────────────────────────────── */
+--overlay-border-strong:    rgba(255,255,255,0.22);
+--overlay-border-mid:       rgba(255,255,255,0.14);
+--overlay-border-soft:      rgba(255,255,255,0.08);
+--overlay-white-faint:      rgba(255,255,255,0.04);
+--overlay-hp-fill-border:   rgba(255,255,255,0.2);
+--overlay-move-pp:          rgba(255,255,255,0.25);
+--overlay-fainted-glow:     rgba(255, 79, 94, 0.65);
+
+/* ── overlay.html misc colours ───────────────────────────────────────────────── */
+--overlay-black-light:    rgba(0,0,0,0.22);
+--overlay-black-mid:      rgba(0,0,0,0.25);
+--overlay-black-heavy:    rgba(0,0,0,0.58);
+--overlay-black-overlay:  rgba(0,0,0,0.6);
+--overlay-tooltip-bg:     rgba(11,16,27,0.98);
+--overlay-warn-bg:        rgba(255,212,71,0.18);
+--overlay-warn-border:    rgba(255,212,71,0.55);
+--overlay-warn-text:      #fff2a7;
+--overlay-bad-bg:         rgba(255,79,94,0.2);
+--overlay-bad-text:       #ffd0d5;
+--overlay-good-text:      #35e878;
+--overlay-good-dark:      #04100a;
+--overlay-editor-bg:      #101010;
+--overlay-white:          #fff;
+--overlay-purple-light:   #c4b5fd;

@@ -11,12 +11,12 @@ const TYPE_RGB = {
 };
 
 const STATUS_STYLE = {
-  BRN: 'background:rgba(255,100,61,0.25);border:1px solid rgba(255,100,61,0.5);color:var(--color-status-brn,#ff643d)',
-  PAR: 'background:rgba(255,212,71,0.22);border:1px solid rgba(255,212,71,0.45);color:var(--color-status-par,#ffd447)',
-  PSN: 'background:rgba(160,64,160,0.22);border:1px solid rgba(160,64,160,0.45);color:var(--color-status-psn,#c080c0)',
-  TOX: 'background:rgba(160,64,160,0.22);border:1px solid rgba(160,64,160,0.45);color:var(--color-status-psn,#c080c0)',
-  SLP: 'background:rgba(154,168,255,0.22);border:1px solid rgba(154,168,255,0.45);color:var(--color-status-slp,#9aa8ff)',
-  FRZ: 'background:rgba(105,215,255,0.22);border:1px solid rgba(105,215,255,0.45);color:var(--color-status-frz,#69d7ff)',
+  BRN: 'background:var(--status-brn-bg);border:1px solid var(--status-brn-border);color:var(--color-status-brn)',
+  PAR: 'background:var(--status-par-bg);border:1px solid var(--status-par-border);color:var(--color-status-par)',
+  PSN: 'background:var(--status-psn-bg);border:1px solid var(--status-psn-border);color:var(--color-status-psn)',
+  TOX: 'background:var(--status-psn-bg);border:1px solid var(--status-psn-border);color:var(--color-status-psn)',
+  SLP: 'background:var(--status-slp-bg);border:1px solid var(--status-slp-border);color:var(--color-status-slp)',
+  FRZ: 'background:var(--status-frz-bg);border:1px solid var(--status-frz-border);color:var(--color-status-frz)',
 };
 
 const STAT_LABELS = { atk:'ATK', def:'DEF', spAtk:'SPA', spDef:'SPD', speed:'SPE', acc:'ACC', eva:'EVA' };
@@ -36,15 +36,15 @@ function hpColor(pct) { return pct <= 25 ? 'var(--bad)' : pct <= 50 ? 'var(--war
 
 function typeBadge(t) {
   const rgb = typeRgb(t);
-  return `<span class="type-badge" style="background:rgba(${rgb},0.28);border:1px solid rgba(${rgb},0.55);">${t}</span>`;
+  return `<span class="type-badge" style="background:rgba(${rgb},var(--type-badge-bg-opacity,0.28));border:1px solid rgba(${rgb},var(--type-badge-border-opacity,0.55));">${t}</span>`;
 }
 
 function moveRow(move) {
   if (!move || !move.name) return `<div class="move empty"><div class="move-dot"></div><span class="move-name">—</span></div>`;
   const rgb  = typeRgb(move.type || '');
   const name = move.name.replace(/ \(P\)$/, '');
-  return `<div class="move" style="border-color:rgba(${rgb},0.22);">
-    <div class="move-dot" style="background:rgba(${rgb},0.9);box-shadow:0 0 4px rgba(${rgb},0.5);"></div>
+  return `<div class="move" style="border-color:rgba(${rgb},var(--move-border-opacity,0.22));">
+    <div class="move-dot" style="background:rgba(${rgb},var(--move-dot-opacity,0.9));box-shadow:0 0 4px rgba(${rgb},var(--move-dot-glow-opacity,0.5));"></div>
     <span class="move-name" title="${move.name}">${name}</span>
   </div>`;
 }
@@ -82,7 +82,7 @@ function renderCard(p, slot) {
     if (!p.teraType) return '';
     const rgb = typeRgb(p.teraType);
     const active = p.isTerastallized;
-    return `<div class="tera-badge${active ? ' tera-active' : ''}" style="background:rgba(${rgb},${active ? '0.3' : '0.12'});border-color:rgba(${rgb},${active ? '0.7' : '0.35'});color:rgba(${rgb},${active ? '1' : '0.7'});">
+    return `<div class="tera-badge${active ? ' tera-active' : ''}" style="background:rgba(${rgb},${active ? 'var(--tera-active-bg-opacity,0.3)' : 'var(--tera-inactive-bg-opacity,0.12)'});border-color:rgba(${rgb},${active ? 'var(--tera-active-border-opacity,0.7)' : 'var(--tera-inactive-border-opacity,0.35)'});color:rgba(${rgb},${active ? '1' : '0.7'});">
       ${active ? '◆' : '◇'} ${p.teraType}
     </div>`;
   })();
@@ -90,7 +90,7 @@ function renderCard(p, slot) {
   const statusHtml = (() => {
     if (!p.status) return '';
     const key   = String(p.status).toUpperCase().slice(0, 3);
-    const style = STATUS_STYLE[key] || 'background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff';
+    const style = STATUS_STYLE[key] || 'background:var(--status-unknown-bg,rgba(255,255,255,0.15));border:1px solid var(--status-unknown-border,rgba(255,255,255,0.3));color:var(--status-unknown-color,#fff)';
     return `<div class="status-badge" style="${style}">${p.status}</div>`;
   })();
 

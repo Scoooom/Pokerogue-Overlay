@@ -7,13 +7,13 @@
     @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@500;700;900&display=swap');
 
     :root {
-      --bg1: #150a2b;
-      --bg2: #061a32;
-      --bg3: #070c14;
-      --panel: rgba(12, 18, 30, 0.88);
-      --border: rgba(255, 255, 255, 0.22);
-      --text: var(--color-text);
-      --muted: rgba(248, 251, 255, 0.72);
+      --bg1:   var(--overlay-bg1);
+      --bg2:   var(--overlay-bg2);
+      --bg3:   var(--overlay-bg3);
+      --panel: var(--overlay-panel);
+      --border: var(--overlay-border);
+      --text:  var(--color-text);
+      --muted: var(--overlay-muted);
       --good:     var(--color-good);
       --warn:     var(--color-warn);
       --bad:      var(--color-bad);
@@ -33,9 +33,9 @@
       color: var(--text);
       font-family: 'Rajdhani', 'Inter', Arial, sans-serif;
       background:
-        radial-gradient(circle at 15% 16%, rgba(139, 92, 246, 0.5), transparent 30%),
-        radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.38), transparent 34%),
-        radial-gradient(circle at 50% 88%, rgba(255, 68, 126, 0.22), transparent 42%),
+        radial-gradient(circle at 15% 16%, var(--overlay-glow-purple), transparent 30%),
+        radial-gradient(circle at 82% 18%, var(--overlay-glow-cyan), transparent 34%),
+        radial-gradient(circle at 50% 88%, var(--overlay-glow-pink), transparent 42%),
         linear-gradient(135deg, var(--bg1), var(--bg2) 48%, var(--bg3));
     }
 
@@ -44,8 +44,8 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+        linear-gradient(var(--overlay-grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--overlay-grid-line) 1px, transparent 1px);
       background-size: 42px 42px;
       mask-image: radial-gradient(circle at center, black, transparent 82%);
       pointer-events: none;
@@ -63,10 +63,10 @@
     }
 
     .panel {
-      background: linear-gradient(180deg, rgba(255,255,255,0.105), rgba(255,255,255,0.045)), var(--panel);
+      background: linear-gradient(180deg, var(--overlay-white-faint), var(--overlay-white-faint)), var(--panel);
       border: 1px solid var(--border);
       border-radius: 2.1vh;
-      box-shadow: 0 1.4vh 3.2vh rgba(0, 0, 0, 0.38);
+      box-shadow: var(--overlay-card-shadow);
       backdrop-filter: blur(10px);
       min-height: 0;
       overflow: hidden;
@@ -75,12 +75,12 @@
     .game-frame {
       position: relative;
       border-radius: 2.4vh;
-      border: 3px solid rgba(255, 255, 255, 0.44);
-      background: rgba(0, 0, 0, 0.26);
+      border: 3px solid var(--overlay-sprite-border);
+      background: var(--overlay-sprite-bg);
       box-shadow:
-        0 0 0 0.48vw rgba(0,0,0,0.22),
-        0 0 2vw rgba(34, 211, 238, 0.26),
-        0 0 3vw rgba(139, 92, 246, 0.24);
+        0 0 0 0.48vw var(--overlay-sprite-inner-glow),
+        0 0 2vw var(--overlay-sprite-glow-cyan),
+        0 0 3vw var(--overlay-sprite-glow-purple);
       overflow: hidden;
     }
 
@@ -91,12 +91,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255,255,255,0.34);
+      color: var(--overlay-muted-text);
       font-family: 'Inter', sans-serif;
       font-size: clamp(18px, 1.7vw, 34px);
       font-weight: 900;
       letter-spacing: 0.12em;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.75);
+      text-shadow: var(--overlay-text-shadow);
       pointer-events: none;
     }
 
@@ -125,8 +125,8 @@
       padding: 0.55vh 0.72vw;
       border-radius: 1.65vh;
       background:
-        linear-gradient(90deg, rgba(var(--type-rgb, 139, 92, 246), 0.32), rgba(255,255,255,0.04)),
-        rgba(0, 0, 0, 0.34);
+        linear-gradient(90deg, rgba(var(--type-rgb, 139, 92, 246), 0.32), var(--overlay-white-faint)),
+        var(--overlay-panel-bg);
       border: 1px solid rgba(var(--type-rgb, 139, 92, 246), 0.58);
       overflow: hidden;
     }
@@ -158,8 +158,8 @@
       align-items: center;
       justify-content: center;
       border-radius: 1.3vh;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: var(--overlay-divider);
+      border: 1px solid var(--overlay-divider-border);
       overflow: hidden;
     }
 
@@ -167,7 +167,7 @@
       max-width: 92%;
       max-height: 92%;
       image-rendering: pixelated;
-      filter: drop-shadow(0 5px 7px rgba(0,0,0,0.45));
+      filter: drop-shadow(0 5px 7px var(--overlay-sprite-drop-shadow));
     }
 
     .mon-body {
@@ -206,8 +206,8 @@
       font-family: inherit;
       font-size: clamp(9px, 0.55vw, 10px);
       font-weight: 900;
-      color: #06111f;
-      background: #a5f3fc;
+      color: var(--overlay-edit-color);
+      background: var(--overlay-edit-bg);
       vertical-align: middle;
     }
 
@@ -249,9 +249,9 @@
       font-weight: 900;
       letter-spacing: .035em;
       color: white;
-      text-shadow: 0 1px 2px rgba(0,0,0,.55);
+      text-shadow: var(--overlay-move-text-shadow);
       background: rgb(var(--badge-rgb, 139, 92, 246));
-      border: 1px solid rgba(255,255,255,.3);
+      border: 1px solid var(--overlay-move-border);
     }
 
     .info-text {
@@ -280,10 +280,10 @@
     .hpbar {
       position: relative;
       height: clamp(9px, 1vh, 13px);
-      background: rgba(0,0,0,0.45);
+      background: var(--overlay-hp-bg);
       border-radius: 999px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid var(--overlay-hp-border);
     }
 
     .hpfill {
@@ -333,15 +333,15 @@
       text-overflow: ellipsis;
       flex: 1;
       font-weight: 900;
-      text-shadow: 0 1px 2px rgba(0,0,0,.45);
+      text-shadow: var(--overlay-stat-text-shadow);
     }
 
     .move.add-move {
-      color: #a5f3fc;
+      color: var(--overlay-edit-bg);
       border-style: dashed;
       justify-content: center;
       font-weight: 900;
-      background: rgba(0,0,0,0.25);
+      background: var(--overlay-black-mid);
     }
 
     .status {
@@ -350,8 +350,8 @@
       border-radius: 999px;
       font-size: clamp(9px, 0.55vw, 10px);
       font-weight: 900;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.22);
+      background: var(--overlay-border-mid);
+      border: 1px solid var(--overlay-border-strong);
     }
 
     .bottom-panel {
@@ -366,8 +366,8 @@
     .run-card, .blank-card {
       min-height: 0;
       border-radius: 1.65vh;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.13);
+      background: var(--overlay-black-light);
+      border: 1px solid var(--overlay-border-soft);
       overflow: hidden;
     }
 
@@ -389,8 +389,8 @@
       text-align: center;
       height: 51%;
       border-radius: 1.2vh;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: var(--overlay-border-soft);
+      border: 1px solid var(--overlay-hp-fill-border);
       margin-bottom: 0.6vh;
     }
 
@@ -399,7 +399,7 @@
       font-size: clamp(42px, 4vw, 76px);
       font-weight: 950;
       line-height: 0.9;
-      background: linear-gradient(90deg, #fff, #a5f3fc, #c4b5fd);
+      background: linear-gradient(90deg, var(--overlay-white), var(--overlay-edit-bg), var(--overlay-purple-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -426,8 +426,8 @@
     .wave-chip {
       padding: 0.5vh 0.42vw;
       border-radius: 1vh;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--overlay-border-soft);
+      border: 1px solid var(--overlay-hp-border);
       font-size: clamp(11px, 0.78vw, 15px);
       line-height: 1.05;
       display: flex;
@@ -436,22 +436,22 @@
     }
 
     .wave-chip.soon {
-      background: rgba(255, 212, 71, 0.18);
-      border-color: rgba(255, 212, 71, 0.55);
-      color: #fff2a7;
+      background: var(--overlay-warn-bg);
+      border-color: var(--overlay-warn-border);
+      color: var(--overlay-white)2a7;
     }
 
     .wave-chip.now {
-      background: rgba(255, 79, 94, 0.2);
-      border-color: rgba(255, 79, 94, 0.65);
-      color: #ffd0d5;
+      background: var(--overlay-bad-bg);
+      border-color: var(--overlay-fainted-glow);
+      color: var(--overlay-bad-text);
     }
 
     .modal-backdrop {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.58);
+      background: var(--overlay-black-heavy);
       align-items: center;
       justify-content: center;
       z-index: 999;
@@ -463,9 +463,9 @@
       overflow: auto;
       padding: 18px;
       border-radius: 24px;
-      background: rgba(11, 16, 27, 0.98);
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 20px 70px rgba(0,0,0,.6);
+      background: var(--overlay-tooltip-bg);
+      border: 1px solid var(--overlay-hp-fill-border);
+      box-shadow: 0 20px 70px var(--overlay-black-overlay);
     }
 
     .modal h2 { margin: 0 0 12px; font-family: 'Inter', sans-serif; }
@@ -475,8 +475,8 @@
       margin-top: 4px;
       padding: 10px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.2);
-      background: rgba(255,255,255,.08);
+      border: 1px solid var(--overlay-hp-fill-border);
+      background: var(--overlay-border-soft);
       color: white;
       font: inherit;
       font-size: 16px;
@@ -492,8 +492,8 @@
       font-weight: 900;
       cursor:pointer;
     }
-    .save { background: #35e878; color:#04100a; }
-    .cancel { background: rgba(255,255,255,.14); color:white; }
+    .save { background: var(--overlay-good-text); color:var(--overlay-good-dark); }
+    .cancel { background: var(--overlay-border-mid); color:white; }
   </style>
   <link rel="stylesheet" href="/theme.css">
   <link rel="stylesheet" href="/custom.css">
@@ -721,8 +721,8 @@
 
   function renderStatus(status) {
     if (!status) return '';
-    const color = STATUS_COLORS[String(status).toUpperCase()] || 'rgba(255,255,255,0.25)';
-    return `<span class="status" style="background:${color}; color:#101010;">${status}</span>`;
+    const color = STATUS_COLORS[String(status).toUpperCase()] || 'var(--overlay-move-pp)';
+    return `<span class="status" style="background:${color}; color:var(--overlay-editor-bg);">${status}</span>`;
   }
 
   function renderMove(move, monIndex) {
