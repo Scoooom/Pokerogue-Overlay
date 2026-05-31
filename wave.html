@@ -226,10 +226,10 @@
     <div class="divider" style="width:100%;height:1px;background:rgba(255,255,255,0.08);margin:2px 0;"></div>
     <div class="cycle-row" id="cycleRow">
       <span class="cycle-label">Gym</span>
-      <span class="cycle-val" id="cycleVal">? Unknown</span>
-      <button class="cycle-btn" id="btn20" onclick="setCycle(20)">C-20</button>
-      <button class="cycle-btn" id="btn30" onclick="setCycle(30)">C-30</button>
-      <button class="cycle-btn" onclick="setCycle(null)">?</button>
+      <span class="cycle-val" id="cycleVal"></span>
+      <a class="cycle-btn" href="/wave?cycle=20">C-20</a>
+      <a class="cycle-btn" href="/wave?cycle=30">C-30</a>
+      <a class="cycle-btn" href="/wave">?</a>
     </div>
   </div>
 
@@ -261,20 +261,24 @@
       200: { type: 'Final Boss',  label: 'Eternatus',       icon: '☄️' },
     };
 
-    // Gym waves depend on cycle (20 or 30).
-    // Cycle 20: gyms at 20, 50, 80, 110, 140, 170
-    // Cycle 30: gyms at 30, 60, 90, 120, 150, 180
+    // Gym waves per cycle
+    const GYM_WAVES_20  = new Set([20, 50, 80, 110, 140, 170]);
+    const GYM_WAVES_30  = new Set([30, 60, 90, 120, 150, 180]);
+    const GYM_WAVES_UNK = new Set([20, 30, 50, 60, 80, 90, 110, 120, 140, 150, 170, 180]);
+
     function getGymWaves(cycle) {
-      if (!cycle) return new Set(); // unknown — show nothing
-      const waves = new Set();
-      for (let w = cycle; w <= 180; w += 30) waves.add(w);
-      return waves;
+      if (cycle === 20)  return GYM_WAVES_20;
+      if (cycle === 30)  return GYM_WAVES_30;
+      return GYM_WAVES_UNK;
     }
 
     function getEncounterAt(wave, gymWaves) {
       const w = Number(wave);
       if (FIXED_BATTLES[w]) return FIXED_BATTLES[w];
-      if (gymWaves.has(w)) return { type: 'Gym Leader', label: 'Gym Leader', icon: '🏅' };
+      if (GYM_WAVES_UNK.has(w) && gymWaves === GYM_WAVES_UNK)
+        return { type: 'Gym Leader', label: 'Gym Leader (?)', icon: '🏅' };
+      if (gymWaves.has(w))
+        return { type: 'Gym Leader', label: 'Gym Leader', icon: '🏅' };
       if (w % 10 === 0) return { type: 'Wild Boss', label: 'Wild Boss', icon: '⭐' };
       return null;
     }
@@ -292,20 +296,25 @@
       const wave    = data.wave ?? '--';
       const biome   = data.biome || 'Unknown';
       const mode    = data.gameMode || '';
-      const cycle   = data.gymCycle || null;
+      const params  = new URLSearchParams(location.search);
+      const cycle   = params.has('cycle') ? Number(params.get('cycle')) : null;
 
       document.getElementById('wave').textContent = wave;
       document.getElementById('biome').textContent = biome;
       document.getElementById('mode').textContent = mode;
 
-      // Show/hide cycle selector
-      const cycleRow = document.getElementById('cycleRow');
+      // Update cycle display
       const cycleVal = document.getElementById('cycleVal');
-      if (cycleRow) {
-        cycleRow.style.display = '';
-        cycleVal.textContent = cycle ? `Cycle ${cycle}` : '? Unknown';
+      if (cycleVal) {
+        cycleVal.textContent = cycle ? `C-${cycle}` : '?';
         cycleVal.style.color = cycle ? 'var(--good)' : 'var(--warn)';
       }
+      // Highlight active cycle button
+      document.querySelectorAll('.cycle-btn').forEach(btn => {
+        const href = btn.getAttribute('href') || '';
+        const btnCycle = href.includes('cycle=20') ? 20 : href.includes('cycle=30') ? 30 : null;
+        btn.classList.toggle('active', btnCycle === cycle);
+      });
 
       const gymWaves = getGymWaves(cycle);
       const next = getNextBoss(wave, gymWaves);
@@ -344,15 +353,6 @@
       } catch (e) {
         document.getElementById('wave').textContent = '?';
       }
-    }
-
-    async function setCycle(cycle) {
-      await fetch('/cycle', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cycle }),
-      });
-      fetchData();
     }
 
     setInterval(fetchData, 1000);
