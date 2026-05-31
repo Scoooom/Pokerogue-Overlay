@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name         PokéRogue Overlay Exporter
 // @namespace    local.pokerogue.overlay
-// @version      8.0
+// @version      2.0.1
 // @match        https://pokerogue.net/*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/Scoooom/Pokerogue-Overlay/refs/heads/v2/tampermonkey.user.js
+// @downloadURL  https://raw.githubusercontent.com/Scoooom/Pokerogue-Overlay/refs/heads/v2/tampermonkey.user.js
 // ==/UserScript==
 
 (function () {
