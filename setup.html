@@ -805,7 +805,7 @@
           <img src="" alt="" style="opacity:0.15;" onerror="this.style.display='none'">
           <span>slot ${i}</span>
         </div>`;
-      const url = `/sprite?slot=${i}&raw&_cb=${Date.now()}`;
+      const url = `/sprite?slot=${i}&raw`;
       return `
         <div class="sprite-slot">
           <img src="${url}" alt="${p.name}" title="${p.name}${p.shiny ? ' ✨' : ''}">

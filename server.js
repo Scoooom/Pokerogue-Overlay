@@ -183,6 +183,24 @@ function fetchFirstWorking(candidates) {
 // ── Cycle state (20 or 30 — set manually, persists until reset) ──────────────
 let gymCycle = null; // null = unknown, 20 or 30 = known
 
+// ── Sprite cache ─────────────────────────────────────────────────────────────
+// Keyed by "name|form" — invalidated when slot contents change
+const spriteCache = new Map(); // key -> { buf, type, url }
+
+function spriteCacheKey(pokemon) {
+  return `${pokemon.name}|${pokemon.form || ""}`;
+}
+
+async function getCachedSprite(pokemon) {
+  const key = spriteCacheKey(pokemon);
+  if (spriteCache.has(key)) return spriteCache.get(key);
+  const realName   = cleanPokemonName(pokemon.name);
+  const candidates = spriteCandidates(realName, pokemon.form);
+  const result     = await fetchFirstWorking(candidates);
+  spriteCache.set(key, result);
+  return result;
+}
+
 // ── Game state ────────────────────────────────────────────────────────────────
 let latestData = {
   gameInfoVersion: "",
