@@ -18,11 +18,15 @@ function getName(x) {
 
 function normalizeMove(m) {
   if (!m) return null;
-  const moveName = (typeof m === "string" ? m : (m.name || m.id || (m.move && m.move.name) || "Unknown Move")).trim();
+  // gameInfo sends moveset as plain strings e.g. "Flower Trick", "Rollout (P)"
+  // Strip the (P) passive marker if present
+  const raw      = (typeof m === "string" ? m : (m.name || m.id || "Unknown Move")).trim();
+  const moveName = raw.replace(/\s*\(P\)$/, "").trim();
   const match    = MOVES_DB[moveName];
   return {
     name: moveName,
     type: match?.type ? match.type.trim().toUpperCase() : "",
+    passive: raw.endsWith("(P)"),
   };
 }
 
@@ -63,7 +67,7 @@ function normalizePokemon(p, index) {
   };
 }
 
-function normalizeGameInfo(raw, weather) {
+function normalizeGameInfo(raw) {
   const info = raw || {};
   return {
     gameInfoVersion: info.gameInfoVersion || "",
@@ -72,7 +76,6 @@ function normalizeGameInfo(raw, weather) {
     gameMode:        info.gameMode ?? "",
     playTime:        info.playTime ?? 0,
     money:           info.money ?? 0,
-    weather:         weather || null,
     party:           Array.isArray(info.party) ? info.party.map(normalizePokemon) : [],
   };
 }
@@ -183,7 +186,7 @@ let gymCycle = null; // null = unknown, 20 or 30 = known
 let latestData = {
   gameInfoVersion: "",
   wave: "--", biome: "", gameMode: "", playTime: 0, money: 0,
-  weather: null, party: [], updatedAt: Date.now(),
+  party: [], updatedAt: Date.now(),
 };
 
 app.use(cors());
@@ -294,13 +297,13 @@ app.get("/raw", (req, res) => {
 
 // ── Update (from Tampermonkey) ────────────────────────────────────────────────
 app.post("/update", (req, res) => {
-  const { gameInfo, weather } = req.body;
-  if (!gameInfo) return res.status(400).json({ error: "missing gameInfo" });
+  const gameInfo = req.body;
+  if (!gameInfo || !gameInfo.gameInfoVersion) return res.status(400).json({ error: "missing gameInfo" });
 
-  rawPayload = { ...req.body, receivedAt: Date.now() };
+  rawPayload = { ...gameInfo, receivedAt: Date.now() };
 
   latestData = {
-    ...normalizeGameInfo(gameInfo, weather),
+    ...normalizeGameInfo(gameInfo),
     updatedAt: Date.now(),
   };
 
