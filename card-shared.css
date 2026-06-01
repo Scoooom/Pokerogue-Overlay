@@ -95,7 +95,7 @@ body {
 .sprite { max-width: var(--sprite-size); max-height: var(--sprite-size-h); image-rendering: pixelated; object-fit: contain; }
 
 .poke-name { font-family: var(--font-display); font-weight: 700; }
-.level { font-size: var(--font-size-level); color: var(--color-text-muted); letter-spacing: 0.05em; white-space: nowrap; }
+.level { font-size: var(--font-size-level); color: var(--color-level, var(--color-text-muted)); letter-spacing: 0.05em; white-space: nowrap; }
 
 .types { display: flex; gap: 3px; flex-wrap: wrap; }
 .type-badge { font-size: var(--font-size-type); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: var(--border-radius-badge); color: var(--color-text); }
@@ -104,7 +104,7 @@ body {
 .strip.vertical .hp-bar-wrap { padding: 0; }
 .hp-bar-bg { width: 100%; height: var(--hp-bar-height); background: var(--hp-bar-bg); border-radius: var(--hp-bar-radius); overflow: hidden; }
 .hp-bar-fill { height: 100%; border-radius: var(--hp-bar-radius); transition: width 0.4s ease, background 0.4s ease; }
-.hp-text { font-size: var(--font-size-hp); color: var(--color-text-muted); text-align: center; margin-top: 2px; }
+.hp-text { font-size: var(--font-size-hp); color: var(--color-hp-text, var(--color-text-muted)); text-align: center; margin-top: 2px; }
 .strip.vertical .hp-text { text-align: left; }
 
 .info-row {
