@@ -171,6 +171,7 @@
 --type-badge-border-opacity:  0.55;
 --move-dot-opacity:           0.9;
 --move-dot-glow-opacity:      0.5;
+--move-bg-opacity:            0;    /* 0 = transparent; set e.g. 0.15 for full type colour */
 --move-border-opacity:        0.22;
 
 /* ── Tera badge opacity multipliers ────────────────────────────────────────── */

@@ -45,7 +45,7 @@ function moveRow(move) {
   if (!move || !move.name) return `<div class="move empty"><div class="move-dot"></div><span class="move-name">—</span></div>`;
   const rgb  = typeRgb(move.type || '');
   const name = move.name.replace(/ \(P\)$/, '');
-  return `<div class="move" style="border-color:rgba(${rgb},var(--move-border-opacity,0.22));">
+  return `<div class="move" style="--move-rgb:${rgb};border-color:rgba(${rgb},var(--move-border-opacity,0.22));background:rgba(${rgb},var(--move-bg-opacity,0));">
     <div class="move-dot" style="background:rgba(${rgb},var(--move-dot-opacity,0.9));box-shadow:0 0 4px rgba(${rgb},var(--move-dot-glow-opacity,0.5));"></div>
     <span class="move-name" title="${move.name}">${name}</span>
   </div>`;
