@@ -37,16 +37,16 @@ function hpPct(p) {
 function hpColor(pct) { return pct <= 25 ? 'var(--color-bad)' : pct <= 50 ? 'var(--color-warn)' : 'var(--color-good)'; }
 
 function typeBadge(t) {
-  const cls = (t || 'normal').toUpperCase();
-  return `<span class="type-badge type-${cls}">${t}</span>`;
+  const rgb = typeRgb(t);
+  return `<span class="type-badge" style="background:rgba(${rgb},var(--type-badge-bg-opacity,0.28));border:1px solid rgba(${rgb},var(--type-badge-border-opacity,0.55));">${t}</span>`;
 }
 
 function moveRow(move) {
   if (!move || !move.name) return `<div class="move empty"><div class="move-dot"></div><span class="move-name">—</span></div>`;
-  const cls  = (move.type || 'normal').toUpperCase();
+  const rgb  = typeRgb(move.type || '');
   const name = move.name.replace(/ \(P\)$/, '');
-  return `<div class="move type-${cls}">
-    <div class="move-dot"></div>
+  return `<div class="move" style="border-color:rgba(${rgb},var(--move-border-opacity,0.22));">
+    <div class="move-dot" style="background:rgba(${rgb},var(--move-dot-opacity,0.9));box-shadow:0 0 4px rgba(${rgb},var(--move-dot-glow-opacity,0.5));"></div>
     <span class="move-name" title="${move.name}">${name}</span>
   </div>`;
 }
@@ -107,9 +107,9 @@ function renderCard(p, slot, minimal = false) {
 
   const teraHtml = (() => {
     if (!p.teraType) return '';
-    const cls    = (p.teraType || 'normal').toUpperCase();
+    const rgb    = typeRgb(p.teraType);
     const active = p.isTerastallized;
-    return `<div class="tera-badge type-${cls}${active ? ' tera-active' : ''}">
+    return `<div class="tera-badge${active ? ' tera-active' : ''}" style="background:rgba(${rgb},${active ? 'var(--tera-active-bg-opacity,0.3)' : 'var(--tera-inactive-bg-opacity,0.12)'});border-color:rgba(${rgb},${active ? 'var(--tera-active-border-opacity,0.7)' : 'var(--tera-inactive-border-opacity,0.35)'});color:rgba(${rgb},${active ? '1' : '0.7'});">
       ${active ? '◆' : '◇'} ${p.teraType}
     </div>`;
   })();
