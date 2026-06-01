@@ -1,669 +1,669 @@
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: var(--bg-body);
-      font-family: var(--font-main);
-      color: var(--color-text);
-    }
+body {
+  background: var(--bg-body);
+  font-family: var(--font-main);
+  color: var(--color-text);
+}
 
-    /* ── Outer wrapper ───────────────────────────────────────────────────── */
-    .wrapper {
-      display: inline-flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+/* ── Outer wrapper ───────────────────────────────────────────────────── */
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
-    /* ── Strip (horizontal default) ─────────────────────────────────────── */
-    .strip {
-      display: flex;
-      flex-direction: row;
-      gap: var(--card-gap);
-      padding: 10px;
-      background: var(--bg-strip);
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius-strip);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow-strip);
-      width: max-content;
-    }
+/* ── Strip (horizontal default) ─────────────────────────────────────── */
+.strip {
+  display: flex;
+  flex-direction: row;
+  gap: var(--card-gap);
+  padding: 10px;
+  background: var(--bg-strip);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-strip);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-strip);
+  width: max-content;
+}
 
-    /* ── Strip (vertical) ────────────────────────────────────────────────── */
-    .strip.vertical {
-      flex-direction: column;
-      width: 320px;
-    }
+/* ── Strip (vertical) ────────────────────────────────────────────────── */
+.strip.vertical {
+  flex-direction: column;
+  width: 320px;
+}
 
-    /* ── Card shared base ────────────────────────────────────────────────── */
-    .card {
-      background: var(--bg-card);
-      border: 1px solid rgba(var(--card-rgb), 0.3);
-      border-radius: var(--border-radius-card);
-      position: relative;
-      overflow: hidden;
-    }
+/* ── Card shared base ────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(var(--card-rgb), 0.3);
+  border-radius: var(--border-radius-card);
+  position: relative;
+  overflow: hidden;
+}
 
-    .card.fainted { opacity: var(--fainted-opacity); filter: var(--fainted-filter); }
+.card.fainted { opacity: var(--fainted-opacity); filter: var(--fainted-filter); }
 
-    /* ── HORIZONTAL card ─────────────────────────────────────────────────── */
-    .strip:not(.vertical) .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 130px;
-      padding: var(--card-padding-h);
-      gap: 4px;
-    }
+/* ── HORIZONTAL card ─────────────────────────────────────────────────── */
+.strip:not(.vertical) .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 130px;
+  padding: var(--card-padding-h);
+  gap: 4px;
+}
 
-    .strip:not(.vertical) .col-left  { display: contents; }
-    .strip:not(.vertical) .col-right { display: contents; }
-    .strip:not(.vertical) .poke-name { font-size: var(--font-size-name-h); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
-    .strip:not(.vertical) .name-level { display: contents; }
-    .strip:not(.vertical) .shiny-badge { position: absolute; top: 5px; right: 6px; }
-    .strip:not(.vertical) .types { justify-content: center; }
+.strip:not(.vertical) .col-left  { display: contents; }
+.strip:not(.vertical) .col-right { display: contents; }
+.strip:not(.vertical) .poke-name { font-size: var(--font-size-name-h); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+.strip:not(.vertical) .name-level { display: contents; }
+.strip:not(.vertical) .shiny-badge { position: absolute; top: 5px; right: 6px; }
+.strip:not(.vertical) .types { justify-content: center; }
 
-    /* ── VERTICAL card ───────────────────────────────────────────────────── */
-    .strip.vertical .card {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      width: 100%;
-      padding: var(--card-padding-v);
-      gap: 10px;
-    }
+/* ── VERTICAL card ───────────────────────────────────────────────────── */
+.strip.vertical .card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  padding: var(--card-padding-v);
+  gap: 10px;
+}
 
-    .strip.vertical .col-left {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: flex-start;
-      gap: 4px; flex-shrink: 0; width: var(--sprite-size);
-    }
+.strip.vertical .col-left {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  gap: 4px; flex-shrink: 0; width: var(--sprite-size);
+}
 
-    .strip.vertical .col-right {
-      display: flex; flex-direction: column;
-      gap: 3px; flex: 1; min-width: 0; justify-content: center;
-    }
+.strip.vertical .col-right {
+  display: flex; flex-direction: column;
+  gap: 3px; flex: 1; min-width: 0; justify-content: center;
+}
 
-    .strip.vertical .shiny-badge { position: static; font-size: var(--font-size-shiny); text-align: center; }
-    .strip.vertical .poke-name { font-size: var(--font-size-name-v); font-weight: 700; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
-    .strip.vertical .name-level { display: flex; align-items: baseline; gap: 6px; }
-    .strip.vertical .types { justify-content: flex-start; }
-    .strip.vertical .moves { display: grid !important; grid-template-columns: 1fr 1fr; }
+.strip.vertical .shiny-badge { position: static; font-size: var(--font-size-shiny); text-align: center; }
+.strip.vertical .poke-name { font-size: var(--font-size-name-v); font-weight: 700; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+.strip.vertical .name-level { display: flex; align-items: baseline; gap: 6px; }
+.strip.vertical .types { justify-content: flex-start; }
+.strip.vertical .moves { display: grid !important; grid-template-columns: 1fr 1fr; }
 
-    /* ── Shared components ───────────────────────────────────────────────── */
-    .shiny-badge { font-size: var(--font-size-shiny); line-height: 1; }
+/* ── Shared components ───────────────────────────────────────────────── */
+.shiny-badge { font-size: var(--font-size-shiny); line-height: 1; }
 
-    .sprite-wrap { width: var(--sprite-size); height: var(--sprite-size-h); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .sprite { max-width: var(--sprite-size); max-height: var(--sprite-size-h); image-rendering: pixelated; object-fit: contain; }
+.sprite-wrap { width: var(--sprite-size); height: var(--sprite-size-h); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.sprite { max-width: var(--sprite-size); max-height: var(--sprite-size-h); image-rendering: pixelated; object-fit: contain; }
 
-    .poke-name { font-family: var(--font-display); font-weight: 700; }
-    .level { font-size: var(--font-size-level); color: var(--color-text-muted); letter-spacing: 0.05em; white-space: nowrap; }
+.poke-name { font-family: var(--font-display); font-weight: 700; }
+.level { font-size: var(--font-size-level); color: var(--color-text-muted); letter-spacing: 0.05em; white-space: nowrap; }
 
-    .types { display: flex; gap: 3px; flex-wrap: wrap; }
-    .type-badge { font-size: var(--font-size-type); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: var(--border-radius-badge); color: var(--color-text); }
+.types { display: flex; gap: 3px; flex-wrap: wrap; }
+.type-badge { font-size: var(--font-size-type); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: var(--border-radius-badge); color: var(--color-text); }
 
-    .hp-bar-wrap { width: 100%; padding: 0 2px; }
-    .strip.vertical .hp-bar-wrap { padding: 0; }
-    .hp-bar-bg { width: 100%; height: var(--hp-bar-height); background: var(--hp-bar-bg); border-radius: var(--hp-bar-radius); overflow: hidden; }
-    .hp-bar-fill { height: 100%; border-radius: var(--hp-bar-radius); transition: width 0.4s ease, background 0.4s ease; }
-    .hp-text { font-size: var(--font-size-hp); color: var(--color-text-muted); text-align: center; margin-top: 2px; }
-    .strip.vertical .hp-text { text-align: left; }
+.hp-bar-wrap { width: 100%; padding: 0 2px; }
+.strip.vertical .hp-bar-wrap { padding: 0; }
+.hp-bar-bg { width: 100%; height: var(--hp-bar-height); background: var(--hp-bar-bg); border-radius: var(--hp-bar-radius); overflow: hidden; }
+.hp-bar-fill { height: 100%; border-radius: var(--hp-bar-radius); transition: width 0.4s ease, background 0.4s ease; }
+.hp-text { font-size: var(--font-size-hp); color: var(--color-text-muted); text-align: center; margin-top: 2px; }
+.strip.vertical .hp-text { text-align: left; }
 
-    .info-row {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      min-height: 16px;
-      flex-wrap: nowrap;
-      overflow: hidden;
-    }
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 16px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
 
-    .status-badge { font-size: var(--font-size-status); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: var(--border-radius-badge); flex-shrink: 0; }
+.status-badge { font-size: var(--font-size-status); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: var(--border-radius-badge); flex-shrink: 0; }
 
-    .ability-line {
-      font-size: var(--font-size-ability);
-      color: var(--color-text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      min-height: 12px;
-      line-height: 1.4;
-    }
+.ability-line {
+  font-size: var(--font-size-ability);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 12px;
+  line-height: 1.4;
+}
 
-    .ability-name { color: var(--color-text); font-weight: 600; }
-    .passive-name { color: var(--color-passive); font-weight: 600; }
+.ability-name { color: var(--color-text); font-weight: 600; }
+.passive-name { color: var(--color-passive); font-weight: 600; }
 
-    .moves { width: 100%; display: flex; flex-direction: column; gap: 2px; margin-top: 2px; }
-    .move { display: flex; align-items: center; gap: 4px; padding: 2px 5px; border-radius: var(--border-radius-move); background: var(--bg-move); border: 1px solid var(--border-color-move); min-width: 0; }
-    .move-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    .move-name { font-size: var(--font-size-move); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--color-text); flex: 1; min-width: 0; }
-    .move.empty .move-name { color: var(--color-text-dim); font-style: italic; }
-    .move.empty .move-dot  { background: var(--color-text-faint); }
+.moves { width: 100%; display: flex; flex-direction: column; gap: 2px; margin-top: 2px; }
+.move { display: flex; align-items: center; gap: 4px; padding: 2px 5px; border-radius: var(--border-radius-move); background: var(--bg-move); border: 1px solid var(--border-color-move); min-width: 0; }
+.move-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.move-name { font-size: var(--font-size-move); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--color-text); flex: 1; min-width: 0; }
+.move.empty .move-name { color: var(--color-text-dim); font-style: italic; }
+.move.empty .move-dot  { background: var(--color-text-faint); }
 
-    .divider { width: 100%; height: 1px; background: var(--color-text-faint); margin: 1px 0; }
+.divider { width: 100%; height: 1px; background: var(--color-text-faint); margin: 1px 0; }
 
-    /* ── Tera badge ──────────────────────────────────────────────────────── */
-    .tera-badge {
-      font-size: var(--font-size-status);
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 1px 5px;
-      border-radius: var(--border-radius-badge);
-      border: 1px solid;
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      flex-shrink: 0;
-    }
+/* ── Tera badge ──────────────────────────────────────────────────────── */
+.tera-badge {
+  font-size: var(--font-size-status);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: var(--border-radius-badge);
+  border: 1px solid;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
 
-    .tera-active {
-      animation: tera-pulse 1.5s ease-in-out infinite;
-    }
+.tera-active {
+  animation: tera-pulse 1.5s ease-in-out infinite;
+}
 
-    @keyframes tera-pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.55; }
-    }
+@keyframes tera-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
 
-    /* ── Stat stages ─────────────────────────────────────────────────────── */
-    .stat-stages {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 2px;
-      width: 100%;
-      height: var(--stat-grid-height);
-      flex-shrink: 0;
-    }
+/* ── Stat stages ─────────────────────────────────────────────────────── */
+.stat-stages {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  width: 100%;
+  height: var(--stat-grid-height);
+  flex-shrink: 0;
+}
 
-    .strip:not(.vertical) .stat-stages { justify-content: center; }
-    .strip.vertical .stat-stages { justify-content: flex-start; }
+.strip:not(.vertical) .stat-stages { justify-content: center; }
+.strip.vertical .stat-stages { justify-content: flex-start; }
 
-    .stat-cell {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--border-radius-stat);
-      background: var(--bg-stat-neutral);
-      border: 1px solid var(--border-color-stat);
-      overflow: hidden;
-    }
+.stat-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-stat);
+  background: var(--bg-stat-neutral);
+  border: 1px solid var(--border-color-stat);
+  overflow: hidden;
+}
 
-    .stat-cell.stat-up   { background: var(--bg-stat-up);   border-color: var(--border-color-stat-up);   }
-    .stat-cell.stat-down { background: var(--bg-stat-down);  border-color: var(--border-color-stat-down); }
+.stat-cell.stat-up   { background: var(--bg-stat-up);   border-color: var(--border-color-stat-up);   }
+.stat-cell.stat-down { background: var(--bg-stat-down);  border-color: var(--border-color-stat-down); }
 
-    .stat-cell-label {
-      font-size: var(--font-size-stat-label);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--color-text-muted);
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
+.stat-cell-label {
+  font-size: var(--font-size-stat-label);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
 
-    .stat-cell-val {
-      font-size: var(--font-size-stat-val);
-      font-weight: 900;
-      line-height: 1.1;
-      font-family: var(--font-display);
-    }
+.stat-cell-val {
+  font-size: var(--font-size-stat-val);
+  font-weight: 900;
+  line-height: 1.1;
+  font-family: var(--font-display);
+}
 
-    .stat-neutral .stat-cell-val { color: var(--color-text-dim); }
-    .stat-up      .stat-cell-val { color: var(--color-good); }
-    .stat-down    .stat-cell-val { color: var(--color-bad); }
+.stat-neutral .stat-cell-val { color: var(--color-text-dim); }
+.stat-up      .stat-cell-val { color: var(--color-good); }
+.stat-down    .stat-cell-val { color: var(--color-bad); }
 
-    /* ── Empty slot ──────────────────────────────────────────────────────── */
-    .card.empty { opacity: 0.15; border-style: dashed; --card-rgb: 139,92,246; }
-    .empty-sprite { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-empty); }
+/* ── Empty slot ──────────────────────────────────────────────────────── */
+.card.empty { opacity: 0.15; border-style: dashed; --card-rgb: 139,92,246; }
+.empty-sprite { width: 48px; height: 48px; border-radius: 50%; background: var(--bg-empty); }
 
-    /* ── Type colour classes ─────────────────────────────────────────────────── */
-    /* Each type defines --type-r, --type-g, --type-b for use in rgba()          */
-    /* Override any of these in custom.css to recolour a type globally            */
+/* ── Type colour classes ─────────────────────────────────────────────────── */
+/* Each type defines --type-r, --type-g, --type-b for use in rgba()          */
+/* Override any of these in custom.css to recolour a type globally            */
 
-    .type-NORMAL   { --tr:168; --tg:168; --tb:120; }
-    .type-FIRE     { --tr:240; --tg:128; --tb:48;  }
-    .type-WATER    { --tr:104; --tg:144; --tb:240; }
-    .type-ELECTRIC { --tr:248; --tg:208; --tb:48;  }
-    .type-GRASS    { --tr:120; --tg:200; --tb:80;  }
-    .type-ICE      { --tr:152; --tg:216; --tb:216; }
-    .type-FIGHTING { --tr:192; --tg:48;  --tb:40;  }
-    .type-POISON   { --tr:160; --tg:64;  --tb:160; }
-    .type-GROUND   { --tr:224; --tg:192; --tb:104; }
-    .type-FLYING   { --tr:168; --tg:144; --tb:240; }
-    .type-PSYCHIC  { --tr:248; --tg:88;  --tb:136; }
-    .type-BUG      { --tr:168; --tg:184; --tb:32;  }
-    .type-ROCK     { --tr:184; --tg:160; --tb:56;  }
-    .type-GHOST    { --tr:112; --tg:88;  --tb:152; }
-    .type-DRAGON   { --tr:112; --tg:56;  --tb:248; }
-    .type-DARK     { --tr:112; --tg:88;  --tb:72;  }
-    .type-STEEL    { --tr:184; --tg:184; --tb:208; }
-    .type-FAIRY    { --tr:238; --tg:153; --tb:172; }
+.type-NORMAL   { --tr:168; --tg:168; --tb:120; }
+.type-FIRE     { --tr:240; --tg:128; --tb:48;  }
+.type-WATER    { --tr:104; --tg:144; --tb:240; }
+.type-ELECTRIC { --tr:248; --tg:208; --tb:48;  }
+.type-GRASS    { --tr:120; --tg:200; --tb:80;  }
+.type-ICE      { --tr:152; --tg:216; --tb:216; }
+.type-FIGHTING { --tr:192; --tg:48;  --tb:40;  }
+.type-POISON   { --tr:160; --tg:64;  --tb:160; }
+.type-GROUND   { --tr:224; --tg:192; --tb:104; }
+.type-FLYING   { --tr:168; --tg:144; --tb:240; }
+.type-PSYCHIC  { --tr:248; --tg:88;  --tb:136; }
+.type-BUG      { --tr:168; --tg:184; --tb:32;  }
+.type-ROCK     { --tr:184; --tg:160; --tb:56;  }
+.type-GHOST    { --tr:112; --tg:88;  --tb:152; }
+.type-DRAGON   { --tr:112; --tg:56;  --tb:248; }
+.type-DARK     { --tr:112; --tg:88;  --tb:72;  }
+.type-STEEL    { --tr:184; --tg:184; --tb:208; }
+.type-FAIRY    { --tr:238; --tg:153; --tb:172; }
 
-    /* Type-scoped colour rules — each class sets bg/border/dot using its own --tr/--tg/--tb */
+/* Type-scoped colour rules — each class sets bg/border/dot using its own --tr/--tg/--tb */
 
-    .type-NORMAL.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-NORMAL {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-NORMAL .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-NORMAL.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-NORMAL.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-NORMAL.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-NORMAL {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-NORMAL .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-NORMAL.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-NORMAL.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-FIRE.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-FIRE {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-FIRE .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-FIRE.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-FIRE.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-FIRE.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-FIRE {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-FIRE .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-FIRE.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-FIRE.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-WATER.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-WATER {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-WATER .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-WATER.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-WATER.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-WATER.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-WATER {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-WATER .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-WATER.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-WATER.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-ELECTRIC.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-ELECTRIC {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-ELECTRIC .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-ELECTRIC.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-ELECTRIC.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-ELECTRIC.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-ELECTRIC {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-ELECTRIC .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-ELECTRIC.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-ELECTRIC.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-GRASS.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-GRASS {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-GRASS .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-GRASS.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-GRASS.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-GRASS.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-GRASS {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-GRASS .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-GRASS.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-GRASS.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-ICE.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-ICE {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-ICE .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-ICE.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-ICE.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-ICE.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-ICE {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-ICE .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-ICE.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-ICE.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-FIGHTING.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-FIGHTING {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-FIGHTING .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-FIGHTING.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-FIGHTING.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-FIGHTING.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-FIGHTING {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-FIGHTING .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-FIGHTING.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-FIGHTING.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-POISON.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-POISON {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-POISON .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-POISON.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-POISON.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-POISON.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-POISON {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-POISON .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-POISON.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-POISON.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-GROUND.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-GROUND {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-GROUND .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-GROUND.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-GROUND.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-GROUND.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-GROUND {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-GROUND .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-GROUND.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-GROUND.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-FLYING.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-FLYING {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-FLYING .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-FLYING.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-FLYING.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-FLYING.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-FLYING {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-FLYING .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-FLYING.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-FLYING.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-PSYCHIC.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-PSYCHIC {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-PSYCHIC .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-PSYCHIC.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-PSYCHIC.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-PSYCHIC.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-PSYCHIC {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-PSYCHIC .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-PSYCHIC.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-PSYCHIC.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-BUG.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-BUG {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-BUG .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-BUG.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-BUG.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-BUG.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-BUG {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-BUG .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-BUG.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-BUG.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-ROCK.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-ROCK {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-ROCK .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-ROCK.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-ROCK.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-ROCK.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-ROCK {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-ROCK .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-ROCK.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-ROCK.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-GHOST.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-GHOST {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-GHOST .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-GHOST.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-GHOST.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-GHOST.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-GHOST {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-GHOST .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-GHOST.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-GHOST.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-DRAGON.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-DRAGON {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-DRAGON .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-DRAGON.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-DRAGON.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-DRAGON.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-DRAGON {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-DRAGON .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-DRAGON.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-DRAGON.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-DARK.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-DARK {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-DARK .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-DARK.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-DARK.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-DARK.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-DARK {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-DARK .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-DARK.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-DARK.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-STEEL.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-STEEL {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-STEEL .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-STEEL.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-STEEL.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-STEEL.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-STEEL {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-STEEL .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-STEEL.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-STEEL.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    .type-FAIRY.type-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
-      border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
-    }
-    .move.type-FAIRY {
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
-    }
-    .move.type-FAIRY .move-dot {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
-      box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
-    }
-    .type-FAIRY.tera-badge {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
-      color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
-    }
-    .type-FAIRY.tera-badge.tera-active {
-      background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
-      border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
-      color: rgb(var(--tr), var(--tg), var(--tb));
-    }
+.type-FAIRY.type-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-bg-opacity));
+  border: 1px solid rgba(var(--tr), var(--tg), var(--tb), var(--type-badge-border-opacity));
+}
+.move.type-FAIRY {
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--move-border-opacity));
+}
+.move.type-FAIRY .move-dot {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-opacity));
+  box-shadow: 0 0 4px rgba(var(--tr), var(--tg), var(--tb), var(--move-dot-glow-opacity));
+}
+.type-FAIRY.tera-badge {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-inactive-border-opacity));
+  color: rgba(var(--tr), var(--tg), var(--tb), 0.9);
+}
+.type-FAIRY.tera-badge.tera-active {
+  background: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-bg-opacity));
+  border-color: rgba(var(--tr), var(--tg), var(--tb), var(--tera-active-border-opacity));
+  color: rgb(var(--tr), var(--tg), var(--tb));
+}
 
-    /* ── Minimal card layout ─────────────────────────────────────────────────── */
-    .card-minimal {
-      align-items: center;
-    }
+/* ── Minimal card layout ─────────────────────────────────────────────────── */
+.card-minimal {
+  align-items: center;
+}
 
-    /* Horizontal minimal — tighter, no right column flex column needed */
-    .strip:not(.vertical) .card-minimal {
-      width: 100px;
-      padding: 6px 5px 7px;
-      gap: 3px;
-    }
+/* Horizontal minimal — tighter, no right column flex column needed */
+.strip:not(.vertical) .card-minimal {
+  width: 100px;
+  padding: 6px 5px 7px;
+  gap: 3px;
+}
 
-    .strip:not(.vertical) .card-minimal .poke-name {
-      font-size: 10px;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
-    }
+.strip:not(.vertical) .card-minimal .poke-name {
+  font-size: 10px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
 
-    .strip:not(.vertical) .card-minimal .types {
-      justify-content: center;
-    }
+.strip:not(.vertical) .card-minimal .types {
+  justify-content: center;
+}
 
-    /* Vertical minimal */
-    .strip.vertical .card-minimal {
-      padding: 6px 8px;
-      gap: 8px;
-    }
+/* Vertical minimal */
+.strip.vertical .card-minimal {
+  padding: 6px 8px;
+  gap: 8px;
+}

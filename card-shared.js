@@ -34,7 +34,7 @@ function typeRgb(t) { return TYPE_RGB[(t||'').toUpperCase()] || '139,92,246'; }
 function hpPct(p) {
   return Math.max(0, Math.min(100, (Number(p.hp ?? p.currentHP ?? 0) / Number(p.maxHp ?? p.maxHP ?? 1)) * 100));
 }
-function hpColor(pct) { return pct <= 25 ? 'var(--bad)' : pct <= 50 ? 'var(--warn)' : 'var(--good)'; }
+function hpColor(pct) { return pct <= 25 ? 'var(--color-bad)' : pct <= 50 ? 'var(--color-warn)' : 'var(--color-good)'; }
 
 function typeBadge(t) {
   const cls = (t || 'normal').toUpperCase();
