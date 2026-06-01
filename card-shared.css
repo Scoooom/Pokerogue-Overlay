@@ -40,7 +40,6 @@ body {
   border: var(--card-border-width, 1px) solid rgba(var(--card-rgb), var(--card-border-opacity, 0.3));
   border-radius: var(--border-radius-card);
   position: relative;
-  overflow: hidden;
 }
 
 .card.fainted { opacity: var(--fainted-opacity); filter: var(--fainted-filter); }
