@@ -77,6 +77,8 @@
   --font-size-name-h:     11px;   /* Pokemon name (horizontal)           */
   --font-size-name-v:     12px;   /* Pokemon name (vertical)             */
   --font-size-level:      10px;
+  --color-level:          var(--color-text-muted); /* level text colour */
+  --color-hp-text:        var(--color-text-muted); /* HP number colour */
   --font-size-type:       9px;
   --font-size-move:       9.5px;
   --font-size-stat-label: 6.5px;
