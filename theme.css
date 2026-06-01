@@ -54,6 +54,8 @@
   --border-color-stat-up:   rgba(53,232,120,0.3);
   --border-color-stat-down: rgba(255,79,94,0.3);
   --border-radius-card:     12px;
+  --card-border-width:      1px;    /* border thickness */
+  --card-border-opacity:    0.3;    /* type colour border opacity; increase for more prominent type colour */
   --border-radius-strip:    16px;
   --border-radius-badge:    10px;
   --border-radius-move:     5px;

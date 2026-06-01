@@ -37,7 +37,7 @@ body {
 /* ── Card shared base ────────────────────────────────────────────────── */
 .card {
   background: var(--bg-card);
-  border: 1px solid rgba(var(--card-rgb), 0.3);
+  border: var(--card-border-width, 1px) solid rgba(var(--card-rgb), var(--card-border-opacity, 0.3));
   border-radius: var(--border-radius-card);
   position: relative;
   overflow: hidden;
