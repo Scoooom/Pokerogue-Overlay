@@ -424,7 +424,7 @@ node server.js</code></pre>
   <p>Run stats panel showing wave, biome, game mode, live timer (counts up between server polls), shiny count, alive count, money, and run name (if set). Recommended OBS size: <strong>230×260px</strong>.</p>
 
   <h2 id="route-luck" class="anchor">/luck</h2>
-  <p>Compact widget showing the run's luck rank (<code>D</code> through <code>SSS</code>). Colour climbs with the rank, and at the max score (14 / <code>SSS</code>) the text renders as an animated rainbow gradient, matching the in-game shop indicator. Recommended OBS size: <strong>140×70px</strong>.</p>
+  <p>Bare luck rank text — just the letter grade (<code>D</code> through <code>SSS</code>), no background or label, so it drops directly onto a scene. Colour climbs a tier ramp as luck increases, and at the max score (14 / <code>SSS</code>) the text renders as an animated rainbow gradient, matching the in-game shop indicator. Recommended OBS size: <strong>140×70px</strong>.</p>
   <div class="callout">
     Add <code>?json</code> for the raw API response instead of the page — see <a href="#route-api">API Routes</a> below.
   </div>

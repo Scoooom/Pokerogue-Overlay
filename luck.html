@@ -8,31 +8,13 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: var(--bg-body);
-      font-family: var(--font-main);
-      color: var(--color-text);
-      display: inline-block;
-    }
-
-    .widget {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 10px;
-      padding: 12px 16px 10px;
-      background: var(--bg-widget);
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius-widget);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-widget);
-    }
-
-    .luck-label {
-      font-size: var(--wave-label-size, 12px);
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
+    html, body {
+      background: transparent;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .luck-rank {
@@ -68,10 +50,7 @@
   <link rel="stylesheet" href="/custom.css">
 </head>
 <body>
-  <div class="widget">
-    <span class="luck-label">Luck</span>
-    <span class="luck-rank" id="rank">--</span>
-  </div>
+  <span class="luck-rank" id="rank">--</span>
 
   <script>
     // Tier bucket → colour class, independent of the exact rank string

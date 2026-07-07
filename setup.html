@@ -650,6 +650,31 @@
       </div>
     </div>
 
+    <!-- /luck -->
+    <div class="route-card">
+      <div class="route-header">
+        <div class="route-meta">
+          <div class="route-path"><span class="method-tag">GET</span> /luck</div>
+          <div class="route-name">Luck</div>
+          <div class="route-desc">Bare luck rank text — just the letter grade (D through SSS), no background or label. Colour climbs a tier ramp as luck increases, and at max luck (14 / SSS) it renders as an animated rainbow gradient, matching the in-game shop indicator. Add <code style="font-size:11px;background:rgba(34,211,238,0.1);padding:1px 5px;border-radius:3px;color:#22d3ee;">?json</code> for the raw API response instead of the page.</div>
+          <div class="route-tags">
+            <span class="tag obs">OBS Source</span>
+            <span class="tag page">Widget</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyUrl(this, '/luck')">Copy URL</button>
+      </div>
+      <div class="route-preview">
+        <div class="preview-label">Preview</div>
+        <div class="iframe-shell" style="min-height:90px;">
+          <iframe src="/luck" width="140" height="70" scrolling="no"></iframe>
+        </div>
+        <div class="obs-tip">
+          <strong>OBS tip:</strong> Recommended size ~140×70px. Transparent background — text only, so it drops straight onto your scene without a widget frame.
+        </div>
+      </div>
+    </div>
+
     <!-- /card -->
     <div class="route-card">
       <div class="route-header">
