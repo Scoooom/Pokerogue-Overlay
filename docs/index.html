@@ -164,6 +164,7 @@
   <a href="#route-card">/card</a>
   <a href="#route-wave">/wave</a>
   <a href="#route-stats">/stats</a>
+  <a href="#route-luck">/luck</a>
   <a href="#route-full">/full</a>
   <a href="#route-sprite">/sprite</a>
   <a href="#route-api">API routes</a>
@@ -259,6 +260,7 @@ node server.js</code></pre>
       <tr><td>/wave?cycle=20</td><td><span class="tag tag-obs">OBS</span></td><td>280×140px</td><td>Wave widget — C-20 gym cycle</td></tr>
       <tr><td>/wave?cycle=30</td><td><span class="tag tag-obs">OBS</span></td><td>280×140px</td><td>Wave widget — C-30 gym cycle</td></tr>
       <tr><td>/stats</td><td><span class="tag tag-obs">OBS</span></td><td>230×260px</td><td>Run stats panel</td></tr>
+      <tr><td>/luck</td><td><span class="tag tag-obs">OBS</span><span class="tag tag-api">API</span></td><td>140×70px</td><td>Luck widget (rainbow at SSS) or JSON via <code>?json</code></td></tr>
       <tr><td>/sprite?slot=0</td><td><span class="tag tag-obs">OBS</span></td><td>any</td><td>Single sprite, updates with slot</td></tr>
       <tr><td>/full</td><td><span class="tag tag-obs">OBS</span><span class="tag tag-page">Page</span></td><td>860×520px</td><td>Full overlay with inline editor</td></tr>
       <tr><td>/data</td><td><span class="tag tag-api">API</span></td><td>—</td><td>Normalised game state JSON</td></tr>
@@ -311,6 +313,10 @@ node server.js</code></pre>
   <h2 id="route-stats" class="anchor">/stats</h2>
   <p>Run stats panel: wave, biome, game mode badge, live timer (counts up between server polls), shiny count, alive count, money (₽), and run name (shown only when set, e.g. "Mono Type", "Nuzlocke").</p>
 
+  <h2 id="route-luck" class="anchor">/luck</h2>
+  <p>Compact widget showing the run's luck rank (<code>D</code> through <code>SSS</code>). Colour climbs with the rank, and at the max score (14 / <code>SSS</code>) the text renders as an animated rainbow gradient, matching the in-game shop indicator.</p>
+  <div class="callout">Add <code>?json</code> for the raw API response instead of the page — see <a href="#route-api">API Routes</a> below.</div>
+
   <h2 id="route-full" class="anchor">/full</h2>
   <p>The original full-featured overlay with an inline editor. Click <strong>EDIT</strong> on any Pokémon to manually adjust moves, ability, passive, or nature — useful when the game doesn't expose certain fields via <code>window.gameInfo</code>. Supports <code>?minimal</code> to show compact cards.</p>
 
@@ -326,13 +332,16 @@ node server.js</code></pre>
 
   <h2 id="route-api" class="anchor">API Routes</h2>
   <h3>/data</h3>
-  <p>Normalised game state JSON. Includes wave, biome, gameMode, playTime, money, runName, gymCycle, and the full party array. Each Pokémon: name, form, level, hp/maxHp, types, moves (with types), ability, passive, passiveEnabled, nature, status, statStages, teraType, isTerastallized, shiny, variant, isFusion.</p>
+  <p>Normalised game state JSON. Includes wave, biome, gameMode, playTime, money, runName, luck, gymCycle, and the full party array. Each Pokémon: name, form, level, hp/maxHp, types, moves (with types), ability, passive, passiveEnabled, nature, status, statStages, teraType, isTerastallized, shiny, variant, isFusion, luck.</p>
 
   <h3>/raw</h3>
   <p>Exact <code>window.gameInfo</code> payload from the Tampermonkey script plus a <code>receivedAt</code> timestamp. Useful for debugging or discovering new fields as the game updates.</p>
 
   <h3>/names[?slot=N]</h3>
   <p>Party slot names. Without <code>slot</code> returns all 6 as an array. With <code>?slot=N</code> returns <code>{ slot, name }</code>. Empty slots return <code>null</code>.</p>
+
+  <h3>/luck?json</h3>
+  <p>Run luck translated to its in-game letter grade, plus a per-slot breakdown of raw luck points: <code>{ value, rank, rainbow, party: [{ slot, name, luck }] }</code>. <code>value</code> is the raw 0–14 score, <code>rank</code> is the shop letter grade (<code>D</code> through <code>SSS</code>), and <code>rainbow</code> is <code>true</code> only at the max score of 14. Each Pokémon's luck is <code>variant + 1</code> if shiny (plus the same again for a shiny fusion partner). Without <code>?json</code>, <code>/luck</code> serves the OBS widget page instead — see <a href="#route-luck">/luck</a> above.</p>
 
   <h2 id="customization" class="anchor">Customization</h2>
   <p>Every visual property is defined as a CSS custom property in <code>theme.css</code>, loaded by every overlay page. Override any variable to change the look across all pages at once.</p>

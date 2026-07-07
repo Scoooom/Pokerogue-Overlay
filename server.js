@@ -9,6 +9,20 @@ const PORT = 3000;
 // ── Move database ─────────────────────────────────────────────────────────────
 const MOVES_DB = JSON.parse(fs.readFileSync(path.join(__dirname, "moves.json")));
 
+// ── Luck rank table ────────────────────────────────────────────────────────────
+// In-game letter grade shown in the shop for a given luck score (0–14).
+// 14 (max) renders with the game's animated rainbow text — flagged here as `rainbow`.
+const LUCK_RANKS = ["D", "C", "C+", "B-", "B", "B+", "A-", "A", "A+", "A++", "S", "S+", "SS", "SS+", "SSS"];
+
+function getLuckRank(luck) {
+  const clamped = Math.max(0, Math.min(14, Number(luck) || 0));
+  return {
+    value: clamped,
+    rank: LUCK_RANKS[clamped],
+    rainbow: clamped === 14,
+  };
+}
+
 // ── Normalization (was in tampermonkey, now lives here) ───────────────────────
 function getName(x) {
   if (!x) return "";
@@ -64,6 +78,7 @@ function normalizePokemon(p, index) {
     shiny:           !!p.shiny,
     variant:         p.variant || "",
     isFusion:        !!p.isFusion,
+    luck:            p.luck ?? 0,
   };
 }
 
@@ -77,6 +92,7 @@ function normalizeGameInfo(raw) {
     playTime:        info.playTime ?? 0,
     money:           info.money ?? 0,
     runName:         info.name  || "",
+    luck:            info.luck ?? 0,
     party:           Array.isArray(info.party) ? info.party.map(normalizePokemon) : [],
   };
 }
@@ -205,7 +221,7 @@ async function getCachedSprite(pokemon) {
 let latestData = {
   gameInfoVersion: "",
   wave: "--", biome: "", gameMode: "", playTime: 0, money: 0, runName: "",
-  party: [], updatedAt: Date.now(),
+  luck: 0, party: [], updatedAt: Date.now(),
 };
 
 app.use(cors());
@@ -231,6 +247,7 @@ app.get("/wave",  (req, res) => res.sendFile(path.join(__dirname, "wave.html")))
 app.get("/party", (req, res) => res.sendFile(path.join(__dirname, "party.html")));
 app.get("/stats", (req, res) => res.sendFile(path.join(__dirname, "stats.html")));
 app.get("/card",  (req, res) => res.sendFile(path.join(__dirname, "card.html")));
+app.get("/luck",  (req, res, next) => req.query.json !== undefined ? next() : res.sendFile(path.join(__dirname, "luck.html")));
 app.get("/docs",  (req, res) => res.sendFile(path.join(__dirname, "docs.html")));
 
 
@@ -330,6 +347,18 @@ app.get("/names", (req, res) => {
   }));
 });
 
+// ── Luck ──────────────────────────────────────────────────────────────────────
+// GET /luck        — OBS page (defined above in ── Pages ──), rainbow SSS text
+// GET /luck?json   — overall run luck translated to its in-game rank (D–SSS),
+//                    plus a per-slot breakdown of raw luck points
+app.get("/luck", (req, res) => {
+  const party = latestData.party || [];
+  res.json({
+    ...getLuckRank(latestData.luck),
+    party: party.map((p, i) => ({ slot: i, name: p.nickname || p.name, luck: p.luck })),
+  });
+});
+
 // ── Cycle ─────────────────────────────────────────────────────────────────────
 // GET  /cycle        → { cycle: 20|30|null }
 // POST /cycle        → { cycle: 20|30|null } to set; null resets to unknown
@@ -380,6 +409,7 @@ app.listen(PORT, () => {
   console.log(`  Stats:   http://localhost:${PORT}/stats`);
   console.log(`  Sprite:  http://localhost:${PORT}/sprite?slot=0`);
   console.log(`  Names:   http://localhost:${PORT}/names`);
+  console.log(`  Luck:    http://localhost:${PORT}/luck`);
   console.log(`  Data:    http://localhost:${PORT}/data`);
   console.log(`  Raw:     http://localhost:${PORT}/raw`);
   console.log(`  Card:    http://localhost:${PORT}/card?slot=0`);

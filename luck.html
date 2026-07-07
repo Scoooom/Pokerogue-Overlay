@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>PokéRogue – Luck</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/theme.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-body);
+      font-family: var(--font-main);
+      color: var(--color-text);
+      display: inline-block;
+    }
+
+    .widget {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 12px 16px 10px;
+      background: var(--bg-widget);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-widget);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-widget);
+    }
+
+    .luck-label {
+      font-size: var(--wave-label-size, 12px);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .luck-rank {
+      font-family: var(--font-display);
+      font-size: var(--wave-number-size, 28px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    /* Tier colour ramp — climbs from dim to accent as luck increases */
+    .luck-rank.tier-low    { color: var(--color-text-dim); }
+    .luck-rank.tier-mid    { color: var(--color-text-muted); }
+    .luck-rank.tier-high   { color: var(--color-text); }
+    .luck-rank.tier-top    { color: var(--color-accent); text-shadow: 0 0 20px var(--wave-number-glow, transparent); }
+
+    /* Max luck (14 / SSS) — animated rainbow gradient text */
+    .luck-rank.tier-rainbow {
+      background: linear-gradient(90deg, #ff5f6d, #ffc371, #f9f871, #6dff8f, #5ecbff, #b18cff, #ff5f6d);
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: luck-rainbow-flow 3s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
+    }
+
+    @keyframes luck-rainbow-flow {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
+    }
+  </style>
+  <link rel="stylesheet" href="/custom.css">
+</head>
+<body>
+  <div class="widget">
+    <span class="luck-label">Luck</span>
+    <span class="luck-rank" id="rank">--</span>
+  </div>
+
+  <script>
+    // Tier bucket → colour class, independent of the exact rank string
+    function tierClass(value) {
+      if (value >= 14) return 'tier-rainbow';
+      if (value >= 10) return 'tier-top';
+      if (value >= 6)  return 'tier-high';
+      if (value >= 3)  return 'tier-mid';
+      return 'tier-low';
+    }
+
+    async function fetchLuck() {
+      try {
+        const res = await fetch('/luck?json', { cache: 'no-store' });
+        const data = await res.json();
+        const el = document.getElementById('rank');
+        el.textContent = data.rank || '--';
+        el.className = 'luck-rank ' + tierClass(data.value ?? 0);
+      } catch (e) {}
+    }
+
+    setInterval(fetchLuck, 2000);
+    fetchLuck();
+  </script>
+</body>
+</html>

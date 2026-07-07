@@ -377,6 +377,7 @@ node server.js</code></pre>
       <tr><td>/card</td><td><span class="tag tag-obs">OBS</span></td><td>Single slot card</td></tr>
       <tr><td>/wave</td><td><span class="tag tag-obs">OBS</span></td><td>Wave / biome / next encounter widget</td></tr>
       <tr><td>/stats</td><td><span class="tag tag-obs">OBS</span></td><td>Run stats panel</td></tr>
+      <tr><td>/luck</td><td><span class="tag tag-obs">OBS</span><span class="tag tag-api">API</span></td><td>Luck widget (rainbow at SSS) or JSON via <code>?json</code></td></tr>
       <tr><td>/sprite</td><td><span class="tag tag-obs">OBS</span><span class="tag tag-api">API</span></td><td>Sprite image or page by slot / name</td></tr>
       <tr><td>/data</td><td><span class="tag tag-api">API</span></td><td>Normalised game state JSON</td></tr>
       <tr><td>/raw</td><td><span class="tag tag-api">API</span></td><td>Raw Tampermonkey payload JSON</td></tr>
@@ -422,6 +423,12 @@ node server.js</code></pre>
   <h2 id="route-stats" class="anchor">/stats</h2>
   <p>Run stats panel showing wave, biome, game mode, live timer (counts up between server polls), shiny count, alive count, money, and run name (if set). Recommended OBS size: <strong>230×260px</strong>.</p>
 
+  <h2 id="route-luck" class="anchor">/luck</h2>
+  <p>Compact widget showing the run's luck rank (<code>D</code> through <code>SSS</code>). Colour climbs with the rank, and at the max score (14 / <code>SSS</code>) the text renders as an animated rainbow gradient, matching the in-game shop indicator. Recommended OBS size: <strong>140×70px</strong>.</p>
+  <div class="callout">
+    Add <code>?json</code> for the raw API response instead of the page — see <a href="#route-api">API Routes</a> below.
+  </div>
+
   <h2 id="route-sprite" class="anchor">/sprite</h2>
   <p>Sprite endpoint. Server-side resolves the first working Pokémon Showdown CDN image and caches it in memory.</p>
   <table class="param-table">
@@ -440,13 +447,16 @@ node server.js</code></pre>
 
   <h2 id="route-api" class="anchor">API Routes</h2>
   <h3>/data</h3>
-  <p>Returns normalised game state JSON including wave, biome, gameMode, playTime, money, runName, gymCycle, and the full party array with types, moves (with types), ability, passive, stat stages, tera type, and more.</p>
+  <p>Returns normalised game state JSON including wave, biome, gameMode, playTime, money, runName, luck, gymCycle, and the full party array with types, moves (with types), ability, passive, stat stages, tera type, luck, and more.</p>
 
   <h3>/raw</h3>
   <p>Returns the exact <code>window.gameInfo</code> payload received from the Tampermonkey script, plus a <code>receivedAt</code> timestamp. Useful for debugging normalization or discovering new fields.</p>
 
   <h3>/names[?slot=N]</h3>
   <p>Returns party slot name(s). Without <code>slot</code>, returns all 6 as an array. With <code>slot</code>, returns a single <code>{ slot, name }</code> object. Empty slots return <code>null</code>.</p>
+
+  <h3>/luck?json</h3>
+  <p>Returns the run's overall luck translated to its in-game letter grade, plus a per-slot breakdown of raw luck points: <code>{ value, rank, rainbow, party: [{ slot, name, luck }] }</code>. <code>value</code> is the raw 0–14 score, <code>rank</code> is the letter grade shown in the shop (<code>D</code> through <code>SSS</code>), and <code>rainbow</code> is <code>true</code> only at the max score of 14, matching the game's animated rainbow text at that rank. Each Pokémon's individual luck is <code>variant + 1</code> if shiny (plus the same for a shiny fusion partner). Without <code>?json</code>, <code>/luck</code> serves the OBS widget page instead — see <a href="#route-luck">/luck</a> above.</p>
 
   <h3>/cycle</h3>
   <p><code>GET /cycle</code> returns <code>{ cycle: 20 | 30 | null }</code>. <code>POST /cycle</code> with body <code>{ cycle: 20 | 30 | null }</code> sets or resets it.</p>
